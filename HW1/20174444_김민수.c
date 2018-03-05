@@ -89,7 +89,26 @@ int main()
 		}
 	}
 
+	/* 한 줄씩 두 줄  출력 하기
+	for (int m = 0; m < num_count; m++)
+	{
+		printf(" %4d ", arr[m]);
+	}
+	printf("\n");
+
+	for (int l = 0; l < num_count; l++)
+	{
+		if (l == max_idx)
+			printf(" 최댓값 ");
+		else if (l == min_idx)
+			printf("최솟값 ");
+		else
+			printf("      ");
+	}
 	printf("\n  min idx   = %d max idx   = %d\n  min value = %d max value = %d\n", min_idx, max_idx, arr[min_idx], arr[max_idx]);
+	*/
+
+	printf("  min idx   = %d max idx   = %d\n  min value = %d max value = %d\n", min_idx, max_idx, arr[min_idx], arr[max_idx]);
 
 	fclose(fp);
 
