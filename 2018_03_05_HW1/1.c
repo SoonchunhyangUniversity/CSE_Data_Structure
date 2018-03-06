@@ -1,13 +1,13 @@
 /*
-	* * * * * * * * * * * * * * * * * *
-	* 작성자 : 김민수									*
-	* 학번 : 20174444									*
-	* 학과 : 컴퓨터소프트웨어공학과	 *
-	* 프로그램명 : 최댓값,최솟값 찾기 *
-	* 개발환경 : Visual Studio 2010		*
-	* 컴파일러 표준 : C99							*
-	* 작성일 : 2018 - 03 - 05				 *
-	* * * * * * * * * * * * * * * * * *
+	* * * * * * * * * * * * * * * * * * *
+	* 작성자 : 김민수										*
+	* 학번 : 20174444										*
+	* 학과 : 컴퓨터소프트웨어공학과		 *
+	* 프로그램명 : 최댓값,최솟값 찾기	 *
+	* 개발환경 : Visual Studio 2010			*
+	* 컴파일러 표준 : C99								*
+	* 작성일 : 2018 - 03 - 05					 *
+	* * * * * * * * * * * * * * * * * * *
 */
 
 #include <stdio.h>
@@ -19,7 +19,7 @@ int main()
 	int num_count = 0;; // 파일 안에 있는 숫자 갯수 확인을 위한 변수 선언
 	int max_idx, min_idx;	// 최댓값과 최솟값이 배열의 몇번째 인덱스에 있는지 저장해줄 변수 선언
 
-	/* 파일포인터 data.txt를 읽기모드로 열기 */
+							/* 파일포인터 data.txt를 읽기모드로 열기 */
 	FILE *fp = fopen("data.txt", "r");
 
 	/* 파일이 없으면 예외처리 */
@@ -30,7 +30,7 @@ int main()
 	}
 
 	/* fscnaf로 arr에 값 삽입 */
-	while(!feof(fp))
+	while (!feof(fp))
 	{
 		fscanf(fp, "%d", &arr[i]);	// 파일에서 정수를 입력받아 배열에 하나씩 넣는다
 		i++;
@@ -76,26 +76,44 @@ int main()
 		{
 			printf("\n");
 
-			/* 문자열 "최솟값" 출력 */
+			/* 최솟값 숫자 아래에 문자열 "최솟값" 출력 */
 			if (check == 1)
 			{
 				for (int l = 0; l < min_idx % 5; l++)
 				{
 					printf("\t");	// tab 이용
 				}
-				printf("최솟값\n");
+				printf("최솟값");
+				for (int k = 0; k < 5 - (min_idx % 5); k++)
+				{
+					printf("\t");
+				}
+				printf("\n");
 				check = 0;	// 변수 check 초기화
 			}
-
-			/* 문자열 "최댓값" 출력 */
-			if (check == 2)
+			/* 최댓값 숫자 아래에 문자열 "최댓값" 출력 */
+			else if (check == 2)
 			{
 				for (int l = 0; l < max_idx % 5; l++)
 				{
 					printf("\t"); // tab 이용
 				}
-				printf("최댓값\n");
+				printf("최댓값");
+				for (int k = 0; k < 5 - (max_idx % 5); k++)
+				{
+					printf("\t");
+				}
+				printf("\n");
 				check = 0;	// 변수 check 초기화
+			}
+			/* 최댓값과 최솟값이 아닌 원소 아래 공백 출력 */
+			else
+			{
+				for (int k = 0; k < 5; k++)
+				{
+					printf("\t");
+				}
+				printf("\n");
 			}
 		}
 	}
@@ -107,16 +125,16 @@ int main()
 	{
 		printf(" %4d ", arr[m]);
 	}
-	printf("\n");
+		printf("\n");
 
 	for (int l = 0; l < num_count; l++)
 	{
 		if (l == max_idx)
-			printf(" 최댓값 ");
+		printf(" 최댓값 ");
 		else if (l == min_idx)
-			printf("최솟값 ");
+		printf("최솟값 ");
 		else
-			printf("      ");
+		printf("      ");
 	}
 	printf("\n  min idx   = %d max idx   = %d\n  min value = %d max value = %d\n", min_idx, max_idx, arr[min_idx], arr[max_idx]);
 	*/
