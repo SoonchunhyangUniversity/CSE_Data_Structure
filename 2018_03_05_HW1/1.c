@@ -19,7 +19,7 @@ int main()
 	int num_count = 0;; // 파일 안에 있는 숫자 갯수 확인을 위한 변수 선언
 	int max_idx, min_idx;	// 최댓값과 최솟값이 배열의 몇번째 인덱스에 있는지 저장해줄 변수 선언
 
-							/* 파일포인터 data.txt를 읽기모드로 열기 */
+	/* 파일포인터 data.txt를 읽기모드로 열기 */
 	FILE *fp = fopen("data.txt", "r");
 
 	/* 파일이 없으면 예외처리 */
