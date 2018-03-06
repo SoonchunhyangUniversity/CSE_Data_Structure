@@ -3,6 +3,7 @@
 	* 작성자 : 김민수				          *
 	* 학번 : 20174444				          *
 	* 학과 : 컴퓨터소프트웨어공학과	 *
+	* 프로그램명 : 지폐,동전 개수찾기 *
 	* 개발환경 : Visual Studio 2010	  *
 	* 컴파일러 표준 : C99	   		      *
 	* 작성일 : 2018 - 03 - 06	       *
@@ -44,7 +45,7 @@ int main()
 	/* 출력을 위한 반복문 */
 	for (int i = 0; i < 5; i++)
 	{
-		printf("\n사용금액(%d) + 세금(%d) = %d\n", sum_won[i], tax[i], tax[i] + sum_won[i]);
+		printf("사용금액(%d) + 세금(%d) = %d\n", sum_won[i], tax[i], tax[i] + sum_won[i]);
 		cal_won(tax[i] + sum_won[i], &won);
 		// 지폐, 동전의 개수를 세기위한 함수 매개변수로 세금 + 금액의합, 지폐 동전의 개수를 저장할 배열을 전달
 		printf("1만원 %d개\n", won[0]);
@@ -52,7 +53,7 @@ int main()
 		printf("1천원 %d개\n", won[2]);
 		printf("5백원 %d개\n", won[3]);
 		printf("1백원 %d개\n", won[4]);
-		printf("===================\n");
+		printf("===================\n\n");
 
 
 	}
