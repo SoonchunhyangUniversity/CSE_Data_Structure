@@ -29,7 +29,7 @@ int main()
 		exit(-1);
 	}
 
-	/* fscnaf로 arr에 값 삽입 */
+	/* fscanf로 arr에 값 삽입 */
 	while (!feof(fp))
 	{
 		fscanf(fp, "%d", &arr[i]);	// 파일에서 정수를 입력받아 배열에 하나씩 넣는다
