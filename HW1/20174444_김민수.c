@@ -6,7 +6,6 @@ int main()
 	int i = 0;	// while문에서 사용할 변수 i 선언
 	int num_count = 0;; // 파일 안에 있는 숫자 갯수 확인을 위한 변수 선언
 	int max_idx, min_idx;	// 최댓값과 최솟값이 배열의 몇번째 인덱스에 있는지 저장해줄 변수 선언
-	int arr_len = sizeof(arr) / sizeof(int);	// 코드의 가독성을 높이기 위한 변수 선언
 
 	/* 파일포인터 data.txt를 읽기모드로 열기 */
 	FILE *fp = fopen("data.txt", "r");
@@ -89,6 +88,8 @@ int main()
 		}
 	}
 
+	printf("  min idx   = %d max idx   = %d\n  min value = %d max value = %d\n", min_idx, max_idx, arr[min_idx], arr[max_idx]);
+
 	/* 한 줄씩 두 줄  출력 하기
 	for (int m = 0; m < num_count; m++)
 	{
@@ -107,8 +108,6 @@ int main()
 	}
 	printf("\n  min idx   = %d max idx   = %d\n  min value = %d max value = %d\n", min_idx, max_idx, arr[min_idx], arr[max_idx]);
 	*/
-
-	printf("  min idx   = %d max idx   = %d\n  min value = %d max value = %d\n", min_idx, max_idx, arr[min_idx], arr[max_idx]);
 
 	fclose(fp);
 
