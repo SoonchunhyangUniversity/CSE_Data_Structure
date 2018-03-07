@@ -7,7 +7,7 @@
 	* 개발환경 : Visual Studio 2010
 	* 컴파일러 표준 : C99
 	* 작성일 : 2018 - 03 - 06
-	* 
+	*
 */
 
 #include <stdio.h>
@@ -54,8 +54,6 @@ int main()
 		printf("5백원 %d개\n", won[3]);
 		printf("1백원 %d개\n", won[4]);
 		printf("===================\n\n");
-
-
 	}
 
 	fclose(fp);	// 오픈한 파일일 닫음
