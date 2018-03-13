@@ -16,7 +16,7 @@
 int main()
 {
 	char oper;
-	int input;
+	unsigned int input;
 	double result;
 	clock_t start, finish;
 	double time;
