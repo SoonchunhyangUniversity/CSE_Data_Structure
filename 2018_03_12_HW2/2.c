@@ -67,5 +67,7 @@ int main()
 	fprintf(fp, "반복 횟수를 입력하세요 : %d\n\n", input);
 	fprintf(fp, "걸린시간은 %f입니다.\n", time);
 
+	fclose(fp);	// 파일 포인터 fp 닫기
+
 	return 0;
 }
