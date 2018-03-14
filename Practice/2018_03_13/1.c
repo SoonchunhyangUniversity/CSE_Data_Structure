@@ -38,7 +38,7 @@ int main()
 			for (int j = i; j < input; j++)	// input - i번 만큼 반복
 				printf("* ");
 		}
-		/* 나머지 줄을 출력하기 위한 조건문 else */
+		/* 나머지 줄을 출력하기 위한 else 조건문 */
 		else
 		{
 			int check2 = input * 2 - 2;
