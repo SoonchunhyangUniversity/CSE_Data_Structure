@@ -14,7 +14,7 @@
 
 int main()
 {
-	int input; // 첫 번째 줄의 별의 개수를 담을 변수 선언
+	int input; // 첫 번째 줄의 별의 개수를 담을 정수형 변수 선언
 
 	printf("첫 줄의 별의 갯수를 입력하시오 : ");
 	scanf("%d", &input); // scanf로 별의 개수를 입력 받음

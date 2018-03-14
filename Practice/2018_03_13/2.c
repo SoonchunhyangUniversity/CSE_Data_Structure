@@ -14,7 +14,7 @@
 
 int main()
 {
-	int input; // 출력할 줄을 받을 변수 선언
+	int input; // 출력할 줄을 받을 정수형 변수 선언
 
 	printf("줄을 입력 : ");
 	scanf("%d", &input); // scanf함수를 사용해서 input에 정수를 저장
