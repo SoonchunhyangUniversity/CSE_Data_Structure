@@ -10,49 +10,54 @@
 	*
 */
 
-#include <stdio.h>
+#include <stdio.h> // 표준입출력 라이브러리 헤더파일 선언
 
 int main()
 {
-	int input;
+	int input; // 출력할 줄을 받을 변수 선언
 
 	printf("줄을 입력 : ");
-	scanf("%d", &input);
+	scanf("%d", &input); // scanf함수를 사용해서 input에 정수를 저장
 
+	/* input번 만큼 반복 */
 	for (int i = 1; i <= input; i++)
 	{
-		if (i % 2 == 0)
+		if (i % 2 == 0) // i가 짝수면
 		{
+			/* j가 i와 같아질때 까지 반복 */
 			for (int j = 1; j <= i; j++)
 			{
-				if (j % 2 == 0)
+				/* j가 짝수인지 판별해줄 if 조건문 */
+				if (j % 2 == 0)	// j가 짝수면
 				{
-					if (j >= 10)
-						printf("%d", j % 10);
-					else
-						printf("%d", j);
+					if (j >= 10) // j가 10보다 크거나 같다면
+						printf("%d", j % 10); // j를 10으로 나눈 나머지 출력 -> 1의 자리
+					else // j < 10
+						printf("%d", j); // j를 출력
 				}
-				else
-					printf(" ");
+				else // j가 짝수가 아니면
+					printf(" "); // 공백 출력
 			}
 		}
-		else
+		else // i가 홀수면
 		{
+			/* j가 i와 같아질때 까지 반복 */
 			for (int j = 1; j <= i; j++)
 			{
-				if (j % 2 == 0)
-					printf(" ");
-				else
+				/* j가 짝수인지 판별해줄 if 조건문 */
+				if (j % 2 == 0) // j가 짝수면
+					printf(" "); // 공백 출력
+				else // j가 홀수면
 				{
-					if (j >= 10)
-						printf("%d", j % 10);
-					else
-						printf("%d", j);
+					if (j >= 10) // j가 10보다 크다면
+						printf("%d", j % 10); // j를 10으로 나눈 나머지 출력 -> 1의 자리
+					else // j < 10
+						printf("%d", j); // j를 출력
 				}
 			}
 		}
-		printf("\n");
+		printf("\n"); // 안쪽 반복문이 종료되면(한 줄이 출력 되면) 개행
 	}
 
-	return 0;
+	return 0; // 메인함수 종료
 }
