@@ -36,7 +36,7 @@ int main()
 			}
 			/* 별을 출력하기 위한 반복문 */
 			for (int j = i; j < input; j++)	// input - i번 만큼 반복
-				printf("* ");
+				printf("* ");	// 별 출력
 		}
 		/* 나머지 줄을 출력하기 위한 else 조건문 */
 		else
@@ -47,11 +47,11 @@ int main()
 			/* 공백을 출력하기 위한 반복문 */
 			while (check2 > i)	// i 가 check2 변수와 같아지면 탈출
 			{
-				printf(" ");
+				printf(" ");// 공백 출력
 				check2--;	// check2 = check2 - 1;
 			}
 			for (int j = i; j >= input - 1; j--) // j가 input - 1과 같아질 때 까지 반복
-				printf("* ");
+				printf("* ");	// 별 출력
 		}
 		printf("\n");	// 한 줄 출력시 개행
 	}
