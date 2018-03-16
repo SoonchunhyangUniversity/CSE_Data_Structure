@@ -31,7 +31,7 @@ int main()
 	for (int i = 1; i <= input; i++) // input번 반복
 	{
 		/* j가 input * 2와 같아질때 까지 반복 */
-		for (int j = 0; j < input * 2; j++)	// input * 2번 반복
+		for (int j = 0; j < input * 2; j++)	// input * 2 - 1번 반복
 		{
 			if (j < input) // 543212345 에서 54321까지의 범위
 			{
