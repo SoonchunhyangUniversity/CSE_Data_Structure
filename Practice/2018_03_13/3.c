@@ -22,11 +22,11 @@ int main()
 	scanf("%d", &input); // scanf를 이용해여 input에 몇 줄을 출력할지 저장
 
 	 /*
-		 포인터 변수 arr 동적할당
-		 예를들어 input이 5일 경우 5번째 줄은 543212345로 9개의 정수를 출력해야함
-		 sizeof(int) * (input * 2 - 1) -> 4 * (5 * 2 - 1) = 36, 36바이트의 공간을 할당
-	 */
-	arr = (int*)malloc(sizeof(int) * (input * 2 - 1));
+		포인터 변수 arr 동적할당
+		예를들어 input이 5일 경우 5번째 줄은 543212345로 9개의 정수를 출력해야함
+		sizeof(int) * (input * 2) -> 4 * (5 * 2) = 40, 40바이트의 공간을 할당
+	*/
+	arr = (int*)malloc(sizeof(int) * (input * 2));
 
 	/* i가 input과 같아질때 까지 반복 */
 	for (int i = 1; i <= input; i++) // input번 반복
@@ -57,6 +57,8 @@ int main()
 		}
 		printf("\n"); // 안쪽 반복문이 종료되면(한 줄이 출력되면) 개행
 	}
+
+	free(arr); // 동적할당한 메모리의 할당 해제
 
 	return 0; // 메인함수 종료
 }
