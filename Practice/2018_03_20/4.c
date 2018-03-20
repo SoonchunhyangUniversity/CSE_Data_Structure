@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#define MAX 100
+#define MAX 10000
 
 int count_number(char arr[]);
 void print_card(int card[], char name[], int card_count);
