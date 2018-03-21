@@ -74,9 +74,8 @@ int main() // 메인함수 시작
 	// 함수 count_number에 card_temp_B를 인자로 전달하여 개수를 card_count_B에 저장
 
 	/* 앞에서 선언한 카드 데이터를 담을 포인터 변수를 동적 할당*/
-	A_card = (int *)malloc(sizeof(int) * (card_count_A + 1));
-	B_card = (int *)malloc(sizeof(int) * (card_count_B + 1));
-	// 문자열을 ' '로 구분하여 개수를 측정 반환된 개수 + 1 해주면 원래 개수
+	A_card = (int *)malloc(sizeof(int) * (card_count_A));
+	B_card = (int *)malloc(sizeof(int) * (card_count_B));
 
 	rewind(fp); // 파일포인터의 위치를 파일 처음으로 옮긴다
 
