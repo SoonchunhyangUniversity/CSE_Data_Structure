@@ -49,7 +49,7 @@ int main() // 메인함수 시작
 	scanf("%d", &input); // input에 입력값을 받는다.
 
 	/* input번째에 있는 피보나치 수열 데이터를 출력 */
-	printf("%d번째 값은 %d입니다.\n\n", input, arr(input));
+	printf("%d번째 값은 %d입니다.\n\n", input, arr[input]);
 
 	/* 저장된 피보나치 수열을 모두 출력 */
 	printf("피보나치 수열 : ");
