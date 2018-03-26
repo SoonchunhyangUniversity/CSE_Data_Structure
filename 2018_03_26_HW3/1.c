@@ -58,32 +58,35 @@ int main()
 	for (int i = 0; i < ROWS_A; i++)
 		Matrix_C[i] = (int *)malloc(sizeof(int) * COLS_B);
 
-	matrix_mul(Matrix_A, Matrix_B, Matrix_C, ROWS_A, COLS_B);
-
-	printf("A 행렬과 B 행렬의 곱\n\n");
-	print_matrix(Matrix_C, COLS_B, ROWS_A);
-	printf("\n");
+	if (ROWS_A == COLS_B)
+	{
+		matrix_mul(Matrix_A, Matrix_B, Matrix_C, COLS_A, ROWS_B);
+		printf("A 행렬과 B 행렬의 곱\n\n");
+		print_matrix(Matrix_C, COLS_A, ROWS_B);
+		printf("\n");
+	}
+	else
+		printf("MATRIX SIZE ERROR!\n");
 
 	if (COLS_A == COLS_B && ROWS_A == ROWS_B)
 	{
 		matrix_sum(Matrix_A, Matrix_B, Matrix_C, COLS_A, COLS_B);
 		printf("A 행렬과 B 행렬의 합\n\n");
-		print_matrix(Matrix_C, COLS_A, ROWS_A);
+		print_matrix(Matrix_C, ROWS_A, COLS_A);
 		printf("\n");
 	}
 	else
-		printf("MATRIX SIZE ERROR!.\n");
+		printf("MATRIX SIZE ERROR!\n");
 
 	if (COLS_A == COLS_B && ROWS_A == ROWS_B)
 	{
 		matrix_sub(Matrix_A, Matrix_B, Matrix_C, COLS_A, COLS_B);
 		printf("A 행렬과 B 행렬의 차\n\n");
-		print_matrix(Matrix_C, COLS_A, ROWS_A);
+		print_matrix(Matrix_C, ROWS_A, COLS_A);
 		printf("\n");
 	}
 	else
-		printf("MATRIX SIZE ERROR!.\n");
-
+		printf("MATRIX SIZE ERROR!\n");
 
 	for(int i = 0; i < COLS_A; i++)
 		free(Matrix_A[i]);
@@ -131,22 +134,18 @@ void matrix_sub(int **matrix1, int **matrix2, int **matrix3, int ROWS)
 	}
 }
 
-void print_matrix(int **matrix, int COLS, int ROWS)
+void print_matrix(int **matrix, int ROWS, int COLS)
 {
-	for (int i = 0; i < COLS; i++)
+	for (int i = 0; i < ROWS; i++)
 	{
-		if(i == 0)
-			printf("┌─────────────────┐\n");
-		for (int j = 0; j < ROWS; j++)
+		for (int j = 0; j < COLS; j++)
 		{
-			if (j == ROWS - 1)
+			if (j == COLS - 1)
 				printf("│ %3d │", matrix[i][j]);
 			else
 				printf("│ %3d ", matrix[i][j]);
 		}
 
 		printf("\n");
-		if(i == COLS - 1)
-			printf("└─────────────────┘\n");
 	}
 }
