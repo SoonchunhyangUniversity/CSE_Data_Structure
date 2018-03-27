@@ -80,7 +80,8 @@ int main() // 메인함수 시작
 	}
 	/* 데이터를 출력*/
 	printf("===========================================================\n");
-	printf("│   평 균    │  %4.2f │  %4.2f │  %4.2f │  %4.2f │ %4.2f │\n", (double)kor_sum / count, (double)eng_sum / count, (double) mat_sum / count, (double)total_sum / count, (double)total_avg / count);
+	printf("│   평 균    │  %4.2f │  %4.2f │  %4.2f │  %4.2f │ %4.2f │\n", (double)kor_sum / count, (double)eng_sum / count,
+	(double) mat_sum / count, (double)total_sum / count, (double)total_avg / count);
 	printf("===========================================================\n");
 
 	/* 동적 할당한 배열의 할당 해제*/

@@ -96,36 +96,37 @@ int main() // 메인함수 시작
 	// print_matrix함수에 Matrix_C, COLS_C, ROWS_C를 파라미터로 전달
 	printf("\n");
 
-	int check = 0;
+	int check = 0; // 연산이 진행되었는지 확인하기 위한 변수
 	/* 행렬 계산 조건 판단 모든 행렬의 크기가 같으면 연산 진행 */
-	if (COLS_C == COLS_A && COLS_A == COLS_B && ROWS_C == ROWS_A && ROWS_A == ROWS_B)
+	if (COLS_C == COLS_A && COLS_A == COLS_B && ROWS_C == ROWS_A && ROWS_A == ROWS_B) // 행렬 A,B,C의 크키가 모두 같아야함
 	{
+		/* 결과 값을 저장할 2차원 배열1 동적할당 */
 		Matrix_Result1 = (int **)malloc(sizeof(int *) * COLS_A);
 		for (int i = 0; i < COLS_A; i++)
 			Matrix_Result1[i] = (int *)malloc(sizeof(int) * ROWS_A);
-
+		/* 결과 값을 저장할 2차원 배열2 동적할당 */
 		Matrix_Result2 = (int **)malloc(sizeof(int *) * COLS_A);
 		for (int i = 0; i < COLS_A; i++)
 			Matrix_Result2[i] = (int *)malloc(sizeof(int) * ROWS_A);
 
-		check = 1;
+		check = 1; // 연산이 진행되므로 1로 바꾸어줌
 
-		printf("%s 행렬 ===================\n", oper1);
-		matrix_sub(Matrix_C, Matrix_A, Matrix_Result1, COLS_A);
-		matrix_sum(Matrix_Result1, Matrix_B, Matrix_Result2, COLS_A);
-		print_matrix(Matrix_Result2, COLS_A, ROWS_A);
+		printf("%s 행렬 ===================\n", oper1); // 연산을 출력
+		matrix_sub(Matrix_C, Matrix_A, Matrix_Result1, COLS_A); // 차 연산 진행
+		matrix_sum(Matrix_Result1, Matrix_B, Matrix_Result2, COLS_A); // 합 연산 진행
+		print_matrix(Matrix_Result2, COLS_A, ROWS_A); // 연산 결과를 출력
 		printf("\n");
 
-		printf("%s 행렬 ===================\n", oper2);
-		matrix_sum(Matrix_B, Matrix_C, Matrix_Result1, COLS_A);
-		matrix_sub(Matrix_Result1, Matrix_A, Matrix_Result2, COLS_A);
-		print_matrix(Matrix_Result2, COLS_A, ROWS_A);
+		printf("%s 행렬 ===================\n", oper2); // 연산을 출력
+		matrix_sum(Matrix_B, Matrix_C, Matrix_Result1, COLS_A); // 합 연산 진행
+		matrix_sub(Matrix_Result1, Matrix_A, Matrix_Result2, COLS_A); // 차 연산 진행
+		print_matrix(Matrix_Result2, COLS_A, ROWS_A); // 연산 결과를 출력
 		printf("\n");
 	}
 	else // 행렬의 크기가 하나라도 다르면 에러메세지 출력
 		printf("행렬의 크기가 맞지 않습니다.\n"); // 에러메세지 출력
 
-	/* 동적할당한 배열들의 메모리 할당 해제 */
+	/* 동적 할당한 배열들의 메모리 할당 해제 */
 	for (int i = 0; i < ROWS_A; i++)
 		free(Matrix_A[i]);
 	free(Matrix_A);
@@ -135,8 +136,10 @@ int main() // 메인함수 시작
 	for (int i = 0; i < ROWS_A; i++)
 		free(Matrix_C[i]);
 	free(Matrix_C);
-	if (check == 1)
+	/* 연산이 진행되어 동적할당이 되었을때만 실행 */
+	if (check == 1) // check변수가 1이면 실행
 	{
+		/* 동적 할당한 배열들의 메모리 할당 해제 */
 		for (int i = 0; i < ROWS_A; i++)
 			free(Matrix_Result1[i]);
 		free(Matrix_Result1);
@@ -145,33 +148,40 @@ int main() // 메인함수 시작
 		free(Matrix_Result2);
 	}
 
-	return 0;
+	return 0; // 메인함수 종료
 }
 
+/* 행렬 A와 행렬 B를 더해서 행렬 C를 만드는 함수 */
 void matrix_sum(int **matrix1, int **matrix2, int **matrix3, int ROWS)
-{
-	for (int i = 0; i < ROWS; i++)
+{	// 매개변수로 2차원 배열 3개, 열의 값을 받는다.
+	for (int i = 0; i < ROWS; i++) // ROWS번 반복한다.
 	{
-		for (int j = 0; j < ROWS; j++)
-			matrix3[i][j] = matrix1[i][j] + matrix2[i][j];
+		for (int j = 0; j < ROWS; j++) // ROWS번 반복한다.
+		{
+			matrix3[i][j] = matrix1[i][j] + matrix2[i][j]; // 행렬의 값을 더해준다.
+		}
 	}
 }
-
+/* 행렬 A와 행렬 B를 빼서 행렬 C를 만드는 함수 */
 void matrix_sub(int **matrix1, int **matrix2, int **matrix3, int ROWS)
-{
-	for (int i = 0; i < ROWS; i++)
+{	// 매개변수로 2차원 배열 3개, 열의 값을 받는다.
+	for (int i = 0; i < ROWS; i++) // ROWS번 반복한다.
 	{
-		for (int j = 0; j < ROWS; j++)
-			matrix3[i][j] = matrix1[i][j] - matrix2[i][j];
+		for (int j = 0; j < ROWS; j++) // ROWS번 반복한다.
+		{
+			matrix3[i][j] = matrix1[i][j] - matrix2[i][j]; // 행렬의 값을 뺀다.
+		}
 	}
 }
-
+/* 행렬을 출력하는 함수 */
 void print_matrix(int **matrix, int ROWS, int COLS)
-{
-	for (int i = 0; i < ROWS; i++)
+{	// 매개변수로 2차원 배열 1개, 행과 열의 값을 받는다.
+	for (int i = 0; i < ROWS; i++) // ROWS번 반복
 	{
-		for (int j = 0; j < COLS; j++)
-			printf("%4d", matrix[i][j]);
+		for (int j = 0; j < COLS; j++) // COL번 반복
+		{
+				printf("%3d ", matrix[i][j]); // 행렬의 값 출력
+		}
 
 		printf("\n");
 	}
