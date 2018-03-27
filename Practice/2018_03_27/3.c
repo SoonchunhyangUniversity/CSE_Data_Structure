@@ -107,7 +107,7 @@ int main() // 메인함수 시작
 		print_matrix(Matrix_Result2, COLS_A, ROWS_A);
 		printf("\n");
 	}
-	else // 행렬의 크기가 하나라도 다르면 연산 X
+	else // 행렬의 크기가 하나라도 다르면 에러메세지 출력
 		printf("행렬의 크기가 맞지 않습니다.");
 
 	/* 동적할당한 배열들의 메모리 할당 해제 */
