@@ -88,13 +88,13 @@ int main()
 	else
 		printf("MATRIX SIZE ERROR!\n");
 
-	for(int i = 0; i < COLS_A; i++)
+	for(int i = 0; i < ROWS_A; i++)
 		free(Matrix_A[i]);
 
-	for (int i = 0; i < COLS_B; i++)
+	for (int i = 0; i < ROWS_B; i++)
 		free(Matrix_B[i]);
 
-	for (int i = 0; i < COLS_B; i++)
+	for (int i = 0; i < ROWS_B; i++)
 		free(Matrix_C[i]);
 
 	return 0;
