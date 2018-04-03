@@ -3,7 +3,7 @@
 	* 작성자 : 김민수
 	* 학번 : 20174444
 	* 학과 : 컴퓨터소프트웨어공학과
-	* 프로그램명 : 재귀함수를 이용한 데이터 처리
+	* 프로그램명 : 재귀함수를 이용한 데이터 처리2
 	* 개발환경 : Visual Studio 2010
 	* 컴파일러 표준 : C99
 	* 작성일 : 2018 - 04 - 03
@@ -31,7 +31,7 @@ int main() // 메인 함수의 시작
 	// 파일 포인터 fp 선언 및 fopen으로 data.txt를 쓰기 모드로 열기
 
 	/* 파일이 존재하지 않을 경우 예외 처리 */
-	if (fp == NULL)
+	if (fp == NULL) // 파일을 열 수 없으면
 	{
 		printf("FILE OPEN ERROR!\n"); // 에러메세지 출력
 		return 0;	// 메인함수 종료
@@ -60,38 +60,39 @@ int main() // 메인 함수의 시작
 		/* 측정한 값으로 걸린 시간을 구한다 */
 		time_resc = (double)(finish - start) / CLOCKS_PER_SEC;
 
-		start = clock();
-		loop_fun(num);
-		finish = clock();
+		start = clock(); // 반복 함수 시작 시간 측정
+		loop_fun(num); // 반복 함수 사용
+		finish = clock(); // 반복 함수 종료 시간 측정
 
+		/* 측정한 값으로 걸린 시간을 구한다 */
 		time_loop = (double)(finish - start) / CLOCKS_PER_SEC;
 
-		printf("재귀함수 답[%d] : %lf 반복문 답[%d] : %lf\n", num, resc_fun(num), num, loop_fun(num));
-		printf("재귀함수 걸린 시간[%d] : %lf 반복문 걸린 시간[%d] : %lf\n", num, time_resc, num, time_loop);
-		i++;
+		printf("재귀함수 답[%d] : %lf 반복문 답[%d] : %lf\n", num, resc_fun(num), num, loop_fun(num)); // num을 사용한 값을 출력한다.
+		printf("재귀함수 걸린 시간[%d] : %lf 반복문 걸린 시간[%d] : %lf\n", num, time_resc, num, time_loop); // 결린 시간을 출력한다.
+		i++; // i를 1 더해준다 -> 반복 탈출 조건
 	}
 
-	fclose(fp);
+	fclose(fp); // 열어준 파일포인터 fp를 닫아준다.
 
-	return 0;
+	return 0; // 메인 함수 종료
 }
-
-double resc_fun(int num)
+/* 재귀를 이용한 역수의 덧셈 함수 */
+double resc_fun(int num) // 매개변수로 정수형 변수 num을 받는다.
 {
-	if (num == 1)
-		return 1.0 / num;
-	else
-		return 1.0 / num + resc_fun(num - 1);
+	if (num == 1) // num이 1이면
+		return 1.0 / num; // 1.0을 반환
+	else // num != 1
+		return 1.0 / num + resc_fun(num - 1); // 재귀적으로 값을 더한다.
 }
-
-double loop_fun(int num)
+/* 빈복을 이용한 역수의 덧셈 함수 */
+double loop_fun(int num) // 매개변수로 정수형 변수 num을 받는다.
 {
-	double sum = 0;
+	double sum = 0; // 더한 값을 저장할 변수 선언 및 0으로 초기화
 
-	for (int i = 1; i <= num; i++)
+	for (int i = 1; i <= num; i++) // num번 반복한다.
 	{
-		sum += (double)1 / i;
+		sum += (double)1 / i; // 1/1, 1/2, 1/3 ... 1/num까지 sum에 더해준다.
 	}
 
-	return sum;
+	return sum; // 더한값을 저장한 sum을 반환한다.
 }
