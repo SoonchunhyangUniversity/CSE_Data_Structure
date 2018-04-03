@@ -1,12 +1,15 @@
-#include <stdio.h>
-#include <time.h>
+#include <stdio.h> // 표준입출력 라이브러리 헤더파일 선언
+#include <time.h> // clock 함수를 사용하기 위한 헤더파일 선언
 
+/* 재귀를 이용한 덧셈 함수 */
 int resc_fun(int num);
+/* 반복을 이용한 덧셈 함수 */
 int loop_fun(int num);
 
-int main()
+int main() // 메인 함수의 시작
 {
 	int num, temp, num_count = 0;
+    // 몇 번째 숫짜까지 더할지를 저장할 변수, 값을 임시로 담을 변수, 데이터의 개수를 저장할 변수 선언
 	clock_t start, finish;
 	// clock_t형의 start, finish 변수 걸린 시간을 구하기 위한 변수
 	double time_resc, time_loop;
@@ -18,61 +21,66 @@ int main()
 	/* 파일이 존재하지 않을 경우 예외 처리 */
 	if (fp == NULL)
 	{
-		printf("FILE OPEN ERROR!\n");
+		printf("FILE OPEN ERROR!\n"); // 에러메세지 출력
 		return 0;	// 메인함수 종료
 	}
 
+    /* 파일의 끝까지 반복한다 */
 	while (!feof(fp))
 	{
-		fscanf(fp, "%d", &temp);
-		num_count++;
+		fscanf(fp, "%d", &temp); // 임시로 값을 저장한다.
+		num_count++; // 파일안의 데이터의 개수를 저장한다.
 	}
 
-	rewind(fp);
+	rewind(fp); // 파일포인터의 위치를 처음으로 돌린다.
 
-	int i = 0;
+	int i = 0; // while문 안에서 조건을 판단할 변수
 
+    /* num_count번 반복하는 while문 */
 	while (i != num_count)
 	{
-		fscanf(fp, "%d", &num);
+		fscanf(fp, "%d", &num); // num에 파일의 정수 데이터를 저장
 
-		start = clock();
-		resc_fun(num);
-		finish = clock();
+		start = clock(); // 재귀 함수 시작 시간 측정
+		resc_fun(num); // 재귀 함수 사용
+		finish = clock(); // 재귀 함수 종료 시간 측정
 
+        /* 측정한 값으로 걸린 시간을 구한다 */
 		time_resc = (double)(finish - start) / CLOCKS_PER_SEC;
 
-		start = clock();
-		loop_fun(num);
-		finish = clock();
+		start = clock(); // 반복 함수 시작 시간 측정
+		loop_fun(num); // 반복 함수 사용
+		finish = clock(); // 반복 함수 종료 시간 측정
 
+        /* 측정한 값으로 걸린 시간을 구한다 */
 		time_loop = (double)(finish - start) / CLOCKS_PER_SEC;
 
-		printf("재귀함수 답[%d] : %d 반복문 답[%d] : %d\n", num, resc_fun(num), num, loop_fun(num));
-		printf("재귀함수 걸린 시간[%d] : %lf 반복문 걸린 시간[%d] : %lf\n", num, time_resc, num, time_loop);
-		i++;
+		printf("재귀함수 답[%d] : %d 반복문 답[%d] : %d\n", num, resc_fun(num), num, loop_fun(num)); // num을 사용한 값을 출력한다.
+		printf("재귀함수 걸린 시간[%d] : %lf 반복문 걸린 시간[%d] : %lf\n", num, time_resc, num, time_loop); // 걸린 시간을 출력한다.
+		i++; // i를 1 더해준다 -> 반복 탈출 조건
 	}
 
-	fclose(fp);
+	fclose(fp); // 열어준 파일포인터 fp를 닫아준다.
 
-	return 0;
+	return 0; // 메인 함수 종료
 }
-
-int resc_fun(int num)
+/* 재귀를 이용한 덧셈 함수 */
+int resc_fun(int num) // 매개변수로 정수형 변수 num을 받는다
 {
-	if (num == 1)
-		return 1;
-	return
-		num + resc_fun(num - 1);
+	if (num == 1) // num이 1이면
+		return 1; // 1을 반환
+    else // num != 1
+	   return num + resc_fun(num - 1); // 재귀적으로 값을 더한다.
 }
-int loop_fun(int num)
+/* 반복 이용한 덧셈 함수 */
+int loop_fun(int num) // 매개변수로 정수형 변수 num을 받는다.
 {
-	int sum = 0;
+	int sum = 0; // 더한 값을 저장할 변수 선언 및 0으로 초기화
 
-	for (int i = 1; i <= num; i++)
+	for (int i = 1; i <= num; i++) // num번 반복한다.
 	{
-		sum += i;
+		sum += i; // 1, 2, 3 ... num 까지 sum에 더해준다.
 	}
 
-	return sum;
+	return sum; // 더한값을 저장한 sum을 반환한다.
 }

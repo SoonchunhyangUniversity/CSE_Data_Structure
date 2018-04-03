@@ -57,32 +57,32 @@ int main() // 메인 함수 시작
     return 0; // 메인함수 종료
 }
 /* 산술 평균을 구하기 위한 함수 */
-double Get_arit_mean(int arr[], int input_size)
+double Get_arit_mean(int arr[], int input_size) // 매개변수로 배열과, 데이터 개수를 받는다.
 {
-	int sum = 0;
+	int sum = 0; // 더한 값을 저장할 변수 선언 및 0으로 초기화
 
-	for (i = 0; i < input_size; i++)
-		sum += arr[i];
+	for (i = 0; i < input_size; i++) // input_size번 반복한다.
+		sum += arr[i]; // 배열의 값들을 모두 sum에 더해준다.
 
-	return (double)sum / input_size;
+	return (double)sum / input_size; // 산술 평균을 반환한다.
 }
 /* 기하 평균을 구하기 위한 함수 */
-double Get_geom_mean(int arr[], int input_size)
+double Get_geom_mean(int arr[], int input_size) // 매개변수로 배열과, 데이터 개수를 받는다.
 {
-	int mul_sum = 0;
+	int mul_sum = 0; // 제곱의 값을 저장할 변수 선언 및 0으로 초기화
 
-	for (i = 0; i < input_size; i++)
-		mul_sum += (arr[i] * arr[i]);
+	for (i = 0; i < input_size; i++) // input_size번 반복한다.
+		mul_sum += (arr[i] * arr[i]); // 배열의 값들을 모두 제곱해 저장한다.
 
-	return (double)sqrt(mul_sum);
+	return (double)sqrt(mul_sum); // 기하 평균을 반환한다.
 }
 /* 조화 평균을 구하기 위한 함수 */
-double Get_harm_mean(int arr[], int input_size)
+double Get_harm_mean(int arr[], int input_size) // 매개변수로 배열과, 데이터 개수를 받는다.
 {
-	double rev_sum = 0;
+	double rev_sum = 0; // 역수의 합을 저장하기 위한 변수 선언 및 0으로 초기화
 
-	for (i = 0; i < input_size; i++)
-		rev_sum += 1 / arr[i];
+	for (i = 0; i < input_size; i++) // input_size번 반복한다.
+		rev_sum += 1 / arr[i]; // 배열의 값들을 모두 역수를 취해 더해준다.
 
-	return (double)input_size * rev_sum;
+	return (double)input_size * rev_sum; // 조화 편균을 반환한다.
 }
