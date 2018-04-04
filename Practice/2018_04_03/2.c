@@ -21,14 +21,14 @@ int loop_fun(int num);
 int main() // 메인 함수의 시작
 {
 	int num, temp, num_count = 0;
-    // 몇 번째 숫짜까지 더할지를 저장할 변수, 값을 임시로 담을 변수, 데이터의 개수를 저장할 변수 선언
+    // 몇 번째 숫자까지 더할지를 저장할 변수, 값을 임시로 담을 변수, 데이터의 개수를 저장할 변수 선언
 	clock_t start, finish;
 	// clock_t형의 start, finish 변수 걸린 시간을 구하기 위한 변수
 	double time_resc, time_loop;
 	// 형변환에 의한 데이터 손실을 줄이기위하여 double형으로 변수를 선언
 
 	FILE *fp = fopen("data.txt", "r");
-	// 파일 포인터 fp 선언 및 fopen으로 data.txt를 쓰기 모드로 열기
+	// 파일 포인터 fp 선언 및 fopen으로 data.txt를 읽기 모드로 열기
 
 	/* 파일이 존재하지 않을 경우 예외 처리 */
 	if (fp == NULL) // 파일을 열 수 없으면

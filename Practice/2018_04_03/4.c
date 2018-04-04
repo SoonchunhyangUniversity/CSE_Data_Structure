@@ -28,7 +28,7 @@ int main() // 메인 함수의 시작
 	// 형변환에 의한 데이터 손실을 줄이기위하여 double형으로 변수를 선언
 
 	FILE *fp = fopen("data.txt", "r");
-	// 파일 포인터 fp 선언 및 fopen으로 data.txt를 쓰기 모드로 열기
+	// 파일 포인터 fp 선언 및 fopen으로 data.txt를 읽기 모드로 열기
 
 	/* 파일이 존재하지 않을 경우 예외 처리 */
 	if (fp == NULL) // 파일을 열 수 없으면
