@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define MAX 1000
+#define MAX 100
 
 typedef struct _people
 {
