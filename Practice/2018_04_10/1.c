@@ -11,7 +11,7 @@
 */
 
 #include <stdio.h> // 표준 입출력 라이브러리 헤더파일 선언
-#define MAX 100 // 기호상수 MAx를 100으로 정의
+#define MAX 100 // 기호상수 MAX를 100으로 정의
 
 /* 학생들의 정보를 담는 구조체를 typedef 선언 */
 typedef struct _people
