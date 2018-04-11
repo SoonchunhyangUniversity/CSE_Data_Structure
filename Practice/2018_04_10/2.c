@@ -30,7 +30,7 @@ enum
 
 int main() // 메인함수 시작
 {
-	int i, input, idx;
+	int i, input, idx = -1;
 	// 반복문에서 사용할 변수, 검색할 조건을 담을 변수, 인덱스 값을 저장할 변수 선언
 	char temp[MAX], input_info[MAX];
 	// 임시로 값을 저장할 문자열, 검색할 정보를 저장할 문자열 배열 선언
@@ -115,12 +115,20 @@ int main() // 메인함수 시작
 		break; // 조건문 종료
 	}
 
-	/* 조건문에서 판단한 데이터로 구조체 배열의 idx번째 데이터를 출력 */
-	printf("종 : %s\n", struct_arr[idx].type);
-	printf("고유번호 : %s\n", struct_arr[idx].inherent_num);
-	printf("위치 : %s\n", struct_arr[idx].loc);
-	printf("개체 수 : %s\n", struct_arr[idx].population);
-
+	/* 데이터가 존재하는지 존재하지 않는지 판단하는 조건문 */
+	if (idx == -1) // idx의 값이 초기값과 같으면
+	{
+		printf("존재하지 않는 데이터 입니다.\n"); // 데이터가 존재하지 않음을 출력
+	}
+	else
+	{
+		/* 조건문에서 판단한 데이터로 구조체 배열의 idx번째 데이터를 출력 */
+		printf("종 : %s\n", struct_arr[idx].type);
+		printf("고유번호 : %s\n", struct_arr[idx].inherent_num);
+		printf("위치 : %s\n", struct_arr[idx].loc);
+		printf("개체 수 : %s\n", struct_arr[idx].population);
+	}
+	
 	free(struct_arr); // 동적할당한 메모리의 해제
 	fclose(fp); // 열어준 파일포인터 fp를 닫아줌
 
