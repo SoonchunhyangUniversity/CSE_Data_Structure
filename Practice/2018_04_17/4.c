@@ -15,18 +15,19 @@ typedef struct _arraybaselist
 void init(ArrayBaseList *plist);
 void Insert(ArrayBaseList *plist, int position, Data data);
 void display(ArrayBaseList *plist);
-void delete(ArrayBaseList *plist, int position);
+void delete(ArrayBaseList *plist);
 int is_in(ArrayBaseList *plist, Data find_data);
 int is_full(ArrayBaseList *plist);
 int is_empty(ArrayBaseList *plist);
 
 int main()
 {
-	ArrayBaseList list;
-	int i, temp, count = 0;
+	ArrayBaseList *list;
+	ArrayBaseList struct_temp;
+	int i, j, temp, count = 0;
 	int input, check;
 
-	FILE *fp = fopen("data2.txt", "r");
+	FILE *fp = fopen("data4.txt", "r");
 
 	if (fp == NULL)
 	{
@@ -34,49 +35,60 @@ int main()
 		return 0;
 	}
 
-	init(&list);
-
 	while (!feof(fp))
 	{
-		fscanf(fp, "%d", &temp);
+		fscanf(fp, "%d %d %d%d", &temp, &temp, &temp, &temp);
 		count++;
 	}
 
+	list = (ArrayBaseList *)malloc(sizeof(ArrayBaseList) * count);
+
 	rewind(fp);
+
+	for(i = 0; i < count; i++)
+		init(&list[i]);
 
 	for (i = 0; i < count; i++)
 	{
-		fscanf(fp, "%d", &temp);
-		Insert(&list, i, temp);
+		for (j = 0; j < 4; j++)
+		{
+			fscanf(fp, "%d", &temp);
+			Insert(&list[i], j, temp);
+		}
 	}
 
-	display(&list);
+	printf("Before Sorting!!\n");
+	printf("학번\t\t 국어\t 영어\t 수학\t 총점\t 평균\n");
+	for (i = 0; i < count; i++)
+		display(&list[i]);
+
 	printf("\n");
 
-	while (TRUE)
+	for (i = 0; i < count; i++)
 	{
-		printf("값을 입력하세요<종료 : 0> : ");
-		scanf("%d", &input);
+		list[i].arr[4] = (list[i].arr[1] + list[i].arr[2] + list[i].arr[3]);
+	}
 
-		if (input == 0)
-			break;
+	struct_temp = list[0];
 
-		check = 0;
-
-		printf("%d은(는) 리스트", input);
-		for (i = 0; i < list.length; i++)
+	for (i = 0; i < count; i++)
+	{
+		for (j = i; j < count; j++)
 		{
-			if (list.arr[i] == input)
+			if (list[i].arr[4] < list[j].arr[4])
 			{
-				printf("%d ", i + 1);
-				check = 1;
+				struct_temp = list[i];
+				list[i] = list[j];
+				list[j] = struct_temp;
 			}
 		}
-		if (check == 1)
-			printf("번째에 있습니다.\n\n");
-		else
-			printf("에 없습니다.\n\n");
 	}
+
+	printf("After Sorting!!\n");
+	printf("학번\t\t 국어\t 영어\t 수학\t 총점\t 평균\n");
+	for (i = 0; i < count; i++)
+		display(&list[i]);
+
 
 	return 0;
 }
@@ -99,27 +111,39 @@ void Insert(ArrayBaseList *plist, int position, Data data)
 	}
 }
 
-void delete(ArrayBaseList *plist, int position)
+void delete(ArrayBaseList *plist)
 {
-	int i;
-	Data item;
+	int i, j;
 
-	if (position < 0 || position >= plist->length)
-		printf("ERROR!\n");
+	for (i = 0; i < (plist->length - 1); i++)
+	{
+		if (!(i % 2 == 0))
+		{
+			for (j = i; j < (plist->length - 1); j++)
+			{
+				plist->arr[j] = plist->arr[j + 1];
+			}
+			plist->length--;
+		}
+	}
 
-	item = plist->arr[position];
-
-	for (i = position; i < (plist->length - 1); i++)
-		plist->arr[i] = plist->arr[i + 1];
-
-	plist->length--;
 }
 
 void display(ArrayBaseList *plist)
 {
 	int i;
+	int sum = 0;
+	double avg;
+
 	for (i = 0; i < plist->length; i++)
-		printf("%d->", plist->arr[i]);
+	{
+		printf("%d\t", plist->arr[i]);
+		if (i != 0)
+		{
+			sum += plist->arr[i];
+		}
+	}
+	printf("%d\t %.2f\t\n", sum, (double)sum / 3);
 }
 
 int is_in(ArrayBaseList *plist, Data find_data)
