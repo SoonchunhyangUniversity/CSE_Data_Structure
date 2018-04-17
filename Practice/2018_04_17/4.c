@@ -1,5 +1,16 @@
+/*
+	*
+	* 작성자 : 김민수
+	* 학번 : 20174444
+	* 학과 : 컴퓨터소프트웨어공학과
+	* 프로그램명 : 배열로 구현된 연결리스트 4
+	* 개발환경 : Visual Studio 2010
+	* 컴파일러 표준 : C99
+	* 작성일 : 2018 - 04 - 17
+	*
+*/
+
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
 #define MAX 1000
 #define TRUE 1
@@ -8,14 +19,14 @@ typedef int Data;
 
 typedef struct _arraybaselist
 {
-	Data arr[1000];
+	Data arr[MAX];
 	int length;
 } ArrayBaseList;
 
 void init(ArrayBaseList *plist);
 void Insert(ArrayBaseList *plist, int position, Data data);
 void display(ArrayBaseList *plist);
-void delete(ArrayBaseList *plist);
+void delete(ArrayBaseList *plist, int position);
 int is_in(ArrayBaseList *plist, Data find_data);
 int is_full(ArrayBaseList *plist);
 int is_empty(ArrayBaseList *plist);
@@ -55,6 +66,7 @@ int main()
 			fscanf(fp, "%d", &temp);
 			Insert(&list[i], j, temp);
 		}
+		list[i].arr[list[i].length] = (list[i].arr[1] + list[i].arr[2] + list[i].arr[3]);
 	}
 
 	printf("Before Sorting!!\n");
@@ -62,10 +74,7 @@ int main()
 	for (i = 0; i < count; i++)
 		display(&list[i]);
 
-	printf("\n");
-
-	for (i = 0; i < count; i++)
-		list[i].arr[4] = (list[i].arr[1] + list[i].arr[2] + list[i].arr[3]);
+	printf("\n");;
 
 	struct_temp = list[0];
 
@@ -109,22 +118,22 @@ void Insert(ArrayBaseList *plist, int position, Data data)
 	}
 }
 
-void delete(ArrayBaseList *plist)
+Data delete(ArrayBaseList *plist, int position)
 {
-	int i, j;
+	int i;
+	Data item;
 
-	for (i = 0; i < (plist->length - 1); i++)
-	{
-		if (!(i % 2 == 0))
-		{
-			for (j = i; j < (plist->length - 1); j++)
-			{
-				plist->arr[j] = plist->arr[j + 1];
-			}
-			plist->length--;
-		}
-	}
+	if (position < 0 || position >= plist->length)
+		printf("ERROR!\n");
 
+	item = plist->arr[position];
+
+	for (i = position; i < (plist->length - 1); i++)
+		plist->arr[i] = plist->arr[i + 1];
+
+	plist->length--;
+
+	return item;
 }
 
 void display(ArrayBaseList *plist)

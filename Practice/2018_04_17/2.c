@@ -1,5 +1,16 @@
+/*
+	*
+	* 작성자 : 김민수
+	* 학번 : 20174444
+	* 학과 : 컴퓨터소프트웨어공학과
+	* 프로그램명 : 배열로 구현된 연결리스트 2
+	* 개발환경 : Visual Studio 2010
+	* 컴파일러 표준 : C99
+	* 작성일 : 2018 - 04 - 17
+	*
+*/
+
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
 #define MAX 1000
 #define TRUE 1
@@ -8,14 +19,14 @@ typedef int Data;
 
 typedef struct _arraybaselist
 {
-	Data arr[1000];
+	Data arr[MAX];
 	int length;
 } ArrayBaseList;
 
 void init(ArrayBaseList *plist);
 void Insert(ArrayBaseList *plist, int position, Data data);
 void display(ArrayBaseList *plist);
-void delete(ArrayBaseList *plist, int position);
+Data delete(ArrayBaseList *plist, int position);
 int is_in(ArrayBaseList *plist, Data find_data);
 int is_full(ArrayBaseList *plist);
 int is_empty(ArrayBaseList *plist);
@@ -99,7 +110,7 @@ void Insert(ArrayBaseList *plist, int position, Data data)
 	}
 }
 
-void delete(ArrayBaseList *plist, int position)
+Data delete(ArrayBaseList *plist, int position)
 {
 	int i;
 	Data item;
@@ -113,6 +124,8 @@ void delete(ArrayBaseList *plist, int position)
 		plist->arr[i] = plist->arr[i + 1];
 
 	plist->length--;
+
+	return item;
 }
 
 void display(ArrayBaseList *plist)

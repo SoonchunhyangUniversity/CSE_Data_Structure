@@ -1,5 +1,16 @@
+/*
+	*
+	* 작성자 : 김민수
+	* 학번 : 20174444
+	* 학과 : 컴퓨터소프트웨어공학과
+	* 프로그램명 : 배열로 구현된 연결리스트 3
+	* 개발환경 : Visual Studio 2010
+	* 컴파일러 표준 : C99
+	* 작성일 : 2018 - 04 - 17
+	*
+*/
+*
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
 #define MAX 1000
 #define TRUE 1
@@ -8,7 +19,7 @@ typedef int Data;
 
 typedef struct _arraybaselist
 {
-	Data arr[1000];
+	Data arr[MAX];
 	int length;
 } ArrayBaseList;
 
