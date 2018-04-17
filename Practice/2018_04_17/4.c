@@ -65,9 +65,7 @@ int main()
 	printf("\n");
 
 	for (i = 0; i < count; i++)
-	{
 		list[i].arr[4] = (list[i].arr[1] + list[i].arr[2] + list[i].arr[3]);
-	}
 
 	struct_temp = list[0];
 
