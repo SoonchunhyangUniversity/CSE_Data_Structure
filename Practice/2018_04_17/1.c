@@ -16,7 +16,7 @@
 #define MAX 1000 // 기호상수 MAX를 1000으로 정의
 #define TRUE 1 // 기호상쉬 TRUE를 1로 정의
 
-typedef int Data; // typedef로 Data형으로 int 선언 가능
+typedef int Data; // typedef로 Data 키워드로 int 선언 가능
 
 /* 배열 기반 연결 리스트의 typedef 선언 */
 typedef struct _arraybaselist
