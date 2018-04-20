@@ -12,7 +12,6 @@
 
 #include <stdio.h> // 표준 입출력 라이브러리 헤더파일 선언
 #include <time.h> // srand 함수를 사용하기 위한 헤더파일 선언
-#include <stdlib.h> // malloc 함수를 사용하기 위한 헤더파일 선언
 #define MAX 1000 // 기호상수 MAX를 1000으로 정의
 #define TRUE 1 // 기호상쉬 TRUE를 1로 정의
 
@@ -44,7 +43,7 @@ int main() // 메인 함수 시작
 {
 	ArrayBaseList list; // 배열 기반 리스트 list 구조체 선언
 	int test_case, i;
-	// 사용자에게 값을 입력받을 변수 test_case와 반복문에서 사용할 변수 i 선어
+	// 사용자에게 값을 입력받을 변수 test_case와 반복문에서 사용할 변수 i 선언
 
 	/* srand함수를 사용하여 난수를 생성할 때 시드값을 준다 */
 	srand((unsigned)time(NULL));
