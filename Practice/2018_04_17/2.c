@@ -153,7 +153,7 @@ int is_in(ArrayBaseList *plist, Data find_data)
 {
 	int i; // 반복문에서 사용할 변수
 
-	for (i = 0; i < MAX; i++) // 배열의 처음부터 끝까지 반복
+	for (i = 0; i < plist->length; i++) // plist->length번 반복
 	{
 		if (plist->arr[i] == find_data) // 배열에서 값이 있는지 찾는다.
 			return i; // 값이 존재하면 그 idx값 반환
