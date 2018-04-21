@@ -11,7 +11,6 @@
 */
 
 #include <stdio.h> // 표준 입출력 라이브러리 헤더파일 선언
-#include <stdlib.h> // malloc 함수를 사용하기 위한 헤더파일 선언
 #define MAX 1000 // 기호상수 MAX를 1000으로 정의
 #define TRUE 1 // 기호상수 TRUE를 1로 정의
 

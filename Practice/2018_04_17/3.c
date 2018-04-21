@@ -11,7 +11,6 @@
 */
 
 #include <stdio.h> // 표준 입출력 라이브러리 헤더파일 선언
-#include <stdlib.h> // malloc 함수를 사용하기 위한 헤더파일 선언
 #define MAX 1000 // 기호상수 MAX를 1000으로 정의
 #define TRUE 1 // 기호상쉬 TRUE를 1로 정의
 
@@ -44,8 +43,8 @@ int main() // 메인 함수 시작
 	ArrayBaseList list; // 배열 기반 리스트 list 구조체 선언
 	int i, temp;
 	// 반복문에서 사용할 변수, 임시로 값을 저장할 변수 선언
-	int input, check;
-	// 사용자에게 입력을 받을 변수, 배열 기반 리스트 안에 데이터가 들어있는지를 저장할 변수 선언
+	int input;
+	// 사용자에게 입력을 받을 변수 선언
 
 	/* 파일포인터 fp 선언 및 data3.txt를 읽기모드로 연다 */
 	FILE *fp = fopen("data3.txt", "r");
@@ -113,7 +112,6 @@ void delete(ArrayBaseList *plist)
 			plist->length--; // 값이 삭제되면 length를 1 줄임
 		}
 	}
-
 }
 
 /* 배열 기반 리스트에서 데이터를 출력하는 함수 */
