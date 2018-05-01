@@ -39,22 +39,22 @@ void Insert_Node(Header *plist, int coef, int expon)
 		return 0; // 예외 처리
 	}
 
-	new_node->coef = coef; // 파라미터로 받은 계수를 노드에 저장
-	new_node->expon = expon; // 파라미터로 받은 지수를 노드에 저장
-	new_node->link = NULL; // 노드의 다음 리스트를 NULL로 저장
+	new_node->coef = coef; // 파라미터로 받은 계수를 노드에 대입
+	new_node->expon = expon; // 파라미터로 받은 지수를 노드에 대입
+	new_node->link = NULL; // 노드의 다음 리스트를 NULL로 대입
 
 	/* 헤더 노드에 아무것도 연결되지 않았을 때 */
 	if (plist->tail == NULL)
 	{
 		plist->head = plist->tail = new_node;
-		// 헤더의 head와 tail을 new_node로 저장
+		// 헤더의 head와 tail을 new_node로 대입
 	}
 
 	/* 헤더 노드에 연결된 노드가 있을 때 */
 	else
 	{
-		plist->tail->link = new_node; // tail의 다음 노드를 new_node로 저장
-		plist->tail = new_node; // 헤더의 tail을 new_node로 저장
+		plist->tail->link = new_node; // tail의 다음 노드를 new_node로 대입
+		plist->tail = new_node; // 헤더의 tail을 new_node로 대입
 	}
 
 	plist->length++; // 데이터 개수 + 1
@@ -97,10 +97,10 @@ void insert_node_multiply(Header *plist, int coef, int expon)
 				return; // 예외 처리
 			}
 
-			new_node->coef = coef; // 새로운 노드의 계수를 입력받은 계수로 삽입
-			new_node->expon = expon; // 새로운 노드의 차수를 입력받은 차수로 삽입
-			new_node->link = p; // 새 노드의 다음 노드를 p로 저장
-			prev->link = new_node; // 선행 노드의 다음 노드를 새 노드로 저장
+			new_node->coef = coef; // 새로운 노드의 계수를 입력받은 계수로 대입
+			new_node->expon = expon; // 새로운 노드의 차수를 입력받은 차수로 대입
+			new_node->link = p; // 새 노드의 다음 노드를 p로 대입
+			prev->link = new_node; // 선행 노드의 다음 노드를 새 노드로 대입
 
 			plist->length++; // 데이터의 개수 + 1
 
@@ -115,7 +115,7 @@ void insert_node_multiply(Header *plist, int coef, int expon)
 			return; // 함수 종료
 		}
 
-		prev = p; // 선행노드를 p로 저장
+		prev = p; // 선행노드를 p로 대입
 		p = p->link; // p를 p 다음 노드로 이동
 	}
 }
@@ -123,8 +123,8 @@ void insert_node_multiply(Header *plist, int coef, int expon)
 /* 다항식의 곱셉을 하는 함수 */
 void poly_mul(Header *plist1, Header *plist2, Header *plist3)
 {
-	Node *a = plist1->head; // a에 리스트1의 헤더를 저장
-	Node *b = plist2->head; // b에 리스트2의 헤더를 저장
+	Node *a = plist1->head; // a에 리스트1의 헤더를 대입
+	Node *b = plist2->head; // b에 리스트2의 헤더를 대입
 
 	int multiply; // 계수의 곱
 	int expon; // 지수의 값
@@ -150,7 +150,7 @@ void poly_mul(Header *plist1, Header *plist2, Header *plist3)
 /* 다항식을 출력하는 함수 */
 void poly_print(Header *plist)
 {
-	Node *p = plist->head; // p에 리스트의 헤드를 저장
+	Node *p = plist->head; // p에 리스트의 헤드를 대입
 
 	for (; p; p = p->link) // p가 NULL일 때 까지 반복
 	{
