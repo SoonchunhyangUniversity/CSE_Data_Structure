@@ -26,9 +26,9 @@ void error(char *message)
 }
 
 /*
-phead : 리스트의 헤드 포인터의 포인터
-p : 선행 노트
-new_node : 삽입될 노드
+    phead : 리스트의 헤드 포인터의 포인터
+    p : 선행 노트
+    new_node : 삽입될 노드
 */
 void insert_node(ListNode **phead, ListNode *p, ListNode *new_node)
 {

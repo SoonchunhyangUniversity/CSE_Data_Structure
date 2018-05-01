@@ -17,9 +17,9 @@ void error(char *message)
 }
 
 /*
-phead : 리스트의 헤드 포인터의 포인터
-p : 선행 노트
-new_node : 삽입될 노드
+	phead : 리스트의 헤드 포인터의 포인터
+	p : 선행 노트
+	new_node : 삽입될 노드
 */
 void insert_node(ListNode **phead, ListNode *p, ListNode *new_node)
 {
@@ -40,14 +40,19 @@ void insert_node(ListNode **phead, ListNode *p, ListNode *new_node)
 	}
 }
 
-void remove_node(ListNode **phead, ListNode *p, ListNode *remove)
+/*
+	phead : 헤드 포인터의 포인터
+	p : 삭제될 노드의 선행 노트
+	removed : 삭제될 노드
+*/
+void remove_node(ListNode **phead, ListNode *p, ListNode *removed)
 {
 	if (p == NULL)
 		*phead = (*phead)->link;
 	else
-		p->link = remove->link;
+		p->link = removed->link;
 
-	free(remove);
+	free(removed);
 }
 
 void remove_odd_node(ListNode **phead)
