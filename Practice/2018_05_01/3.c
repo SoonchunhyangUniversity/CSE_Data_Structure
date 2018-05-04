@@ -86,7 +86,7 @@ void remove_odd_node(ListNode **phead)
 		{
 			remove_node(phead, prev, ph); // 데이터 삭제
 
-			if (prev != NULL) // prev 노드가 NULL이면
+			if (prev != NULL) // prev 노드가 NULL이 아니면
 				ph = prev->link; // ph에 prev 다음 노드 대입
 
 			else // 그렇지 않으면
