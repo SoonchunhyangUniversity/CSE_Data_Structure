@@ -1,3 +1,15 @@
+/*
+	*
+	* 작성자 : 김민수
+	* 학번 : 20174444
+	* 학과 : 컴퓨터소프트웨어공학과
+	* 프로그램명 : 04 과제
+	* 개발환경 : Visual Studio 2010
+	* 컴파일러 표준 : C99
+	* 작성일 : 2018 - 04 - 30
+	*
+*/
+
 #include <stdio.h> // 표준 입출력 라이브러리 함수 선언
 #include <stdlib.h> // malloc함수와 free함수 사용을 위한 헤더파일 선언
 
@@ -6,7 +18,7 @@ typedef struct _node
 {
 	int coef; // 계수
 	int expon; // 지수
-	Node *link; // 다음 리스트를 가리키는 구조체 포인터 변수
+	struct _node *link; // 다음 노드를 가리키는 구조체 포인터 변수
 } Node; // ListNode 키워드로 선언 가능
 
 /* 연결리스트의 헤드 구조체 */
