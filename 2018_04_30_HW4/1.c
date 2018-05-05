@@ -11,7 +11,7 @@
 */
 
 #include <stdio.h> // 표준 입출력 라이브러리 함수 선언
-#include <stdlib.h> // malloc함수와 free함수 사용을 위한 헤더파일 선언
+#include <stdlib.h> // malloc함수 사용을 위한 헤더파일 선언
 
 /* 연결리스트의 노드 구조체 */
 typedef struct _node
@@ -25,8 +25,8 @@ typedef struct _node
 typedef struct _header
 {
 	int length; // 연결리스트의 데이터 개수
-	Node *head;
-	Node *tail;
+	Node *head; // Node의 시작 부분
+	Node *tail; // Node의 끝 부분
 } Header; // ListHeader 키워드로 선언 가능
 
 /* 연결리스트의 초기화 함수 */
@@ -209,7 +209,7 @@ int main()
 
 		i = 0; // 인덱스 값을 가리킬 변수 초기화
 
-		/* 한 줄을 통째로 받은 것에서 공백문자가 나올 때 까지 반복 */
+		/* 한 줄을 통째로 받은 것에서 개행문자가 나올 때 까지 반복 */
 		while (temp[i] != '\n')
 		{
 			/* 다항식1에 관한 데이터이면 */
