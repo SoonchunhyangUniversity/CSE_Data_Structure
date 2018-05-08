@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #define TRUE 1
 #define FALSE 0
+#define DEL_DATA 172
 
 typedef struct ListNode
 {
@@ -48,53 +49,43 @@ void insert_node(List *header, int data)
 
 void delete_node(List *header, int key)
 {
-	if (header->head == NULL)
-		return;
+	int check = 1;
 
-	ListNode *curr = header->head;
-	ListNode *prev;
-
-	while (curr->data != key)
+	while (check)
 	{
-		if (curr->link == header->head)
-			break;
+		check = 0;
+
+		ListNode *curr = header->head;
+		ListNode *prev = header->tail;
+
+		while (curr->link != header->head)
+		{
+			if (curr->data == key)
+			{
+				prev->link = curr->link;
+				check = 1;
+				break;
+			}
+
+			prev = curr;
+			curr = curr->link;
+		}
+
+		if (curr->data == key)
+		{
+			prev->link = curr->link;
+			header->head = curr->link;
+			check = 1;
+		}
+
+		else if (curr->data == key && curr->link == header->head)
+		{
+			prev->link = curr->link;
+			check = 1;
+		}
 
 		prev = curr;
 		curr = curr->link;
-	}
-
-	if (curr->link == header->head)
-	{
-		header->head = NULL;
-		free(curr);
-		return;
-	}
-
-	if (curr == header->head)
-	{
-		prev = header->head;
-
-		while (prev->link != header->head)
-			prev = prev->link;
-
-		header->head = curr->link;
-		prev->link = header->head;
-		free(curr);
-		return;
-	}
-
-	else if (curr->link == header->head)
-	{
-		prev->link = header->head;
-		free(curr);
-		return;
-	}
-
-	else
-	{
-		prev->link = curr->link;
-		free(curr);
-		return;
 	}
 }
 
@@ -149,8 +140,7 @@ void display(List *header)
 int main()
 {
 	List list;
-	int data, delete_data = 172;
-	int num_of_data = 0, i;
+	int data;
 
 	list_init(&list);
 
@@ -166,16 +156,15 @@ int main()
 	{
 		fscanf(fp, "%d", &data);
 		insert_node(&list, data);
-		num_of_data++;
 	}
 
 	display(&list);
 	printf("\n");
 
 	reverse(&list);
-	delete_node(&list, delete_data);
+	delete_node(&list, DEL_DATA);
 
-	printf("< Delete %d >\n", delete_data);
+	printf("< Delete %d >\n", DEL_DATA);
 	printf("< Reverse >\n\n");
 	display(&list);
 
