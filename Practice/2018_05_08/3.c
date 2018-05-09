@@ -1,3 +1,15 @@
+/*
+	*
+	* 작성자 : 김민수
+	* 학번 : 20174444
+	* 학과 : 컴퓨터소프트웨어공학과
+	* 프로그램명 : 이중 연결 리스트
+	* 개발환경 : Visual Studio 2010
+	* 컴파일러 표준 : C99
+	* 작성일 : 2018 - 05 - 08
+	*
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -30,6 +42,21 @@ void display(DlistNode *phead)
 	printf(">\n");
 }
 
+void display_add_reverse(DlistNode *phead)
+{
+	DlistNode *p;
+
+	printf("< ");
+	for (p = phead->rlink; p != phead; p = p->rlink)
+		printf("%d ", p->data);
+	printf(">\n");
+
+	printf("< ");
+	for (p = phead->llink; p != phead; p = p->llink)
+		printf("%d ", p->data);
+	printf(">\n\n");
+}
+
 DlistNode *create_node(element data)
 {
 	DlistNode *new_node = (DlistNode *)malloc(sizeof(DlistNode));
@@ -51,16 +78,46 @@ void dinsert_node(DlistNode *before, DlistNode * new_node)
 	before->llink = new_node;
 }
 
-/* 노드 removed를 삭제 */
-void dremove_node(DlistNode *phead_node, DlistNode *removed)
+void delete_node(DlistNode *phead, int key)
 {
-	if (removed == phead_node)
-		return;
+	int check = 1;
 
-	removed->llink->rlink = removed->rlink;
-	removed->rlink->llink = removed->llink;
+	while (check)
+	{
+		check = 0;
+		DlistNode *temp = phead;
+		DlistNode *f = NULL;
 
-	free(removed);
+		if (phead->data == key)
+		{
+			if (phead->rlink != NULL)
+			{
+				phead = phead->rlink;
+				phead->llink = NULL;
+			}
+
+			else
+				phead = NULL;
+
+			check = 1;
+			free(temp);
+		}
+
+		while (temp->rlink != phead)
+		{
+			if (temp->rlink->data == key)
+			{
+				f = temp->rlink;
+
+				temp->rlink = temp->rlink->rlink;
+				temp->rlink->llink = temp;
+
+				free(f);
+				check = 1;
+			}
+			temp = temp->rlink;
+		}
+	}
 }
 
 int main()
@@ -85,6 +142,21 @@ int main()
 	}
 
 	display(&list);
+
+	do
+	{
+		printf("지울 값을 입력하세요(0 : 종료) : ");
+		scanf("%d", &input);
+
+		if (input == 0)
+			break;
+
+		delete_node(&list, input);
+		display_add_reverse(&list);
+
+	} while (input != 0);
+
+	fclose(fp);
 
 	return 0;
 }
