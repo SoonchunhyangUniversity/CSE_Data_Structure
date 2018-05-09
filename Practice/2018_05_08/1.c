@@ -68,6 +68,26 @@ ListNode *create_node(element data, ListNode *link)
 	return (new_node);
 }
 
+ListNode *get_mid_node(ListNode *head, int count)
+{
+	int i;
+	ListNode *mid = head;
+
+	if (count % 2 != 0)
+	{
+		for (i = 0; i < count / 2; i++)
+			mid = mid->link;
+	}
+
+	else
+	{
+		for (i = 0; i < count / 2 - 1; i++)
+			mid = mid->link;
+	}
+
+	return mid;
+}
+
 int main()
 {
 	ListNode *list = NULL;
@@ -93,18 +113,7 @@ int main()
 	do
 	{
 		mid = list;
-
-		if (data_count % 2 != 0)
-		{
-			for (i = 0; i < data_count / 2; i++)
-				mid = mid->link;
-		}
-
-		else
-		{
-			for (i = 0; i < data_count / 2 - 1; i++)
-				mid = mid->link;
-		}
+		mid = get_mid_node(list, data_count);
 
 		display(list);
 		printf("삽입 할 값을 입력하세요( 0 : 종료) : ");
@@ -120,6 +129,8 @@ int main()
 		}
 
 	} while (input != 0);
+
+	fclose(fp);
 
 	return 0;
 }

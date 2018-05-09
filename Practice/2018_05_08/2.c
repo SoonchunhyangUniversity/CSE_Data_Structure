@@ -159,5 +159,7 @@ int main()
 	printf("< Reverse >\n\n");
 	display(&list);
 
+	fclose(fp);
+
 	return 0;
 }
