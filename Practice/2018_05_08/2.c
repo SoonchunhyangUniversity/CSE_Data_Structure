@@ -77,15 +77,6 @@ void delete_node(List *header, int key)
 			header->head = curr->link;
 			check = 1;
 		}
-
-		else if (curr->data == key && curr->link == header->head)
-		{
-			prev->link = curr->link;
-			check = 1;
-		}
-
-		prev = curr;
-		curr = curr->link;
 	}
 }
 
@@ -161,8 +152,8 @@ int main()
 	display(&list);
 	printf("\n");
 
-	reverse(&list);
 	delete_node(&list, DEL_DATA);
+	reverse(&list);
 
 	printf("< Delete %d >\n", DEL_DATA);
 	printf("< Reverse >\n\n");
