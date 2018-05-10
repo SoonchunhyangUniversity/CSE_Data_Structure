@@ -168,7 +168,7 @@ int main() // 메인 함수 시작
 			// 데이터의 개수를 하나 더함
 		}
 
-	} while (TRUE); // 입력 값
+	} while (TRUE); // 무한 루프
 
 	fclose(fp); // 열어준 파일 포인터 fp를 닫아준다.
 
