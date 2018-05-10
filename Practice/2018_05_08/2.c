@@ -70,25 +70,41 @@ void delete_node(List *header, int key)
 		ListNode *curr = header->head;
 		ListNode *prev = header->tail;
 
-		while (curr->link != header->head)
+		do
 		{
 			if (curr->data == key)
 			{
-				prev->link = curr->link;
+				if (curr == header->head)
+				{
+					header->tail->link = header->head->link;
+					header->head = header->head->link;
+					free(curr);
+				}
+
+				else if (curr == header->tail)
+				{
+					prev->link = header->tail->link;
+					header->tail = header->tail->link;
+					free(curr);
+				}
+
+				else
+				{
+					prev->link = curr->link;
+					free(curr);
+				}
+
 				check = 1;
 				break;
 			}
 
-			prev = curr;
-			curr = curr->link;
-		}
+			else
+			{
+				prev = curr;
+				curr = curr->link;
+			}
 
-		if (curr->data == key)
-		{
-			prev->link = curr->link;
-			header->head = curr->link;
-			check = 1;
-		}
+		} while (curr != header->head);
 	}
 }
 
@@ -165,7 +181,7 @@ int main()
 	printf("\n");
 
 	delete_node(&list, DEL_DATA);
-	reverse(&list);
+	//reverse(&list);
 
 	printf("< Delete %d >\n", DEL_DATA);
 	printf("< Reverse >\n\n");
