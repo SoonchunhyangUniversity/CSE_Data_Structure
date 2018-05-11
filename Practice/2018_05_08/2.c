@@ -178,7 +178,6 @@ void display(List *header)
 	printf("Tail Next : %d\n", header->tail->link->data); // header의 tail의 link의 데이터 출력
 }
 
-
 int main() // 메인 함수 시작
 {
 	List list; // 리스트 구조체 list 선언
