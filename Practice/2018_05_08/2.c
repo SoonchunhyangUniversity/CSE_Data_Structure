@@ -157,7 +157,7 @@ List *reverse(List *header)
 	return header; // header를 반환
 }
 
-/* 리스트의 항목 출력 */
+/* 리스트의 데이터를 출력하는 함수 */
 void display(List *header)
 {
 	ListNode *cur = header->head;
