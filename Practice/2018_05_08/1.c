@@ -74,7 +74,7 @@ void display(ListNode *head)
 	printf("\n");
 }
 
-/* 노드를 동적으로 생성하는 프로그램 */
+/* 노드를 동적으로 생성하는 함수 */
 ListNode *create_node(element data, ListNode *link)
 {
 	ListNode *new_node; // 새 노드를 동적 할당할 포인터 노드 선언
@@ -118,7 +118,7 @@ int main() // 메인 함수 시작
 	ListNode *list = NULL;
 	// 리스트의 헤드 노드 선언 및 초기화
 	ListNode *mid = NULL;
-	// 리스트의 가운데 노드를 저장 할 구조체 선언 및 초기화
+	// 리스트의 가운데 노드를 저장 할 노드 선언 및 초기화
 	int data, input;
 	// 데이터를 임시로 저장할 변수, 사용자에게 값을 입력 받을 변수 선언
 	int data_count = 0;
