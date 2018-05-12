@@ -78,7 +78,7 @@ DlistNode *create_node(element data)
 }
 
 
-/* 노드 new_node를 노드 before의 왼쪽에 삽입 */
+/* 노드 new_node를 노드 before의 왼쪽에 삽입하는 함수 */
 void dinsert_node(DlistNode *before, DlistNode * new_node)
 {
 	new_node->rlink = before; // new_node의 rlink에 before 저장
