@@ -1,3 +1,15 @@
+/*
+	*
+	* 작성자 : 김민수
+	* 학번 : 20174444
+	* 학과 : 컴퓨터소프트웨어공학과
+	* 프로그램명 : 스택 1
+	* 개발환경 : Visual Studio 2010
+	* 컴파일러 표준 : C99
+	* 작성일 : 2018 - 05 - 15
+	*
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -29,45 +41,61 @@ Data SPeek(Stack * pstack);
 int main()
 {
 	/* Stack의 생성 및 초기화 */
-	Stack stack1, stack2;
-	int temp;
+	Stack stack;
+	int temp_data, temp_arr[STACK_LEN];
 	int a_pop_data, b_pop_data;
 	int a_win_count = 0, b_win_count = 0;
-	int i;
+	int i, j;
 
 	srand((unsigned)time(NULL));
 
-	StackInit(&stack1);
-	StackInit(&stack2);
+	StackInit(&stack);
 
-	/* 데이터 넣기 */
-	for (i = 0; i < 5; i++)
+	for (i = 0; i < 10; i++)
 	{
-		SPush(&stack1, rand() % 20 + 1);
 
-		temp = rand() % 20 + 1;
-
-		if (SPeek(&stack1) == temp)
+		if (i == 0)
 		{
-			while (SPeek(&stack1) == temp)
-			{
-					temp = rand() % 20 + 1;
-			}
+			temp_data = rand() % 20 + 1;
+
+			SPush(&stack, temp_data);
+			temp_arr[i] = temp_data;
 		}
 
-		SPush(&stack2, temp);
+		else
+		{
+			temp_data = rand() % 20 + 1;
+
+			for (j = 0; j < stack.topIndex + 1; j++)
+			{
+				if (temp_arr[j] == temp_data)
+				{
+					temp_data = rand() % 20 + 1;
+					j = 0;
+
+					continue;
+				}
+			}
+
+			SPush(&stack, temp_data);
+			temp_arr[i] = temp_data;
+		}
 	}
+
+
 
 	/* 데이터 꺼내기 */
 	for (i = 0; i < 5; i++)
 	{
-		a_pop_data = SPop(&stack1);
-		b_pop_data = SPop(&stack2);
+		a_pop_data = SPop(&stack);
+		b_pop_data = SPop(&stack);
+
 		printf("< %d회차 >\n", i + 1);
 		printf("A : %-3d - B : %-3d\n", a_pop_data, b_pop_data);
 
 		if (a_pop_data > b_pop_data)
 			a_win_count++;
+
 		else if (b_pop_data > a_pop_data)
 			b_win_count++;
 	}
