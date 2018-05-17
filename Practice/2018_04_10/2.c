@@ -4,8 +4,6 @@
 	* 학번 : 20174444
 	* 학과 : 컴퓨터소프트웨어공학과
 	* 프로그램명 : 구조체 배열
-	* 개발환경 : Visual Studio 2010
-	* 컴파일러 표준 : C99
 	* 작성일 : 2018 - 04 - 10
 	*
 */
@@ -128,7 +126,7 @@ int main() // 메인함수 시작
 		printf("위치 : %s\n", struct_arr[idx].loc);
 		printf("개체 수 : %s\n", struct_arr[idx].population);
 	}
-	
+
 	free(struct_arr); // 동적할당한 메모리의 해제
 	fclose(fp); // 열어준 파일포인터 fp를 닫아줌
 
