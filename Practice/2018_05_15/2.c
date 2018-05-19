@@ -157,7 +157,6 @@ void num_game(Stack *pstack)
 	printf("B - 승 : %-3d\t 패 : %-3d\n", b_win_count, 5 - b_win_count);
 }
 
-
 int main() // 메인 함수 시작
 {
 	/* Stack의 생성 및 초기화 */
