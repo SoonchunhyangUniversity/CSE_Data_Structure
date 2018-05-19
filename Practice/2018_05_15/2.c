@@ -112,7 +112,7 @@ void push_rand_data(Stack *pstack)
 				if (temp_arr[j] == temp_data)
 				{
 					temp_data = rand() % 20 + 1; // 난수 재생성
-					j = 0; // j를 0으로 저장 반복문 처음부터 다시
+					j = -1; // j를 -1으로 저장 반복문 처음부터 다시
 				}
 			}
 
