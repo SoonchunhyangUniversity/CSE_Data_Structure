@@ -159,7 +159,7 @@ void num_game(Stack *pstack)
 
 int main() // 메인 함수 시작
 {
-	/* Stack의 생성 및 초기화 */
+	/* Stack의 생성 */
 	Stack stack;
 
 	/* 난수 생성을 위한 시드값 생성 */
