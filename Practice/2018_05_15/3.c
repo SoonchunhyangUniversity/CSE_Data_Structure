@@ -1,11 +1,11 @@
 /*
-	*
-	* 작성자 : 김민수
-	* 학번 : 20174444
-	* 학과 : 컴퓨터소프트웨어공학과
-	* 프로그램명 : 스택 2
-	* 작성일 : 2018 - 05 - 15
-	*
+*
+* 작성자 : 김민수
+* 학번 : 20174444
+* 학과 : 컴퓨터소프트웨어공학과
+* 프로그램명 : 스택 2
+* 작성일 : 2018 - 05 - 15
+*
 */
 
 #include <stdio.h> // 표준 입출력 라이브러리 헤더파일 선언
@@ -23,14 +23,14 @@ typedef struct _data
 	char gender[3]; // 성별을 저장할 문자열
 } Data; // Data키워드로 구조체 선언 가능
 
-/* 배열 기반 스택의 구조체 정의 */
+		/* 배열 기반 스택의 구조체 정의 */
 typedef struct _arrayStack
 {
 	Data stackArr[STACK_LEN]; // 배열 기반 스택의 데이터 배열
 	int topIndex; // 스택의 최상위 인덱스 값
 } Stack; // Stack키워드로 구조체 선언 가능
 
-/* 스택을 초기화 하는 함수 */
+		 /* 스택을 초기화 하는 함수 */
 void StackInit(Stack * pstack)
 {
 	pstack->topIndex = -1; // 스택의 topIndex를 -1로 저장
@@ -57,7 +57,7 @@ Data SPop(Stack * pstack)
 {
 	int rIdx; // 삭제 할 인덱스를 임시로 저장할 변수
 
-	/* 스택이 비어있는지 검사 */
+			  /* 스택이 비어있는지 검사 */
 	if (SIsEmpty(pstack)) // 스택이 비어있다면
 	{
 		printf("Stack Memory Error!"); // 예외처리
@@ -91,11 +91,11 @@ void match(Stack *male, Stack *female)
 		i++; // i에 1을 더해준다.
 	}
 
-	if (!SIsEmpty(male)) // male 스택이 비어있지 않으면
-		printf("%s씨는 짝이없습니다.\n", male->stackArr[male->topIndex].name); // 출력
+	while (!SIsEmpty(male)) // male 스택이 비어있지 않으면
+		printf("%s씨는 짝이없습니다.\n", SPop(male).name); // 출력
 
-	if (!SIsEmpty(female)) // female 스택이 비어있지 않으면
-		printf("%s씨는 짝이없습니다.\n", female->stackArr[female->topIndex].name); // 출력
+	while (!SIsEmpty(female)) // female 스택이 비어있지 않으면
+		printf("%s씨는 짝이없습니다.\n", SPop(female).name); // 출력
 }
 
 int main() // 메인 함수 시작
@@ -103,7 +103,7 @@ int main() // 메인 함수 시작
 	Data temp; // 구조체 데이터를 임시로 저장할 구조체 변수 선언
 	Stack male, female; // male 스택과 female 스택 선언
 
-	/* 파일 포인터 fp선언 및 data3.txt를 읽기모드로 연다. */
+						/* 파일 포인터 fp선언 및 data3.txt를 읽기모드로 연다. */
 	FILE *fp = fopen("data3.txt", "r");
 
 	/* 파일 오픈에 실패했을 경우 */
