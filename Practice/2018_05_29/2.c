@@ -43,7 +43,7 @@ int is_empty(Stack * pstack)
 void push(Stack *pstack, int stack_num, Data data)
 {
 	Stack temp;
-	int i = 0, j = 0;
+	int i, j;
 
 	Node *newNode = (Node *)malloc(sizeof(Node));
 
@@ -55,34 +55,44 @@ void push(Stack *pstack, int stack_num, Data data)
 	printf("---Step %d : 스택%d %d 입력 ---\n", step++, stack_num, data);
 
 	if (stack_num == 1)
-	{
 		stack_temp1[++stack1_len] = data;
-	}
 
 	if (stack_num == 2)
-	{
 		stack_temp2[++stack2_len] = data;
+
+	if (stack1_len > stack2_len)
+	{
+		i = stack1_len;
+		j = stack1_len;
 	}
 
-	i = stack1_len;
-	j = stack2_len;
-
-	do
+	else
 	{
-		if (i <= 0)
+		i = stack2_len;
+		j = stack2_len;
+	}
+
+	while(TRUE)
+	{
+
+		if (i <= 0 && j <= 0)
+			break;
+
+		if (i > stack1_len)
 			printf("│         │");
 
 		else
 			printf("│ < %3d > │", stack_temp1[i]);
 
-		if(j <= 0)
+		if(j > stack2_len)
 			printf("│         │\n");
+
 		else
 			printf("│ < %3d > │\n", stack_temp2[j]);
 
 		i--;
 		j--;
-	} while (i != 0 && j != 0);
+	}
 
 	printf("└─────────┘└─────────┘\n\n");
 
@@ -91,8 +101,8 @@ void push(Stack *pstack, int stack_num, Data data)
 Data pop(Stack *pstack, int stack_num)
 {
 	Data rdata;
-	Node * rnode;
-	int i = 0, j = 0;
+	Node *rnode;
+	int i, j;
 
 	if (is_empty(pstack))
 	{
@@ -115,19 +125,30 @@ Data pop(Stack *pstack, int stack_num)
 	if (stack_num == 2)
 		stack2_len -= 1;
 
-	i = stack1_len;
-	j = stack2_len;
-
-	do
+	if (stack1_len > stack2_len)
 	{
+		i = stack1_len;
+		j = stack1_len;
+	}
 
-		if (i <= 0)
+	else
+	{
+		i = stack2_len;
+		j = stack2_len;
+	}
+
+	while(TRUE)
+	{
+		if (i <= 0 && j <= 0)
+			break;
+
+		if (i > stack1_len)
 			printf("│         │");
 
 		else
 			printf("│ < %3d > │", stack_temp1[i]);
 
-		if (j <= 0)
+		if (j > stack2_len)
 			printf("│         │\n");
 
 		else
@@ -135,7 +156,7 @@ Data pop(Stack *pstack, int stack_num)
 
 		i--;
 		j--;
-	} while (i != 0 && j != 0);
+	}
 
 	printf("└─────────┘└─────────┘\n\n");
 
@@ -162,11 +183,11 @@ int main()
 
 	while (!feof(fp))
 	{
-		fscanf(fp, "%s", oper);
+		fscanf(fp, "%s %d", oper, &stack_num);
 
 		if (!strcmp(oper, "push"))
 		{
-			fscanf(fp, " %d %d", &stack_num, &temp);
+			fscanf(fp, "%d", &temp);
 
 			if(stack_num == 1)
 				push(&s1, stack_num, temp);
@@ -182,6 +203,12 @@ int main()
 
 			if (stack_num == 2)
 				pop(&s2, stack_num);
+		}
+
+		else
+		{
+			printf("Operator Error!\n");
+			return 0;
 		}
 	}
 
