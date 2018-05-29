@@ -6,80 +6,75 @@
 #define TRUE 1
 #define FALSE 0
 
-typedef int Data;
+typedef int element;
 
-typedef struct _node
+typedef struct
 {
-	Data data;
-	struct _node *next;
-} Node;
+	element stack[MAX];
+	int top;
+} StackType;
 
-typedef struct _listStack
+/* 스택 초기화 함수 */
+void init(StackType *s)
 {
-	Node *head;
-} ListStack;
-
-typedef ListStack Stack;
-
-void init(Stack * pstack)
-{
-	pstack->head = NULL;
+	s->top = -1;
 }
 
-int is_empty(Stack * pstack)
+/* 공백 상태 검출 함수 */
+int is_empty(StackType *s)
 {
-	if (pstack->head == NULL)
-		return TRUE;
+	return (s->top == -1);
+}
+
+/* 포화 상태 검출 함수 */
+int is_full(StackType *s)
+{
+	return (s->top == (MAX - 1));
+}
+
+/* 삽입 함수 */
+void push(StackType *s, element item)
+{
+	if (is_full(s))
+	{
+		fprintf(stderr, "스택 포화 에러\n");
+		return;
+	}
 
 	else
-		return FALSE;
+		s->stack[++(s->top)] = item;
 }
 
-void push(Stack * pstack, Data data)
+/* 삭제 함수 */
+element pop(StackType *s)
 {
-	Node *newNode = (Node *)malloc(sizeof(Node));
-
-	newNode->data = data;
-	newNode->next = pstack->head;
-
-	pstack->head = newNode;
-}
-
-Data pop(Stack * pstack)
-{
-	Data rdata;
-	Node * rnode;
-
-	if (is_empty(pstack))
+	if (is_empty(s))
 	{
-		printf("Stack Memory Error!");
-		exit(-1);
+		fprintf(stderr, "스택 공백 에러\n");
+		exit(1);
 	}
 
-	rdata = pstack->head->data;
-	rnode = pstack->head;
-
-	pstack->head = pstack->head->next;
-	free(rnode);
-
-	return rdata;
+	else
+		return s->stack[(s->top)--];
 }
 
-Data peek(Stack * pstack)
+/* 피크 함수 */
+element peek(StackType *s)
 {
-	if (is_empty(pstack))
+	if (is_empty(s))
 	{
-		printf("Stack Memory Error!");
-		exit(-1);
+		fprintf(stderr, "스택 공백 에러\n");
+		exit(1);
 	}
 
-	return pstack->head->data;
+	else
+		return s->stack[s->top];
 }
 
 /* 괄호 검사 함수 */
 int check_matching(char *in)
 {
-	Stack s;
+	StackType s;
 	char ch, open_ch;
 	int i, n = strlen(in);
 
@@ -160,71 +155,62 @@ int prec_check(char op1, char op2)
 		return 0;
 }
 
-void infix_to_postfix(char exp[])
+void postfix_to_infix(char exp[])
 {
-	Stack stack;
+	StackType stack;
 	int expLen = strlen(exp);
-	char *convExp = (char *)malloc(expLen + 1);
+	int convLen;
+	char convExp[MAX] = { 0 };
 
-	int i, idx = 0;
-	char tok, popOp;
+	int i, j;
+	char tok, idx = 0;
 
-	memset(convExp, 0, sizeof(char) * expLen + 1);
 	init(&stack);
+
+	convExp[idx++] = exp[0];
 
 	for (i = 0; i < expLen; i++)
 	{
-		tok = exp[i];
 
-		if (isdigit(tok))
+		if (exp[i] == '+' || exp[i] == '-' ||
+			exp[i] == '*' || exp[i] == '/')
 		{
+			tok = pop(&stack);
+
+			convExp[idx++] = exp[i];
 			convExp[idx++] = tok;
+			convExp[idx++] = ')';
+
+			convLen = strlen(convExp);
+
+			for (j = convLen; j >= 0; j--)
+				convExp[j] = convExp[j - 1];
+
+			convExp[0] = '(';
+			idx++;
 		}
 
 		else
 		{
-			switch (tok)
-			{
-			case '(':
-				push(&stack, tok);
-				break;
-
-			case ')':
-				while (TRUE)
-				{
-					popOp = pop(&stack);
-
-					if (popOp == '(')
-						break;
-
-					convExp[idx++] = popOp;
-				}
-
-				break;
-
-			case '+':
-			case '-':
-			case '*':
-			case '/':
-				while (!is_empty(&stack) && prec_check(peek(&stack), tok) >= 0)
-					convExp[idx++] = pop(&stack);
-
-				push(&stack, tok);
-				break;
-			}
+			push(&stack, exp[i]);
 		}
+
 	}
 
-	while (!is_empty(&stack))
-		convExp[idx++] = pop(&stack);
+	convExp[idx] = '\0';
 
-	strcpy(exp, convExp);
-	free(convExp);
+	if (!check_matching(convExp))
+	{
+		printf("잘못된 수식입니다!\n");
+		return;
+	}
+
+	printf("중위표기식 : %s\n", convExp);
 }
 
 int eval(char exp[])
 {
-	Stack stack;
+	StackType stack;
 	int expLen = strlen(exp);
 	int i;
 	char tok, op1, op2;
@@ -271,22 +257,16 @@ int eval(char exp[])
 
 void display(char exp[])
 {
-	if (!check_matching(exp))
-	{
-		printf("잘못된 수식입니다!\n");
-		return;
-	}
-
-	printf("중위표기식 : %s", exp);
-
-	infix_to_postfix(exp);
 	printf("후위표기식 : %s\n", exp);
+
+	postfix_to_infix(exp);
+
 	printf("결      과 : %d\n\n", eval(exp));
 }
 
 int main()
 {
-	char infix[100] = { 0 };
+	char postfix[100] = { 0 };
 	FILE *fp = fopen("data1.txt", "r");
 
 	if (fp == NULL)
@@ -297,8 +277,8 @@ int main()
 
 	while (!feof(fp))
 	{
-		fgets(infix, MAX, fp);
-		display(infix);
+		fscanf(fp, "%s", postfix);
+		display(postfix);
 	}
 
 	fclose(fp);
