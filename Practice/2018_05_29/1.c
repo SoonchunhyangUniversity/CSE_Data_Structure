@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#define MAX 100
+#define MAX 50
 #define TRUE 1
 #define FALSE 0
 
@@ -167,8 +167,6 @@ void postfix_to_infix(char exp[])
 
 	init(&stack);
 
-	convExp[idx++] = exp[0];
-
 	for (i = 0; i < expLen; i++)
 	{
 
@@ -192,12 +190,24 @@ void postfix_to_infix(char exp[])
 
 		else
 		{
+			if (i == 1)
+			{
+				tok = pop(&stack);
+				convExp[idx++] = tok;
+			}
+
 			push(&stack, exp[i]);
 		}
 
 	}
 
 	convExp[idx] = '\0';
+
+	if (!is_empty(&stack))
+	{
+		printf("잘못된 수식입니다.\n");
+		return;
+	}
 
 	if (!check_matching(convExp))
 	{
@@ -206,6 +216,7 @@ void postfix_to_infix(char exp[])
 	}
 
 	printf("중위표기식 : %s\n", convExp);
+	printf("결      과 : %d\n\n", eval(exp));
 }
 
 int eval(char exp[])
@@ -260,8 +271,6 @@ void display(char exp[])
 	printf("후위표기식 : %s\n", exp);
 
 	postfix_to_infix(exp);
-
-	printf("결      과 : %d\n\n", eval(exp));
 }
 
 int main()
