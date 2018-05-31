@@ -201,8 +201,6 @@ void postfix_to_infix(char exp[])
 
 	}
 
-	convExp[idx] = '\0';
-
 	if (!is_empty(&stack))
 	{
 		printf("잘못된 수식입니다.\n");
