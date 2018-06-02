@@ -129,11 +129,8 @@ void display_push(Stack *stack1, Stack *stack2, int stack_num, Data data)
 		stack2_display_count = stack2_len;
 	}
 
-	while (TRUE)
+	while (stack1_display_count > 0 && stack2_display_count > 0)
 	{
-
-		if (stack1_display_count <= 0 && stack2_display_count <= 0)
-			break;
 
 		if (stack1_display_count > stack1_len)
 			printf("│         │");
@@ -182,10 +179,8 @@ void display_pop(Stack *stack1, Stack *stack2, int stack_num, int rdata)
 		stack2_display_count = stack2_len;
 	}
 
-	while (TRUE)
+	while (stack1_display_count > 0 && stack2_display_count > 0)
 	{
-		if (stack1_display_count <= 0 && stack2_display_count <= 0)
-			break;
 
 		if (stack1_display_count > stack1_len)
 			printf("│         │");
