@@ -203,13 +203,13 @@ void postfix_to_infix(char exp[])
 
 	if (!is_empty(&stack))
 	{
-		printf("잘못된 수식입니다.\n");
+		printf("잘못된 표기식입니다.\n");
 		return;
 	}
 
 	if (!check_matching(convExp))
 	{
-		printf("잘못된 수식입니다!\n");
+		printf("잘못된 표기식입니다.!\n");
 		return;
 	}
 
