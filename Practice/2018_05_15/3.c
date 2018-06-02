@@ -30,7 +30,7 @@ typedef struct _arrayStack
 	int topIndex; // 스택의 최상위 인덱스 값
 } Stack; // Stack키워드로 구조체 선언 가능
 
-		 /* 스택을 초기화 하는 함수 */
+/* 스택을 초기화 하는 함수 */
 void StackInit(Stack * pstack)
 {
 	pstack->topIndex = -1; // 스택의 topIndex를 -1로 저장
