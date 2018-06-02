@@ -1,3 +1,11 @@
+/**
+ * 작성자 : 김민수
+ * 학번 : 20174444
+ * 학과 : 컴퓨터소프트웨어공학과
+ * 프로그램명 : 문제 3
+ * 작성일 : 2018 - 05 - 29
+ */
+
 #include <stdio.h>
 #include <string.h>
 #define MAX_STACK_SIZE 100
