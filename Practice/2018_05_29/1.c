@@ -58,7 +58,7 @@ void push(StackType *s, element item)
 	/* 스택이 가득 차있지 않으면 */
 	else
 		s->stack[++(s->top)] = item;
-	// 스택의 최상위 인덱스 다음 인덱스에 item 저장
+		// 스택의 최상위 인덱스 다음 인덱스에 item 저장
 }
 
 /* 삭제 함수 */
@@ -74,7 +74,7 @@ element pop(StackType *s)
 	/* 스택이 비어있지 않으면 */
 	else
 		return s->stack[(s->top)--];
-	// 스택의 최상위 인덱스 값 반환 후 top을 1 빼줌
+		// 스택의 최상위 인덱스 값 반환 후 top을 1 빼줌
 }
 
 /* 피크 함수 */
@@ -90,7 +90,7 @@ element peek(StackType *s)
 	/* 스택이 비어있지 않으면 */
 	else
 		return s->stack[s->top];
-	// 스택의 최상위 인덱스 값 반환
+		// 스택의 최상위 인덱스 값 반환
 }
 
 /* 괄호 검사 함수 */
