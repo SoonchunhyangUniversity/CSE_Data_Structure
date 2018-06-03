@@ -12,7 +12,7 @@
 #include <string.h> // strlen함수 사용을 위한 헤더파일 선언
 #define MAX 50 // 기호상수 MAX를 50으로 정의
 #define TRUE 1 // 기호상후 TRUE를 1으로 정의
-#define FALSE 0 // 기소항수 FALSE를 0으로 정의
+#define FALSE 0 // 기호상수 FALSE를 0으로 정의
 
 typedef int element; // typedef로 element키워드로 int형 데이터 선언 가능
 
@@ -237,7 +237,7 @@ int postfix_to_infix(char exp[])
 
 			convLen = strlen(convExp); // strlen함수로 convExp의 길이를 저장
 
-									   /* convLen번 반복하는 반복문 */
+			/* convLen번 반복하는 반복문 */
 			for (j = convLen; j >= 0; j--)
 				convExp[j] = convExp[j - 1]; // 한 칸씩 오른쪽으로 이동
 
