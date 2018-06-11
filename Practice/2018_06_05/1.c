@@ -81,7 +81,6 @@ element dequeue(QueueType *q)
 
 	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
     // 큐의 front를 1더하고 배열의 최대 사이즈와 mod 연산 후 저장
-
 	return q->queue[q->front];
     // 큐의 front번 째 배열의 데이터 반환
 }
