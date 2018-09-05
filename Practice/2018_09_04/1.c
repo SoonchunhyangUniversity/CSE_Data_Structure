@@ -37,7 +37,7 @@ int main()
     // 연결 리스트의 헤드 노드 선언 및 초기화
 	int count = 0;
     // 파일 안의 데이터의 개수를 저장하는 변수
-	int temp;
+	Data temp;
     // 파일에서 읽어온 데이터를 임시로 저장하는 변수
 
     /* 파일포인터 fp 선언 및 data1.txt를 읽기모드로 연다 */
@@ -83,7 +83,7 @@ int main()
 	up_to_down_sort(list);
 	// up_to_down_sort 함수를 사용해 리스트를 내림차순으로 정렬
 	display(list);
-	// 리스트의 데이터 출력
+	// display 함수로 리스트의 데이터 출력
 
 	fclose(fp); // 열어춘 파일포인터 fp를 닫아준다.
 
