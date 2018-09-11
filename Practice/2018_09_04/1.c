@@ -91,17 +91,17 @@ int main()
 }
 
 /* 노드를 동적으로 생성하는 함수 */
-ListNode *create_node(element data, ListNode *link)
+Node *create_node(Data data, Node *next)
 {
-	ListNode *new_node; // 새 노드를 동적 할당할 포인터 노드 선언
-	new_node = (ListNode *)malloc(sizeof(ListNode)); // 새 노드 동적 할당
+	Node *new_node; // 새 노드를 동적 할당할 포인터 노드 선언
+	new_node = (Node *)malloc(sizeof(Node)); // 새 노드 동적 할당
 
 	/* 동적 할당에 실패할 경우 */
 	if (new_node == NULL)
 		printf("메모리 할당 에러"); // 에러메세지 실행
 
 	new_node->data = data; // 새 노드의 데이터에 매개 변수 데이터 저장
-	new_node->link = link; // 새 노드의 링크에 매개 변수로 받은 노드 저장
+	new_node->next = next; // 새 노드의 링크에 매개 변수로 받은 노드 저장
 
 	return (new_node); // 동적 할당한 후 데이터를 저장한 노드를 반환
 }
@@ -130,24 +130,24 @@ void display(Node *head)
 }
 
 /* 연결 리스트에 노드를 삽입하는 함수 */
-void insert(ListNode **phead, ListNode *p, ListNode *new_node)
+void insert(Node **phead, Node *p, Node *new_node)
 {
 	if (*phead == NULL) // 공백 리스트인 경우
 	{
-		new_node->link = NULL; // 새 노드의 link에 NULL 저장
+		new_node->next = NULL; // 새 노드의 next에 NULL 저장
 		*phead = new_node; // 헤드 포인터에 새 노드 저장
 	}
 
 	else if (p == NULL) // p가 NULL이면 첫 번째 노드로 삽입
 	{
-		new_node->link = *phead; // 새 노드의 link에 헤드 포인터 저장
+		new_node->next = *phead; // 새 노드의 next에 헤드 포인터 저장
 		*phead = new_node; // 헤드 포인터에 새 노드 저장
 	}
 
 	else
 	{
-		new_node->link = p->link; // 새 노드의 링크의 p의 link 저장
-		p->link = new_node; // p의 링크에 새 노드 저장
+		new_node->next = p->next; // 새 노드의 링크의 p의 next 저장
+		p->next = new_node; // p의 링크에 새 노드 저장
 	}
 }
 
