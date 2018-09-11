@@ -129,14 +129,14 @@ int main()
 		else
 			insert_score(list, score, sub, name);
 			// insert_score함수로 데이터 삽입
-		}
-
-		display(list); // display 함수로 리스트의 데이터 출력
-
-		fclose(fp); // 열어준 파일 포인터 fp를 닫아준다.
-
-		return 0; // 메인 함수 종료
 	}
+
+	display(list); // display 함수로 리스트의 데이터 출력
+
+	fclose(fp); // 열어준 파일 포인터 fp를 닫아준다.
+
+	return 0; // 메인 함수 종료
+}
 
 /**
  * [insert 함수]
