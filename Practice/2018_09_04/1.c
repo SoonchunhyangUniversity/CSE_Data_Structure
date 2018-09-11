@@ -98,7 +98,7 @@ ListNode *create_node(element data, ListNode *link)
 
 	/* 동적 할당에 실패할 경우 */
 	if (new_node == NULL)
-		error("메모리 할당 에러"); // 에러메세지 실행
+		printf("메모리 할당 에러"); // 에러메세지 실행
 
 	new_node->data = data; // 새 노드의 데이터에 매개 변수 데이터 저장
 	new_node->link = link; // 새 노드의 링크에 매개 변수로 받은 노드 저장
