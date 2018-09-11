@@ -117,6 +117,9 @@ int main()
 				temp.math = score;
 			}
 
+			temp.sum = temp.kor + temp.eng + temp.math;
+			temp.avg = temp.sum / 3.0;
+
 			insert(&list, create_node(temp, NULL));
 			// create_node함수로 노드를 생성한 후 insert함수로 리스트에 삽입
 
