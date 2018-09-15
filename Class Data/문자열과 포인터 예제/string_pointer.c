@@ -1,4 +1,4 @@
-#include <stdio.h>	// ÀÔÃâ·ÂÀ» À§ÇÑ ÀüÃ³¸®¸í·É¹®
+#include <stdio.h>	// ì…ì¶œë ¥ì„ ìœ„í•œ ì „ì²˜ë¦¬ëª…ë ¹ë¬¸
 
 void main()
 {
@@ -9,13 +9,13 @@ void main()
 	printf("str2 = %s\n\n", str2);
 
 	str2 = "Science";
-	// str1 = "Science";  // º¯°æ ºÒ°¡´É
-	
+	// str1 = "Science";  // ë³€ê²½ ë¶ˆê°€ëŠ¥
+
 	printf("str1 = %s\n", str1);
 	printf("str2 = %s\n\n", str2);
 
 	str1[0] = 'c';
-	// str2[0] = 'c';  // º¯°æ ºÒ°¡´É
+	// str2[0] = 'c';  // ë³€ê²½ ë¶ˆê°€ëŠ¥
 
 	printf("str1 = %s\n", str1);
 	printf("str2 = %s\n\n", str2);

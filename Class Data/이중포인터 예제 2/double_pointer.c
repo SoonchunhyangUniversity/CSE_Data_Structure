@@ -4,56 +4,56 @@
 
 int main(void)
 {
-	
-	FILE *fp;	// ÆÄÀÏÆ÷ÀÎÅÍ º¯¼ö¼±¾ð
-	int m_row = 0, m_col = 3;  // Çà·ÄÀÇ Å©±â¸¦ 0À¸·Î ÃÊ±âÈ­
+
+	FILE *fp;	// íŒŒì¼í¬ì¸í„° ë³€ìˆ˜ì„ ì–¸
+	int m_row = 0, m_col = 3;  // í–‰ë ¬ì˜ í¬ê¸°ë¥¼ 0ìœ¼ë¡œ ì´ˆê¸°í™”
 	int **matrix;
 	int temp1, temp2, temp3;
 	int i,j;
 
-	fp = fopen("data.txt", "r");	// data.txtÆÄÀÏÀ» ÀÐ±â¸ðµå·Î ¿­¾î »ý¼ºµÈ FILE±¸Á¶Ã¼¸¦ fp¿¡ ÇÒ´ç
-	if(fp==NULL)	// ¸¸¾à fopenÇÔ¼ö¿¡¼­ ¿¡·¯°¡ ¹ß»ýÇÏ¿© fp¿¡ NULL°ªÀÌ ÀúÀåµÇ¾ú´Ù¸é ÆÄÀÏ¿­±â½ÇÆÐ
+	fp = fopen("data.txt", "r");	// data.txtíŒŒì¼ì„ ì½ê¸°ëª¨ë“œë¡œ ì—´ì–´ ìƒì„±ëœ FILEêµ¬ì¡°ì²´ë¥¼ fpì— í• ë‹¹
+	if(fp==NULL)	// ë§Œì•½ fopení•¨ìˆ˜ì—ì„œ ì—ëŸ¬ê°€ ë°œìƒí•˜ì—¬ fpì— NULLê°’ì´ ì €ìž¥ë˜ì—ˆë‹¤ë©´ íŒŒì¼ì—´ê¸°ì‹¤íŒ¨
 	{
-		printf("ÆÄÀÏ¿¡ ¿­¸®Áö ¾Ê¾Ò½À´Ï´Ù.\n");
-		return 0;	// ¸Þ¼¼Áö Ãâ·ÂÇÏ°í ÇÁ·Î±×·¥ Á¾·á
+		printf("íŒŒì¼ì— ì—´ë¦¬ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.\n");
+		return 0;	// ë©”ì„¸ì§€ ì¶œë ¥í•˜ê³  í”„ë¡œê·¸ëž¨ ì¢…ë£Œ
 	}
 
-	// Çà·ÄÀÇ Å©±â¸¦ °è»êÇÔ 
+	// í–‰ë ¬ì˜ í¬ê¸°ë¥¼ ê³„ì‚°í•¨
 	while(!feof(fp))
 	{
 		fscanf(fp, "%d%d%d", &temp1, &temp2, &temp3);
 		m_row++;
 	}
-			
-	// Dynamic ¹è¿­ÀÇ Å©±â¿¡ µû¸¥ ÇÒ´ç
+
+	// Dynamic ë°°ì—´ì˜ í¬ê¸°ì— ë”°ë¥¸ í• ë‹¹
 	matrix = (int**) malloc(sizeof(int *) * m_row);
-	for(i = 0; i < m_row; i++) 
+	for(i = 0; i < m_row; i++)
 	{
 		matrix[i] = (int*) malloc(sizeof(int ) * m_col);
 	}
 	rewind(fp);
 
-	// ÆÄÀÏ¿¡¼­ ÀÐ¾î¿Â Çà·ÄÀÇ Å©±â¸¦ °¡Áö°í ±×¸¸Å­ÀÇ Çà·Ä ³»¿ëÀ» ÀÐ¾î ¿È
-	for(i = 0; i < m_row; i++)  // ÇàÀ» Áõ°¡ ½ÃÅ´
-	{ 
-		for(j = 0; j < m_col; j++) // ¿­À» Áõ°¡ ½ÃÅ´
+	// íŒŒì¼ì—ì„œ ì½ì–´ì˜¨ í–‰ë ¬ì˜ í¬ê¸°ë¥¼ ê°€ì§€ê³  ê·¸ë§Œí¼ì˜ í–‰ë ¬ ë‚´ìš©ì„ ì½ì–´ ì˜´
+	for(i = 0; i < m_row; i++)  // í–‰ì„ ì¦ê°€ ì‹œí‚´
+	{
+		for(j = 0; j < m_col; j++) // ì—´ì„ ì¦ê°€ ì‹œí‚´
 		{
-			fscanf(fp, "%d", &matrix[i][j]);  // Çà¿­ÀÇ °ªÀ» ÆÄÀÏ¿¡¼­ ÇÏ³ª¾¿ ÀÐ¾î¿È
+			fscanf(fp, "%d", &matrix[i][j]);  // í–‰ì—´ì˜ ê°’ì„ íŒŒì¼ì—ì„œ í•˜ë‚˜ì”© ì½ì–´ì˜´
 		}
 	}
 	fclose(fp);
 
-	printf("=== ÀÔ·ÂµÈ Çà·Ä ===\n");	
-	for(i = 0; i < m_row; i++)  // ÇàÀ» Áõ°¡ ½ÃÅ´
+	printf("=== ìž…ë ¥ëœ í–‰ë ¬ ===\n");
+	for(i = 0; i < m_row; i++)  // í–‰ì„ ì¦ê°€ ì‹œí‚´
 	{
-		for(j = 0; j < m_col; j++) // ¿­À» Áõ°¡ ½ÃÅ´
+		for(j = 0; j < m_col; j++) // ì—´ì„ ì¦ê°€ ì‹œí‚´
 		{
-			printf("%3d ", matrix[i][j]); // È­¸é¿¡ Ãâ·Â
+			printf("%3d ", matrix[i][j]); // í™”ë©´ì— ì¶œë ¥
 		}
-		printf("\n");  // È­¸é¿¡ °³Çà¹®ÀÚ Ãâ·Â
+		printf("\n");  // í™”ë©´ì— ê°œí–‰ë¬¸ìž ì¶œë ¥
 	}
 
-	// DynamicÀ¸·Î ÇÒ´çµÈ ¹è¿­À» ÇØÁ¦
+	// Dynamicìœ¼ë¡œ í• ë‹¹ëœ ë°°ì—´ì„ í•´ì œ
 	for(i = 0; i < m_row; i++)  free(matrix[i]);
 	free(matrix);
 

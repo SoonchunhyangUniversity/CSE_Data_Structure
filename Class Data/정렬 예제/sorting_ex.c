@@ -1,5 +1,5 @@
-#include <stdio.h>	// ÀÔÃâ·ÂÀ» À§ÇÑ ÀüÃ³¸®¸í·É¹®
-#include <stdlib.h>	// µ¿ÀûÇÒ´çÀ» À§ÇÑ ÀüÃ³¸®¸í·É¹®
+#include <stdio.h>	// ì…ì¶œë ¥ì„ ìœ„í•œ ì „ì²˜ë¦¬ëª…ë ¹ë¬¸
+#include <stdlib.h>	// ë™ì í• ë‹¹ì„ ìœ„í•œ ì „ì²˜ë¦¬ëª…ë ¹ë¬¸
 
 void bubble_sort(int *list, int n)
 {
@@ -21,41 +21,41 @@ void bubble_sort(int *list, int n)
 void main()
 {
 	FILE *fp;
-	int *data;	// ÆÄÀÏ¾ÈÀÇ ¼ıÀÚÀÇ ÀÚ·áÇü.
-	int cnt=0;	// ¼ıÀÚÀÇ °³¼ö¸¦ Ä«¿îÆ® ÇÏ±â À§ÇÑ º¯¼ö
+	int *data;	// íŒŒì¼ì•ˆì˜ ìˆ«ìì˜ ìë£Œí˜•.
+	int cnt=0;	// ìˆ«ìì˜ ê°œìˆ˜ë¥¼ ì¹´ìš´íŠ¸ í•˜ê¸° ìœ„í•œ ë³€ìˆ˜
 	int i = 0,temp;
 	int tot = 0;
 	float avg;
 
-	
-	fp = fopen("data.txt" , "r");  // ÆÄÀÏ°³¹æ
-	if (fp == NULL)	
-	{ 
-		printf("ÆÄÀÏ°³¹æ¿¡·¯.");
+
+	fp = fopen("data.txt" , "r");  // íŒŒì¼ê°œë°©
+	if (fp == NULL)
+	{
+		printf("íŒŒì¼ê°œë°©ì—ëŸ¬.");
 		return ;
 	}
 
-	while(!feof(fp))	// ÆÄÀÏÀÌ ³¡ÀÌ ¾Æ´Ï¸é ÆÄÀÏ¿¡¼­ µ¥ÀÌÅÍ¸¦ ÀĞ¾î¿È
+	while(!feof(fp))	// íŒŒì¼ì´ ëì´ ì•„ë‹ˆë©´ íŒŒì¼ì—ì„œ ë°ì´í„°ë¥¼ ì½ì–´ì˜´
 	{
 		fscanf(fp, "%d" , &temp);
 		cnt++;
 	}
 
-    
-	// Á¤¼öÇüÀ¸·Î ÆÄÀÏÀÇ µ¥ÀÌÅÍ ¼ö¸¸Å­ µ¿ÀûÇÒ´ç
-	data = (int*)malloc(sizeof(int) * cnt);		
+
+	// ì •ìˆ˜í˜•ìœ¼ë¡œ íŒŒì¼ì˜ ë°ì´í„° ìˆ˜ë§Œí¼ ë™ì í• ë‹¹
+	data = (int*)malloc(sizeof(int) * cnt);
 
 	rewind(fp);
 
 
-	for(i=0; i<cnt;i++)	//ÆÄÀÏ¿¡ ÀúÀåµÈ µ¥ÀÌÅÍÀÇ ¼ö¸¸Å­ ¹è¿­¿¡ ÀÔ·Â
+	for(i=0; i<cnt;i++)	//íŒŒì¼ì— ì €ì¥ëœ ë°ì´í„°ì˜ ìˆ˜ë§Œí¼ ë°°ì—´ì— ì…ë ¥
 	{
 		fscanf(fp, "%d" , &data[i]);
 	}
 
 	fclose(fp);
-	
-	//ÀÔ·ÂÀÌ ¸ğµÎ ³¡³ª¸é ±×°ÍÀ» Ãâ·Â.
+
+	//ì…ë ¥ì´ ëª¨ë‘ ëë‚˜ë©´ ê·¸ê²ƒì„ ì¶œë ¥.
 	for(i=0; i<cnt; i++)
 	{
 		printf("%d\n",data[i]);
@@ -64,13 +64,13 @@ void main()
 
 	avg = tot/(float)cnt;
 
-	printf("ÆÄÀÏ¾ÈÀÇ ¼ıÀÚÀÇ °¹¼ö´Â %d °³ ÀÔ´Ï´Ù.\n", cnt);
-	printf("¼ıÀÚÀÇ ÃÑÇÕÀº %d ÀÔ´Ï´Ù.\n", tot);
-	printf("¼ıÀÚÀÇ Æò±ÕÀº %2.3f ÀÔ´Ï´Ù.\n", avg);
-	
+	printf("íŒŒì¼ì•ˆì˜ ìˆ«ìì˜ ê°¯ìˆ˜ëŠ” %d ê°œ ì…ë‹ˆë‹¤.\n", cnt);
+	printf("ìˆ«ìì˜ ì´í•©ì€ %d ì…ë‹ˆë‹¤.\n", tot);
+	printf("ìˆ«ìì˜ í‰ê· ì€ %2.3f ì…ë‹ˆë‹¤.\n", avg);
+
 	bubble_sort(data, cnt);
 
-	printf("\n\n¹öºí Á¤·ÄÈÄ °á°ú....\n");
+	printf("\n\në²„ë¸” ì •ë ¬í›„ ê²°ê³¼....\n");
 	for(i=0; i<cnt; i++)
 	{
 		printf("%d ",data[i]);

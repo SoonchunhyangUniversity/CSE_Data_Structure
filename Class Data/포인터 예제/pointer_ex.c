@@ -10,25 +10,25 @@ void main()
 	p = &a;
 	pp = &p;
 
-	printf("a = %d\n", a); 
-	printf("&a = %d %x\n\n", &a, &a); 
+	printf("a = %d\n", a);
+	printf("&a = %d %x\n\n", &a, &a);
 
 
-	printf("*p = %d\n", *p); // Æ÷ÀÎÅÍ p°¡ °¡¸®Å°°í ÀÖ´Â°÷¿¡ ÀúÀåµÈ °ª
-	printf("p = %d %x\n", p, p); // Æ÷ÀÎÅÍ p¿¡ ÀúÀåµÈ ÁÖ¼Ò°ª(aÀÇ ÁÖ¼Ò°ª)
-	printf("&p = %d %x\n\n", &p, &p); // Æ÷ÀÎÅÍ pÀÇ ÁÖ¼Ò°ª
-	
-	printf("*pp = %d %x\n", *pp, *pp); // Æ÷ÀÎÅÍ pp°¡ °¡¸®Å°°í ÀÖ´Â°÷¿¡ ÀúÀåµÈ °ª
-	printf("pp = %d %x\n", pp, pp); // Æ÷ÀÎÅÍ pp¿¡ ÀúÀåµÈ ÁÖ¼Ò°ª(Æ÷ÀÎÅÍ pÀÇ ÁÖ¼Ò°ª)
-	printf("&pp = %d %x\n\n", &pp, &pp);  // Æ÷ÀÎÅÍ ppÀÇ ÁÖ¼Ò°ª
+	printf("*p = %d\n", *p); // í¬ì¸í„° pê°€ ê°€ë¦¬í‚¤ê³  ìžˆëŠ”ê³³ì— ì €ìž¥ëœ ê°’
+	printf("p = %d %x\n", p, p); // í¬ì¸í„° pì— ì €ìž¥ëœ ì£¼ì†Œê°’(aì˜ ì£¼ì†Œê°’)
+	printf("&p = %d %x\n\n", &p, &p); // í¬ì¸í„° pì˜ ì£¼ì†Œê°’
 
-	printf("&*p = %d %x\n", &*p, &*p); // Æ÷ÀÎÅÍ p°¡ °¡¸®Å°°í ÀÖ´Â°÷ÀÇ ÁÖ¼Ò(aÀÇ ÁÖ¼Ò°ª)
-	printf("&*pp = %d %x\n", &*pp, &*pp); // Æ÷ÀÎÅÍ pp°¡ °¡¸®Å°°í ÀÖ´Â°÷ÀÇ ÁÖ¼Ò(Æ÷ÀÎÅÍ pÀÇ ÁÖ¼Ò°ª)
-	printf("&**pp = %d %x\n\n", &**pp, &**pp); // aÀÇ ÁÖ¼Ò°ª
+	printf("*pp = %d %x\n", *pp, *pp); // í¬ì¸í„° ppê°€ ê°€ë¦¬í‚¤ê³  ìžˆëŠ”ê³³ì— ì €ìž¥ëœ ê°’
+	printf("pp = %d %x\n", pp, pp); // í¬ì¸í„° ppì— ì €ìž¥ëœ ì£¼ì†Œê°’(í¬ì¸í„° pì˜ ì£¼ì†Œê°’)
+	printf("&pp = %d %x\n\n", &pp, &pp);  // í¬ì¸í„° ppì˜ ì£¼ì†Œê°’
 
-	// º¯¼ö a¿¡ ÀúÀåµÈ °ª¿¡ Á¢±ÙÇÏ´Â ¹æ¹ý
+	printf("&*p = %d %x\n", &*p, &*p); // í¬ì¸í„° pê°€ ê°€ë¦¬í‚¤ê³  ìžˆëŠ”ê³³ì˜ ì£¼ì†Œ(aì˜ ì£¼ì†Œê°’)
+	printf("&*pp = %d %x\n", &*pp, &*pp); // í¬ì¸í„° ppê°€ ê°€Wë¦¬í‚¤ê³  ìžˆëŠ”ê³³ì˜ ì£¼ì†Œ(í¬ì¸í„° pì˜ ì£¼ì†Œê°’)
+	printf("&**pp = %d %x\n\n", &**pp, &**pp); // aì˜ ì£¼ì†Œê°’
+
+	// ë³€ìˆ˜ aì— ì €ìž¥ëœ ê°’ì— ì ‘ê·¼í•˜ëŠ” ë°©ë²•
 	printf("a = %d\n", a);
 	printf("*p = %d\n", *p);
 	printf("**pp = %d\n\n", **pp);
-	
+
 }
