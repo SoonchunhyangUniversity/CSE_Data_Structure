@@ -16,8 +16,8 @@ typedef int Data; // typedef로 int형을 Data키워드로 선언 가능
 typedef struct _bTreeNode
 {
 	Data data; // Data타입 data 변수
-	struct _bTreeNode * left; // 왼쪽 자식 노드를 가리킴
-	struct _bTreeNode * right; // 오른쪽 자식 노드를 가리킴
+	struct _bTreeNode *left; // 왼쪽 자식 노드를 가리킴
+	struct _bTreeNode *right; // 오른쪽 자식 노드를 가리킴
 } bTreeNode; // typedef로 bTreeNode 키워드로 선언 가능
 
 /* 이진 트리의 전위 순회 함수 */
@@ -123,6 +123,10 @@ int is_complete(bTreeNode *root, int index, int number_nodes)
 	// 맨 아래의 자식노드까지 확인 후 함수로 복귀하여
 	// is_complete 함수 호출하여 오른쪽 자식 노드 탐색
 	// 둘다 TRUE가 나올 경우 TRUE 반환
+	//       인덱스 예시
+	//           0
+	//        1     2     왼쪽 노드 : 홀수
+	//      3   4  5  6   오른쪽 노드 : 짝수
 }
 
 /**
