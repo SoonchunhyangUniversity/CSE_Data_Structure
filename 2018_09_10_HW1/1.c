@@ -55,7 +55,7 @@ int main()
 	// 파일의 데이터를 한 줄 통쨰로 받아 저장할 변수
 
 	/* 파일포인터 fp 선언 및 data3.txt를 읽기모드로 연다 */
-	FILE *fp = fopen("data3.txt", "r");
+	FILE *fp = fopen("data.txt", "r");
 
 	/* 파일을 여는데 실패했을 경우 예외처리 */
 	if (fp == NULL)
