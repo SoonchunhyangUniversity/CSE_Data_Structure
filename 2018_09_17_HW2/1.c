@@ -1,3 +1,11 @@
+/**
+ * 작성자 : 김민수
+ * 학번 : 20174444
+ * 학과 : 컴퓨터소프트웨어공학과
+ * 프로그램명 : HW 2
+ * 작성일 : 2018-09-17
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -124,6 +132,7 @@ int main()
 
 		else
 			printf("%d의 왼쪽 자식 노드 -> ", root->data);
+
 		root = root->left;
 	}
 
