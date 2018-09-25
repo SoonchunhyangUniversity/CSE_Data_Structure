@@ -5,6 +5,7 @@
  * 프로그램명 : 완전 이진 트리 검증
  * 작성일 : 2018-09-18
  */
+
 #include <stdio.h> // 표준입출력 라이브러리 헤더파일 선언
 #include <stdlib.h> // malloc 함수 사용을 위한 헤더파일 선언
 #define TRUE 1 // 기호상수 TRUE를 1로 정의
