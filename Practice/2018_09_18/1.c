@@ -15,187 +15,254 @@
 
 typedef struct
 {
-    char word[MAX_WORD_SIZE];
-    char meaning[MAX_MEANING_SIZE];
+	char word[MAX_WORD_SIZE];
+	char meaning[MAX_MEANING_SIZE];
 } element;
 
 typedef struct TreeNode
 {
-    element key;
-    struct TreeNode *left, *right;
+	element key;
+	struct TreeNode *left, *right;
 } TreeNode;
 
 int compare(element e1, element e2)
 {
-    return strcmp(e1.word, e2.word);
+	return strcmp(e1.word, e2.word);
 }
 
 void display(TreeNode *p)
 {
-    if(p != NULL)
-    {
-        printf("(");
-        display(p->left);
-        printf("%s", p->key.word);
-        display(p->right);
-        printf(")");
-    }
+	if (p != NULL)
+	{
+		printf("(");
+		display(p->left);
+		printf("%s", p->key.word);
+		display(p->right);
+		printf(")");
+	}
 }
 
 TreeNode *search(TreeNode *root, element key)
 {
-    TreeNode *p = root;
+	TreeNode *p = root;
 
-    while(p!=NULL)
-    {
-        switch(compare(key, p->key))
-        {
-        case -1 :
-            p = p->left;
-            break;
+	while (p != NULL)
+	{
+		switch (compare(key, p->key))
+		{
+		case -1:
+			p = p->left;
+			break;
 
-        case 0 :
-            return p;
+		case 0:
+			return p;
 
-        case 1 :
-            p = p->right;
-            break;
-        }
-    }
+		case 1:
+			p = p->right;
+			break;
+		}
+	}
 
-    return p;
+	return p;
 }
 
 void insert_node(TreeNode **root, element key)
 {
-    TreeNode *p, *t;
-    TreeNode *n;
+	TreeNode *p, *t;
+	TreeNode *n;
 
-    t = *root;
-    p = NULL;
+	t = *root;
+	p = NULL;
 
-    while(t != NULL)
-    {
-        if(compare(key, t->key) == 0)
-            return;
+	while (t != NULL)
+	{
+		if (compare(key, t->key) == 0)
+			return;
 
-        p = t;
+		p = t;
 
-        if(compare(key, t->key) < 0)
-            t = t->left;
+		if (compare(key, t->key) < 0)
+			t = t->left;
 
-        else
-            t = t->right;
-    }
+		else
+			t = t->right;
+	}
 
-    n = (TreeNode *)malloc(sizeof(TreeNode));
+	n = (TreeNode *)malloc(sizeof(TreeNode));
 
-    if(n == NULL)
-        return;
+	if (n == NULL)
+		return;
 
-    n->key = key;
-    n->left = n->right = NULL;
+	n->key = key;
+	n->left = n->right = NULL;
 
-    if(p != NULL)
-    {
-        if(compare(key, p->key) < 0)
-            p->left = n;
+	if (p != NULL)
+	{
+		if (compare(key, p->key) < 0)
+			p->left = n;
 
-        else
-            p->right = n;
-    }
+		else
+			p->right = n;
+	}
 
-    else
-        *root = n;
+	else
+		*root = n;
 }
 
 void delete_node(TreeNode **root, element key)
 {
-    TreeNode *p, *child, *succ, *succ_p, *t;
+	TreeNode *p, *child, *succ, *succ_p, *t;
 
-    p = NULL;
-    t = *root;
+	p = NULL;
+	t = *root;
 
-    while(t!= NULL & compare(t->key, key) != 0)
-    {
-        p = t;
-        t = (compare(key, t->key) < 0) ? t->left : t->right;
-    }
+	while (t != NULL & compare(t->key, key) != 0)
+	{
+		p = t;
+		t = (compare(key, t->key) < 0) ? t->left : t->right;
+	}
 
-    if(t == NULL)
-    {
-        printf("Key is not in the tree");
-        return;
-    }
+	if (t == NULL)
+	{
+		printf("Key is not in the tree");
+		return;
+	}
 
-    if((t->left == NULL) && (t->right == NULL))
-    {
-        if(p != NULL)
-        {
-            if(p->left == t)
-                p->left = NULL;
+	if ((t->left == NULL) && (t->right == NULL))
+	{
+		if (p != NULL)
+		{
+			if (p->left == t)
+				p->left = NULL;
 
-            else
-                p->right = NULL;
-        }
+			else
+				p->right = NULL;
+		}
 
-        else
-            *root = NULL;
-    }
+		else
+			*root = NULL;
+	}
 
-    else if((t->left == NULL) || (t->right == NULL))
-    {
-        child = (t->left != NULL) ? t->left : t->right;
+	else if ((t->left == NULL) || (t->right == NULL))
+	{
+		child = (t->left != NULL) ? t->left : t->right;
 
-        if(p != NULL)
-        {
-            if(p->left == t)
-                p->left = child;
+		if (p != NULL)
+		{
+			if (p->left == t)
+				p->left = child;
 
-            else
-                p->right = child;
-        }
+			else
+				p->right = child;
+		}
 
-        else
-            *root = child;
-    }
+		else
+			*root = child;
+	}
 
-    else
-    {
-        succ_p = t;
-        succ = t->right;
+	else
+	{
+		succ_p = t;
+		succ = t->right;
 
-        while(succ->left != NULL)
-        {
-            succ_p = succ;
-            succ = succ->left;
-        }
+		while (succ->left != NULL)
+		{
+			succ_p = succ;
+			succ = succ->left;
+		}
 
-        if(succ_p->left == succ)
-            succ_p->left = succ->right;
+		if (succ_p->left == succ)
+			succ_p->left = succ->right;
 
-        else
-            succ_p->right = succ->right;
+		else
+			succ_p->right = succ->right;
 
-        t->key = succ->ket;
-        t = succ;
-    }
+		t->key = succ->key;
+		t = succ;
+	}
 
-    free(t);
+	free(t);
 }
 
 void help()
 {
-    printf("");
-    printf("i : 입력\n");
-    printf("d : 삭제\n");
-    printf("s : 탐색\n");
-    printf("p : 출력\n");
-    printf("q : 종료\n");
-    printf("");
+	printf("\n┌─────────────┐\n");
+	printf("│ i : 입력    │\n");
+	printf("│ d : 삭제    │\n");
+	printf("│ s : 탐색    │\n");
+	printf("│ p : 출력    │\n");
+	printf("│ q : 종료    │\n");
+	printf("└─────────────┘\n\n");
 }
 
 int main()
 {
-    
+	char command;
+	element temp;
+	TreeNode *root = NULL;
+	TreeNode *tmp;
+
+	FILE *fp = fopen("data3.txt", "r");
+
+	if (fp == NULL)
+	{
+		printf("FILE OPEN ERROR!\n");
+		return 0;
+	}
+
+	do
+	{
+		help();
+
+		fscanf(fp, " %c", &command);
+
+		printf("입력된 명령어 : %c\n", command);
+
+		switch (command)
+		{
+		case 'i' :
+			printf("단어 : ");
+			fscanf(fp, "%s", &temp.word);
+			printf("%s\n", temp.word);
+
+			printf("의미 : ");
+			fscanf(fp, "%s", &temp.meaning);
+			printf("%s\n", temp.meaning);
+
+			insert_node(&root, temp);
+			break;
+
+		case 'd' :
+			printf("단어 : ");
+			fscanf(fp, "%s", &temp.word);
+			printf("%s\n", temp.word);
+
+
+			delete_node(&root, temp);
+			break;
+
+		case 'p' :
+			display(root);
+			printf("\n");
+
+			break;
+
+		case 's' :
+			printf("단어 : ");
+			fscanf(fp, "%s", &temp.word);
+			printf("%s\n", temp.word);
+
+			tmp = search(root, temp);
+
+			if (tmp != NULL)
+				printf("의미 : %s\n", temp.meaning);
+
+			break;
+		}
+
+	} while (command != 'q');
+
+	fclose(fp);
+
+	return 0;
 }
