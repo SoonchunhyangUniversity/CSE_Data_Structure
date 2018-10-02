@@ -89,7 +89,7 @@ int main()
  */
 void pre_order_traverse(bTreeNode *root)
 {
-	/* 노드가 하나도 없을 경우 */
+	/* 현재 탐색중인 노드가 NULL일 경우 */
 	if (root == NULL)
 		return; // 함수 종료
 
