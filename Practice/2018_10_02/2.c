@@ -1,3 +1,11 @@
+/**
+ * 작성자 : 김민수
+ * 학번 : 20174444
+ * 학과 : 컴퓨터소프트웨어공학과
+ * 프로그램명 : 손님 관리 프로그램
+ * 작성일 : 2018-10-02
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 200
@@ -22,7 +30,7 @@ typedef struct _HeapType
 } HeapType;
 
 void insert_min_heap(HeapType *h, element item);
-void display(HeapType *h);
+void display(HeapType *h, int idx);
 void init(HeapType *h);
 TreeNode *make_tree(TreeNode *left, TreeNode *right);
 element delete_min_heap(HeapType *h);
@@ -56,7 +64,9 @@ int main()
 			insert_min_heap(&heap, temp);
 
 			printf(">> 손님(%s) 입장\n", temp.name);
-			display(&heap);
+			printf("< 히프 중위 순회 출력 >\n");
+			display(&heap, 1);
+			printf("\n");
 		}
 
 		else if (oper == 'o')
@@ -65,7 +75,9 @@ int main()
 			key--;
 
 			printf(">> 손님(%s) 퇴장\n", temp.name);
-			display(&heap);
+			printf("< 히프 중위 순회 출력 >\n");
+			display(&heap, 1);
+			printf("\n");
 		}
 
 		else
@@ -94,12 +106,14 @@ void insert_min_heap(HeapType *h, element item)
 	h->heap[i] = item;
 }
 
-void display(HeapType *h)
+void display(HeapType *h, int idx)
 {
-	for (int i = 1; i <= h->heap_size; i++)
-		printf("%d - %s\n", h->heap[i].key, h->heap[i].name);
+	if (idx > h->heap_size)
+		return;
 
-	printf("\n");
+	display(h, 2 * idx);
+	printf("%d - %s\n", h->heap[idx].key, h->heap[idx].name);
+	display(h, 2 * idx + 1);
 }
 
 void init(HeapType *h)

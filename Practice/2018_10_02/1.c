@@ -1,4 +1,13 @@
+/**
+ * 작성자 : 김민수
+ * 학번 : 20174444
+ * 학과 : 컴퓨터소프트웨어공학과
+ * 프로그램명 : 동물 히프
+ * 작성일 : 2018-10-02
+ */
+
 #include <stdio.h>
+#include <stdlib.h>
 #define MAX 200
 
 typedef struct
@@ -15,7 +24,7 @@ typedef struct
 
 void insert_max_heap(HeapType *h, element item);
 void init(HeapType *h);
-void inorder(HeapType *h, int idx);
+void display(HeapType h);
 element delete_max_heap(HeapType *h);
 
 int main()
@@ -37,25 +46,24 @@ int main()
 	{
 		fscanf(fp, "%d %s", &temp.key, temp.name);
 		insert_max_heap(&heap, temp);
+		printf(">> %d:%s\n", temp.key, temp.name);
+		display(heap);
 	}
 
 	printf("우선 순위 큐에 데이터를 넣을 동물의 우선순위오 이름을 입력하시오(완료시 우선순위 : 0)\n");
 
-	printf(">> ");
-	scanf("%d %s", &temp.key, temp.name);
-	insert_max_heap(&heap, temp);
-
-	printf(">> ");
-	scanf("%d %s", &temp.key, temp.name);
-	insert_max_heap(&heap, temp);
-
-	printf("\n< 만들어진 우선 순위 큐 데이터 출력 >\n");
-
-	for (int i = heap.heap_size; i > 0; i--)
+	do
 	{
-		temp = delete_max_heap(&heap);
-		printf("%d - %s\n", temp.key, temp.name);
-	}
+		printf(">> ");
+		scanf("%d %s", &temp.key, temp.name);
+
+		if (temp.key == 0)
+			break;
+
+		insert_max_heap(&heap, temp);
+		display(heap);
+
+	} while (1);
 
 	fclose(fp);
 
@@ -80,6 +88,26 @@ void init(HeapType *h)
 {
 	h->heap_size = 0;
 }
+
+void display(HeapType h)
+{
+	HeapType *ph = &h;
+	element item;
+
+	while (ph->heap_size != 0)
+	{
+		item = delete_max_heap(ph);
+
+		if (ph->heap_size == 0)
+			printf("%d : %s\n", item.key, item.name);
+
+		else
+			printf("%d : %s > ", item.key, item.name);
+	}
+
+	printf("\n");
+}
+
 
 element delete_max_heap(HeapType *h)
 {
