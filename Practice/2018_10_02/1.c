@@ -6,21 +6,22 @@
  * 작성일 : 2018-10-02
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#define MAX 200
+#include <stdio.h> // 표준입출력 라이브러리 헤더파일 선언
+#define MAX 200 // 기호상수 MAX를 200으로 정의
 
+/* 히프의 데이터 element 구조체 */
 typedef struct
 {
-	int key;
-	char name[MAX];
-} element;
+	int key; // 정수형 우선순위 필드
+	char name[MAX]; // 문자열 이름 필드
+} element; // element 키워드 선언 가능
 
+/* 히프 구조체 */
 typedef struct
 {
-	element heap[MAX];
-	int heap_size;
-} HeapType;
+	element heap[MAX]; // MAX사이즈의 element 구조체 배열 필드
+	int heap_size; // 히프의 크기를 저장하는 정수 필수
+} HeapType; // HeapType 키워드 선언 가능
 
 void insert_max_heap(HeapType *h, element item);
 void init(HeapType *h);
