@@ -1,10 +1,10 @@
 /**
-* 작성자 : 김민수
-* 학번 : 20174444
-* 학과 : 컴퓨터소프트웨어공학과
-* 프로그램명 : 03 HW
-* 작성일 : 2018-10-04
-*/
+ * 작성자 : 김민수
+ * 학번 : 20174444
+ * 학과 : 컴퓨터소프트웨어공학과
+ * 프로그램명 : 03 HW
+ * 작성일 : 2018-10-04
+ */
 
 #include <stdio.h> // 표준 입출력 라이브러리 헤더파일 선언
 #include <stdlib.h> // malloc 함수 사용을 위한 헤더파일 선언
@@ -44,13 +44,13 @@ int main()
 
 	rewind(fp); // 파일 포인터의 위치를 처음으로 돌린다.
 
-				/* 데이터의 개수에 맞추어 동적 할당 */
+	/* 데이터의 개수에 맞추어 동적 할당 */
 	arr = (int *)malloc(sizeof(int) * size);
 
 	/* size만큼 반복하는 반복문 */
 	for (i = 0; i < size; i++)
 		fscanf(fp, "%d", &arr[i]);
-	// fp에서 정수형 데이터를 읽어와 배열의 i번째에 저장
+		// fp에서 정수형 데이터를 읽어와 배열의 i번째에 저장
 
 	printf("< Before Selection Sort >\n");
 	display(arr, size); // 정렬 전 배열 출력
@@ -67,40 +67,40 @@ int main()
 }
 
 /**
-* [selection_sort 함수]
-* @param arr  [정렬할 배열]
-* @param size [배열의 크기]
-*/
+ * [selection_sort 함수]
+ * @param arr  [정렬할 배열]
+ * @param size [배열의 크기]
+ */
 void selection_sort(int arr[], int size)
 {
 	int i, j;
 	// 반복문에서 사용할 변수 선언
-	int maxIdx;
-	// 최댓값을 가진 인덱스를 저장할 변수 선언
+	int minIdx;
+	// 최솟값을 가진 인덱스를 저장할 변수 선언
 
 	/* size - 1번 반복하는 반복문 */
 	for (i = 0; i < size - 1; i++)
 	{
-		maxIdx = i; // maxIdx에 i 대입
+		minIdx = i; // minIdx에 i 대입
 
-					/* 정렬되지 않은 데이터 개수만큼 반복 */
+		/* 정렬되지 않은 데이터 개수만큼 반복 */
 		for (j = i + 1; j < size; j++)
 		{
-			/* 배열의 j번째 데이터가 maxIdx번째 데이터보다 작다면*/
-			if (arr[j] < arr[maxIdx])
-				maxIdx = j; // maxIdx에 j 대입
+			/* 배열의 j번째 데이터가 minIdx번째 데이터보다 작다면*/
+			if (arr[j] < arr[minIdx])
+				minIdx = j; // minIdx에 j 대입
 		}
 
-		swap(&arr[i], &arr[maxIdx]);
-		// i번째 데이터와 maxIdx번째 데이터 교환
+		swap(&arr[i], &arr[minIdx]);
+		// i번째 데이터와 minIdx번째 데이터 교환
 	}
 }
 
 /**
-* [display 함수]
-* @param arr  [배열]
-* @param size [배열 크기]
-*/
+ * [display 함수]
+ * @param arr  [배열]
+ * @param size [배열 크기]
+ */
 void display(int arr[], int size)
 {
 	int i; // 반복문에서 사용할 변수 선언
@@ -151,10 +151,10 @@ void display(int arr[], int size)
 }
 
 /**
-* [swap 함수]
-* @param a [배열의 인덱스 주소]
-* @param b [배열의 인덱스 주소]
-*/
+ * [swap 함수]
+ * @param a [배열의 인덱스 주소]
+ * @param b [배열의 인덱스 주소]
+ */
 void swap(int *a, int *b)
 {
 	int temp = *a;
