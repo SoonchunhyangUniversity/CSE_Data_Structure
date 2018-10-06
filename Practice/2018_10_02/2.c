@@ -58,6 +58,8 @@ int main()
 	/* 파일의 끝까지 반복하는 반복문 */
 	while (!feof(fp))
 	{
+        oper = 'n';
+        // oper 변수 초기화
 		fscanf(fp, " %c", &oper);
 		// 파일 fp에서 문자 하나를 읽어와 oper에 대입
 
@@ -99,7 +101,6 @@ int main()
 		/* 잘못된 연산자일 경우 예외처리 */
 		else
 		{
-			printf("OPER INPUT ERROR!\n");
 			return 0;
 		}
 	}
