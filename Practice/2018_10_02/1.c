@@ -127,24 +127,18 @@ void init(HeapType *h)
  */
 void display(HeapType h)
 {
-	HeapType *ph = &h;
-	// 힙의 포인터 구조체 선언 및 값복사
-	element item;
-	// 삭제되는 데이터를 저장할 변수 선언
+	int i; // 반복문에서 사용할 변수 선언
 
-	/* 힙의 데이터가 없을때까지 반복하는 반복문 */
-	while (ph->heap_size != 0)
+	/* 히프의 크기 만큼 반복하는 반복문 */
+	for (i = 1; i <= h.heap_size; i++)
 	{
-		item = delete_max_heap(ph);
-		// delete_max_heap 함수를 사용해 힙의 최댓값 삭제
+		/* 마지막 데이터일 경우 */
+		if (i == h.heap_size)
+			printf("%d : %s\n", h.heap[i].key, h.heap[i].name); // > 없이 출력
 
-		/* 힙의 마지막 데이터였을 경우 */
-		if (ph->heap_size == 0)
-			printf("%d : %s\n", item.key, item.name); // > 없이 출력
-
-		/* 그렇지 않은 경우 */
+		/* 그렇지 않을 경우 */
 		else
-			printf("%d : %s > ", item.key, item.name); // > 있이 출력
+			printf("%d : %s > ", h.heap[i].key, h.heap[i].name); // > 있이 출력
 	}
 
 	printf("\n");
@@ -173,7 +167,7 @@ element delete_max_heap(HeapType *h)
 	while (child <= h->heap_size)
 	{
 		/* child의 인덱스가 힙 사이즈보다 작고
-			오른쪽 자식 노드의 키값이 클 경우*/
+		오른쪽 자식 노드의 키값이 클 경우*/
 		if ((child < h->heap_size) &&
 			(h->heap[child].key) < h->heap[child + 1].key)
 			child++; // child 값 1 증가
