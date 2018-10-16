@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void Swap(int arr[], int idx1, int idx2);
+void Swap(int *a, int *b);
 void QuickSort(int arr[], int left, int right);
-void Display(int arr[], int count);
+void Display(int arr[], int start, int count);
 int Partition(int arr[], int left, int right);
 
 int main()
@@ -34,14 +34,14 @@ int main()
 		fscanf(fp, " %d", &arr[i]);
 
 	printf("< 정렬되지 않은 리스트 >\n");
-	Display(arr, count);
+	Display(arr, 0, count);
 	printf("\n");
 
 	printf("\n< 정렬 과정 >\n");
 	QuickSort(arr, 0, count - 1);
 
 	printf("\n< 정렬된 리스트 >\n");
-	Display(arr, count);
+	Display(arr, 0, count);
 	printf("\n");
 
 	fclose(fp);
@@ -49,63 +49,77 @@ int main()
 	return 0;
 }
 
-void Swap(int arr[], int idx1, int idx2)
+void Swap(int *a, int *b)
 {
-	int temp = arr[idx1];
-	arr[idx1] = arr[idx2];
-	arr[idx2] = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 void QuickSort(int arr[], int left, int right)
 {
+	/* right가 left보다 크면 실행 */
 	if (left <= right)
 	{
-		int pivot = Partition(arr, left, right); // 둘로 나눠서
-		QuickSort(arr, left, pivot - 1); // 왼쪽 영역을 정렬
-		QuickSort(arr, pivot + 1, right); // 오른쪽 영역을 정렬
+		int pivot = Partition(arr, left, right);
+		// 둘로 나눠서
+		QuickSort(arr, left, pivot - 1);
+		// 왼쪽 영역을 정렬
+		QuickSort(arr, pivot + 1, right);
+		// 오른쪽 영역을 정렬
 	}
 }
 
-void Display(int arr[], int count)
+void Display(int arr[], int start, int count)
 {
 	int i;
 
-	for (i = 0; i < count; i++)
-		printf("%d > ", arr[i]);
+	for (i = start; i < count; i++)
+	{
+		if (i == count - 1)
+			printf("%d", arr[i]);
+
+		else
+			printf("%d > ", arr[i]);
+	}
 }
 
 int Partition(int arr[], int left, int right)
 {
-	int pivot = arr[left];	// 피벗의 위치는 가장 왼쪽
-	int low = left + 1;
-	int high = right;
-	int check = 0;
+	int pivot;
+	int low = left, high = right + 1;
+	int now = 0;
+	pivot = arr[left];
 
-	while (low <= high)	// 교차되지 않을 때 까지 반복
+	do
 	{
-		if (check == 0)
+		do
+			low++;
+		while (low <= right && arr[low] < pivot);
+
+		do
+			high--;
+		while (high >= left && arr[high] > pivot);
+
+		if (pivot != arr[high])
 		{
-			printf("- Pivot : %d -\n", pivot);
-			check = pivot;
+			if (now != pivot)
+			{
+				printf("- Pivot : %d -\n", pivot);
+				now = pivot;
+			}
+
+			printf("low : %d high : %d  [", arr[low], arr[high]);
+			Display(arr, left, right + 1);
+			printf("]\n\n");
 		}
 
-		printf("low : %d high : %d [", arr[low], arr[high]);
-		Display(arr, (low + high) / 2);
-		printf("]\n\n");
+		if (low < high)
+			Swap(&arr[low], &arr[high]);
 
-		/* 피벗보다 큰 값을 찾는 과정 */
-		while (pivot >= arr[low] && low <= right)
-			low++;	// low를 오른쪽으로 이동
+	} while (low < high);
 
-		/* 피벗보다 작은 값을 찾는 과정 */
-		while (pivot <= arr[high] && high >= (left + 1))
-			high--;	// high를 왼쪽으로 이동
+	Swap(&arr[left], &arr[high]);
 
-		/* 교차되지 않은 상태라면 Swap 실행 */
-		if (low <= high)
-			Swap(arr, low, high);
-	}
-
-	Swap(arr, left, high); // 피벗과 high가 가리키는 대상 교환
-	return high; // 옮겨진 피벗의 위치정보 반환
+	return high;
 }
