@@ -49,7 +49,7 @@ int main()
 	int i;
 	// 반복문에서 사용할 변수 선언
 
-	/* 파일 포인터 fp선언 및 data1.txt를 읽기모드로 연다. */
+	/* 파일 포인터 fp선언 및 data2.txt를 읽기모드로 연다. */
 	FILE *fp = fopen("data2.txt", "r");
 
 	/* 파일을 여는데에 실패했을 경우 */
@@ -223,7 +223,7 @@ void radix_sort(int arr[], int count, int maxLen)
 
 			/* 큐가 비어있을 경우 */
 			if (QIsEmpty(&buckets[bi]))
-				printf("Empty");
+				printf("Empty"); // Empty 출력
 
 			/* 버킷에 저장된 것 순서대로 다 꺼내서 다시 arr에 저장 */
 			while (!QIsEmpty(&buckets[bi]))
@@ -253,17 +253,18 @@ void radix_sort(int arr[], int count, int maxLen)
 void display(int arr[], int count)
 {
 	int i;
+	// 반복문에서 사용할 변수 선언
 
 	/* 데이터의 개수만큼 반복하는 반복문 */
 	for (i = 0; i < count; i++)
 	{
 		/* 마지막 데이터일 경우 */
 		if (i == count - 1)
-			printf("%d", arr[i]);
+			printf("%d", arr[i]); // > 없이 출력
 
 		/* 그렇지 않은 경우 */
 		else
-			printf("%d > ", arr[i]);
+			printf("%d > ", arr[i]); // > 있이 출력
 	}
 
 	printf("\n");
