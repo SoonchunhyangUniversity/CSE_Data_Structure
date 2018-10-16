@@ -202,6 +202,7 @@ void radix_sort(int arr[], int count, int maxLen)
 	/* 가장 긴 데이터의 길이반큼 반복 */
 	for (pos = 0; pos < maxLen; pos++)
 	{
+		/* 자릿수 출력 */
 		printf("- Digit %d -\n", pos + 1);
 
 		/* 정렬대상의 수만큼 반복 */
@@ -217,6 +218,7 @@ void radix_sort(int arr[], int count, int maxLen)
 		/* 버킷 수만큼 반복 */
 		for (bi = 0, di = 0; bi < count; bi++)
 		{
+			/* 자릿수의 데이터 출력 */
 			printf("Bucket[%d] : ", bi);
 
 			/* 큐가 비어있을 경우 */
@@ -227,8 +229,12 @@ void radix_sort(int arr[], int count, int maxLen)
 			while (!QIsEmpty(&buckets[bi]))
 			{
 				i = Dequeue(&buckets[bi]);
+				// 큐의 데이터 삭제하여 서장
 				arr[di++] = i;
+				// 삭제된 데이터를 배열에 저장
+
 				printf(" %d", i);
+				// 삭제된 데이터 출력
 			}
 
 			printf("\n");
