@@ -1,5 +1,5 @@
-#ifndef SORTINGFUNCTION
-#define SORTINGFUNCTION
+#ifndef __SORTING__FUNCTION__
+#define __SORTING__FUNCTION__
 
 #include "BubbleSort.h"
 #include "HeapSort.h"
