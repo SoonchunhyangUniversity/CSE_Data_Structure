@@ -143,6 +143,8 @@ int Partition(int arr[], int left, int right)
 	// 부분 변수 선언 및 초기화
 	int now = 0;
 	// 현재의 피봇을 저장할 변수 선언 및 초기화
+	int check = 0;
+	// low번째 인덱스의 배열의 값을 확인할 변수 선언 및 초기화
 	pivot = arr[left];
 	// 피봇에 현재 배열의 맨 왼쪽 인덱스 지정
 
@@ -171,8 +173,18 @@ int Partition(int arr[], int left, int right)
 				now = pivot; // now에 피봇값 대입
 			}
 
-			printf("low : %d high : %d  [", arr[low], arr[high]);
-			// low와 high번째 인덱스의 데이터 출력
+			/* 정렬하는 부분에 데이터를 확인 */
+			for (i = left; i <= right; i++)
+			{
+				/* low번째 데이터가 배열에 존재한다면 */
+				if (arr[low] == arr[i])
+					check = 1; // check에 1 대입
+			}
+
+			printf("low : ");
+			check ? printf("%d ", arr[low]) : printf("over ");
+			// check의 값에 따라 low번째 값 출력 또는 over 출력
+			printf("high: %d [", arr[high]);
 			Display(arr, left, right + 1);
 			// Display 함수 호출하여 배열의 left부터 right번째 까지의 데이터 출력
 			printf("]\n\n");
