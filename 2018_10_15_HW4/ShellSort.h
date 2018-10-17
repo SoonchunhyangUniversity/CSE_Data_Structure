@@ -1,56 +1,56 @@
-#ifndef __SHELL__SORT__
+ï»¿#ifndef __SHELL__SORT__
 #define __SHELL__SORT__
 
 #include <stdio.h>
 
 /**
- * [insertion_sort_at_shell_sort ÇÔ¼ö]
- * @param std   [ÇĞ»ı ±¸Á¶Ã¼ ¹è¿­]
- * @param first [Á¤·Ä ½ÃÀÛ ÀÎµ¦½º]
- * @param last  [Á¤·Ä ³¡ ÀÎµ¦½º]
- * @param gap   [µÎ ¿ä¼ÒÀÇ ÀÎµ¦½º Â÷ÀÌ]
+ * [insertion_sort_at_shell_sort í•¨ìˆ˜]
+ * @param std   [í•™ìƒ êµ¬ì¡°ì²´ ë°°ì—´]
+ * @param first [ì •ë ¬ ì‹œì‘ ì¸ë±ìŠ¤]
+ * @param last  [ì •ë ¬ ë ì¸ë±ìŠ¤]
+ * @param gap   [ë‘ ìš”ì†Œì˜ ì¸ë±ìŠ¤ ì°¨ì´]
  */
 void insertion_sort_at_shell_sort(int arr[], int first, int last, int gap)
 {
 	int i, j;
-	// ¹İº¹¹®¿¡¼­ »ç¿ëÇÒ º¯¼ö ¼³¸í
+	// ë°˜ë³µë¬¸ì—ì„œ ì‚¬ìš©í•  ë³€ìˆ˜ ì„¤ëª…
 	int key;
-	// ¹è¿­ÀÇ µ¥ÀÌÅÍ¸¦ ÀÓ½Ã·Î ÀúÀåÇÒ º¯¼ö ¼±¾ğ
+	// ë°°ì—´ì˜ ë°ì´í„°ë¥¼ ì„ì‹œë¡œ ì €ì¥í•  ë³€ìˆ˜ ì„ ì–¸
 
 	for (i = first + gap; i <= last; i = i + gap)
 	{
-		key = arr[i]; // key¿¡ arr[i] ´ëÀÔ
+		key = arr[i]; // keyì— arr[i] ëŒ€ì…
 
-		/* i - gapºÎÅÍ ¿ª¼øÀ¸·Î ÀÛ¾ÆÁö´Â ¹İº¹¹®  j °ªÀº firstº¸´Ù
-		   Å©°Å³ª °°°í key °ªº¸´Ù Á¤·ÄµÈ ¹è¿­¿¡ ÀÖ´Â °ªÀÌ ÀÛÀ¸¸é
-		   j¹øÂ° µ¥ÀÌÅÍ¸¦ j+gap¹øÂ°·Î ÀÌµ¿ */
+		/* i - gapë¶€í„° ì—­ìˆœìœ¼ë¡œ ì‘ì•„ì§€ëŠ” ë°˜ë³µë¬¸  j ê°’ì€ firstë³´ë‹¤
+		   í¬ê±°ë‚˜ ê°™ê³  key ê°’ë³´ë‹¤ ì •ë ¬ëœ ë°°ì—´ì— ìˆëŠ” ê°’ì´ ì‘ìœ¼ë©´
+		   jë²ˆì§¸ ë°ì´í„°ë¥¼ j+gapë²ˆì§¸ë¡œ ì´ë™ */
 		for (j = i - gap; j >= first && key < arr[j]; j = j - gap)
-			arr[j + gap] = arr[j]; // gap¸¸Å­ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
+			arr[j + gap] = arr[j]; // gapë§Œí¼ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™
 
-		arr[j + gap] = key; // j + gap¹øÂ° µ¥ÀÌÅÍ¿¡ temp ÀúÀå
+		arr[j + gap] = key; // j + gapë²ˆì§¸ ë°ì´í„°ì— temp ì €ì¥
 	}
 }
 
 /**
- * [shell_sort ÇÔ¼ö]
- * @param std [ÇĞ»ı ¹è¿­ ±¸Á¶Ã¼]
- * @param n   [µ¥ÀÌÅÍÀÇ °³¼ö]
+ * [shell_sort í•¨ìˆ˜]
+ * @param std [í•™ìƒ ë°°ì—´ êµ¬ì¡°ì²´]
+ * @param n   [ë°ì´í„°ì˜ ê°œìˆ˜]
  */
 void shell_sort(int arr[], int n)
 {
 	int i, gap;
-	// ¹İº¹¹®¿¡¼­ »ç¿ëÇÒ º¯¼ö ¼±¾ğ
+	// ë°˜ë³µë¬¸ì—ì„œ ì‚¬ìš©í•  ë³€ìˆ˜ ì„ ì–¸
 
 	for (gap = n / 2; gap > 0; gap = gap / 2)
 	{
-		/* gapÀÌ Â¦¼öÀÎ °æ¿ì */
+		/* gapì´ ì§ìˆ˜ì¸ ê²½ìš° */
 		if (gap % 2 == 0)
-			gap++; // gapÀ» È¦¼ö·Î ¸¸µç´Ù.
+			gap++; // gapì„ í™€ìˆ˜ë¡œ ë§Œë“ ë‹¤.
 
-		/* gap¸¸Å­ ¹İº¹ÇÏ´Â ¹İº¹¹® */
+		/* gapë§Œí¼ ë°˜ë³µí•˜ëŠ” ë°˜ë³µë¬¸ */
 		for (i = 0; i < gap; i++)
 			insertion_sort_at_shell_sort(arr, i, n - 1, gap);
-			// ºÎºĞ ¸®½ºÆ®¿¡ ´ëÇÑ »ğÀÔ Á¤·Ä ÁøÇà
+			// ë¶€ë¶„ ë¦¬ìŠ¤íŠ¸ì— ëŒ€í•œ ì‚½ì… ì •ë ¬ ì§„í–‰
 	}
 }
 

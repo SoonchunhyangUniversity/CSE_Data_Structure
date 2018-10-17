@@ -1,33 +1,33 @@
-#ifndef __QUICK__SORT__
+ï»¿#ifndef __QUICK__SORT__
 #define __QUICK__SORT__
 
 #include "Swap.h"
 
 /**
- * [partition ÇÔ¼ö]
- * @param  arr   [Á¤¼öÇü ¹è¿­]
- * @param  left  [º£¿­ÀÇ ¸Ç ¿ÞÂÊ ÀÎµ¦½º]
- * @param  right [¹è¿­ÀÇ ¸Ç ¿À¸¥ÂÊ ÀÎµ¦½º]
- * @return       [ºÎºÐÀÇ ¸Ç ¿À¸¥ÂÊ ÀÎµ¦½º]
+ * [partition í•¨ìˆ˜]
+ * @param  arr   [ì •ìˆ˜í˜• ë°°ì—´]
+ * @param  left  [ë² ì—´ì˜ ë§¨ ì™¼ìª½ ì¸ë±ìŠ¤]
+ * @param  right [ë°°ì—´ì˜ ë§¨ ì˜¤ë¥¸ìª½ ì¸ë±ìŠ¤]
+ * @return       [ë¶€ë¶„ì˜ ë§¨ ì˜¤ë¥¸ìª½ ì¸ë±ìŠ¤]
  */
 int partition(int arr[], int left, int right)
 {
 	int pivot;
-	// ÇÇº¿ º¯¼ö ¼±¾ð
+	// í”¼ë´‡ ë³€ìˆ˜ ì„ ì–¸
 	int low = left, high = right + 1;
-	// ºÎºÐ º¯¼ö ¼±¾ð ¹× ÃÊ±âÈ­
+	// ë¶€ë¶„ ë³€ìˆ˜ ì„ ì–¸ ë° ì´ˆê¸°í™”
 	int now = 0;
-	// ÇöÀçÀÇ ÇÇº¿À» ÀúÀåÇÒ º¯¼ö ¼±¾ð ¹× ÃÊ±âÈ­
+	// í˜„ìž¬ì˜ í”¼ë´‡ì„ ì €ìž¥í•  ë³€ìˆ˜ ì„ ì–¸ ë° ì´ˆê¸°í™”
 	pivot = arr[left];
-	// ÇÇº¿¿¡ ÇöÀç ¹è¿­ÀÇ ¸Ç ¿ÞÂÊ ÀÎµ¦½º ÁöÁ¤
+	// í”¼ë´‡ì— í˜„ìž¬ ë°°ì—´ì˜ ë§¨ ì™¼ìª½ ì¸ë±ìŠ¤ ì§€ì •
 
-	/* high°¡ lowº¸´Ù ÀÛÀ¸¸é Á¾·áÇÏ´Â while¹® */
+	/* highê°€ lowë³´ë‹¤ ìž‘ìœ¼ë©´ ì¢…ë£Œí•˜ëŠ” whileë¬¸ */
 	do
 	{
-		/* low°¡ rightº¸´Ù Å©°Å³ª ¹è¿­ÀÇ low¹øÂ°
-		ÀÎµ¦½º °ªÀÌ ÇÇº¿°ª º¸´Ù Å©¸é Å»ÃâÇÏ´Â ¹Ýº¹¹® */
+		/* lowê°€ rightë³´ë‹¤ í¬ê±°ë‚˜ ë°°ì—´ì˜ lowë²ˆì§¸
+		ì¸ë±ìŠ¤ ê°’ì´ í”¼ë´‡ê°’ ë³´ë‹¤ í¬ë©´ íƒˆì¶œí•˜ëŠ” ë°˜ë³µë¬¸ */
 		do
-			low++; // low 1 Áõ°¡
+			low++; // low 1 ì¦ê°€
 		while (low <= right && arr[low] < pivot);
 
-		/* high°¡ leftº¸´Ù ÀÛ°Å³ª ¹è¿­
+		/* highê°€ leftë³´ë‹¤ ìž‘ê±°ë‚˜ ë°°ì—´

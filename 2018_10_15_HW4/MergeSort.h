@@ -1,4 +1,4 @@
-#ifndef __MERGE__SORT__
+ï»¿#ifndef __MERGE__SORT__
 #define __MERGE__SORT__
 
 #include <stdio.h>
@@ -48,14 +48,14 @@ void merge_sort(int arr[], int left, int right)
 
 	if (left < right)
 	{
-		/* Áß°£ ÁöÁ¡À» °è»êÇÑ´Ù */
+		/* ì¤‘ê°„ ì§€ì ì„ ê³„ì‚°í•œë‹¤ */
 		mid = (left + right) / 2;
 
-		/* µÑ·Î ³ª´²¼­ °¢°¢À» Á¤·ÄÇÑ´Ù */
+		/* ë‘˜ë¡œ ë‚˜ëˆ ì„œ ê°ê°ì„ ì •ë ¬í•œë‹¤ */
 		merge_sort(arr, left, mid);
 		merge_sort(arr, mid + 1, right);
 
-		/* Á¤·ÄµÈ µÎ ¹è¿­À» º´ÇÕÇÑ´Ù */
+		/* ì •ë ¬ëœ ë‘ ë°°ì—´ì„ ë³‘í•©í•œë‹¤ */
 		merge(arr, left, mid, right);
 	}
 }

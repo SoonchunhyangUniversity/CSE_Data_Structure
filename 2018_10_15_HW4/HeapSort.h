@@ -1,94 +1,94 @@
-#ifndef __HEAP__SORT__
+ï»¿#ifndef __HEAP__SORT__
 #define __HEAP__SORT__
 
-#include <stdio.h> // Ç¥ÁØÀÔÃâ·Â ¶óÀÌºê·¯¸® Çì´õÆÄÀÏ ¼±¾ð
-#define MAX 200 // ±âÈ£»ó¼ö MAX¸¦ 200À¸·Î Á¤ÀÇ
+#include <stdio.h> // í‘œì¤€ìž…ì¶œë ¥ ë¼ì´ë¸ŒëŸ¬ë¦¬ í—¤ë”íŒŒì¼ ì„ ì–¸
+#define MAX 200 // ê¸°í˜¸ìƒìˆ˜ MAXë¥¼ 200ìœ¼ë¡œ ì •ì˜
 
 typedef int element;
 
- /* È÷ÇÁ ±¸Á¶Ã¼ */
+ /* ížˆí”„ êµ¬ì¡°ì²´ */
 typedef struct
 {
-	element heap[MAX]; // MAX»çÀÌÁîÀÇ element ±¸Á¶Ã¼ ¹è¿­ ÇÊµå
-	int heap_size; // È÷ÇÁÀÇ Å©±â¸¦ ÀúÀåÇÏ´Â Á¤¼ö ÇÊ¼ö
-} HeapType; // HeapType Å°¿öµå ¼±¾ð °¡´É
+	element heap[MAX]; // MAXì‚¬ì´ì¦ˆì˜ element êµ¬ì¡°ì²´ ë°°ì—´ í•„ë“œ
+	int heap_size; // ížˆí”„ì˜ í¬ê¸°ë¥¼ ì €ìž¥í•˜ëŠ” ì •ìˆ˜ í•„ìˆ˜
+} HeapType; // HeapType í‚¤ì›Œë“œ ì„ ì–¸ ê°€ëŠ¥
 
 /**
- * [insert_max_heap ÇÔ¼ö]
- * @param h    [Èü ±¸Á¶Ã¼]
- * @param item [»ðÀÔµÉ µ¥ÀÌÅÍ]
+ * [insert_max_heap í•¨ìˆ˜]
+ * @param h    [íž™ êµ¬ì¡°ì²´]
+ * @param item [ì‚½ìž…ë  ë°ì´í„°]
  */
 void insert_max_heap(HeapType *h, element item)
 {
 	int i;
-	// ¹Ýº¹¹®¿¡ »ç¿ëµÉ º¯¼ö ¼±¾ð
+	// ë°˜ë³µë¬¸ì— ì‚¬ìš©ë  ë³€ìˆ˜ ì„ ì–¸
 	i = ++(h->heap_size);
-	// i º¯¼ö¿¡ hÀÇ heap_size¸¦ 1´õÇÑ°ª ´ëÀÔ
+	// i ë³€ìˆ˜ì— hì˜ heap_sizeë¥¼ 1ë”í•œê°’ ëŒ€ìž…
 
-	/* i°¡ 1ÀÌµÇ°Å³ª itemÀÇ key°ªÀÌ ÀÛÀ»°æ¿ì ¹Ýº¹¹® Å»Ãâ */
+	/* iê°€ 1ì´ë˜ê±°ë‚˜ itemì˜ keyê°’ì´ ìž‘ì„ê²½ìš° ë°˜ë³µë¬¸ íƒˆì¶œ */
 	while ((i != 1) && (item > h->heap[i / 2]))
 	{
 		h->heap[i] = h->heap[i / 2];
 		i /= 2;
-		// i¸¦ 2·Î ³ª´©¸é¼­ ÈüÀÇ »ó´ÜÀ¸·Î ÀÌµ¿
+		// ië¥¼ 2ë¡œ ë‚˜ëˆ„ë©´ì„œ íž™ì˜ ìƒë‹¨ìœ¼ë¡œ ì´ë™
 	}
 
-	h->heap[i] = item; // ÈüÀÇ i¹øÂ° ¹è¿­¿¡ item µ¥ÀÌÅÍ »ðÀÔ
+	h->heap[i] = item; // íž™ì˜ ië²ˆì§¸ ë°°ì—´ì— item ë°ì´í„° ì‚½ìž…
 }
 
 /**
- * [init ÇÔ¼ö]
- * @param h [Èü ±¸Á¶Ã¼]
+ * [init í•¨ìˆ˜]
+ * @param h [íž™ êµ¬ì¡°ì²´]
  */
 void init(HeapType *h)
 {
-	h->heap_size = 0; // ÈüÀÇ »çÀÌÁî¸¦ 0À¸·Î ÃÊ±âÈ­
+	h->heap_size = 0; // íž™ì˜ ì‚¬ì´ì¦ˆë¥¼ 0ìœ¼ë¡œ ì´ˆê¸°í™”
 }
 
 /**
- * [delete_max_heap ÇÔ¼ö]
- * @param  h [Èü ±¸Á¶Ã¼]
- * @return   [ÈüÀÇ ÃÖ´ñ°ª]
+ * [delete_max_heap í•¨ìˆ˜]
+ * @param  h [íž™ êµ¬ì¡°ì²´]
+ * @return   [íž™ì˜ ìµœëŒ“ê°’]
  */
 element delete_max_heap(HeapType *h)
 {
 	int parent, child;
-	// ÈüÀÇ ºÎ¸ð³ëµå¿Í ÀÚ½Ä³ëµå ÀÎµ¦½º º¯¼ö ¼±¾ð
+	// íž™ì˜ ë¶€ëª¨ë…¸ë“œì™€ ìžì‹ë…¸ë“œ ì¸ë±ìŠ¤ ë³€ìˆ˜ ì„ ì–¸
 	element item, temp;
-	// »èÁ¦µÉ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ º¯¼ö¿Í ÀÓ½Ã·Î µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ º¯¼ö ¼±¾ð
+	// ì‚­ì œë  ë°ì´í„°ë¥¼ ì €ìž¥í•  ë³€ìˆ˜ì™€ ìž„ì‹œë¡œ ë°ì´í„°ë¥¼ ì €ìž¥í•  ë³€ìˆ˜ ì„ ì–¸
 
 	item = h->heap[1];
-	// »èÁ¦µÉ µ¥ÀÌÅÍ¿¡ ÈüÀÇ ÃÖ´ñ°ª item¿¡ ÀúÀå
+	// ì‚­ì œë  ë°ì´í„°ì— íž™ì˜ ìµœëŒ“ê°’ itemì— ì €ìž¥
 	temp = h->heap[(h->heap_size)--];
-	// ÈüÀÇ °¡Àå ÀÛÀº µ¥ÀÌÅÍ temp¿¡ ÀúÀå
+	// íž™ì˜ ê°€ìž¥ ìž‘ì€ ë°ì´í„° tempì— ì €ìž¥
 	parent = 1, child = 2;
-	// ºÎ¸ð, ÀÚ½Ä³ëµå ÀÎµ¦½º°ª ÃÊ±âÈ­
+	// ë¶€ëª¨, ìžì‹ë…¸ë“œ ì¸ë±ìŠ¤ê°’ ì´ˆê¸°í™”
 
-	/* ÀÚ½Ä³ëµå ÀÎµ¦½º°¡ ÈüÀÇ »çÀÌÁîº¸´Ù Å©¸é Å»ÃâÇÏ´Â ¹Ýº¹¹® */
+	/* ìžì‹ë…¸ë“œ ì¸ë±ìŠ¤ê°€ íž™ì˜ ì‚¬ì´ì¦ˆë³´ë‹¤ í¬ë©´ íƒˆì¶œí•˜ëŠ” ë°˜ë³µë¬¸ */
 	while (child <= h->heap_size)
 	{
-		/* childÀÇ ÀÎµ¦½º°¡ Èü »çÀÌÁîº¸´Ù ÀÛ°í
-		   ¿À¸¥ÂÊ ÀÚ½Ä ³ëµåÀÇ Å°°ªÀÌ Å¬ °æ¿ì*/
+		/* childì˜ ì¸ë±ìŠ¤ê°€ íž™ ì‚¬ì´ì¦ˆë³´ë‹¤ ìž‘ê³ 
+		   ì˜¤ë¥¸ìª½ ìžì‹ ë…¸ë“œì˜ í‚¤ê°’ì´ í´ ê²½ìš°*/
 		if ((child < h->heap_size) &&
 			(h->heap[child]) < h->heap[child + 1])
-			child++; // child °ª 1 Áõ°¡
+			child++; // child ê°’ 1 ì¦ê°€
 
-		/* tempÀÇ key°ªÀÌ ÀÚ½Ä³ëµåÀÇ Å°°ªº¸´Ù Å©°Å³ª °°Àº °æ¿ì */
+		/* tempì˜ keyê°’ì´ ìžì‹ë…¸ë“œì˜ í‚¤ê°’ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ì€ ê²½ìš° */
 		if (temp >= h->heap[child])
-			break; // ¹Ýº¹¹® Å»Ãâ
+			break; // ë°˜ë³µë¬¸ íƒˆì¶œ
 
 		h->heap[parent] = h->heap[child];
-		// ºÎ¸ð³ëµå¿¡ ÀÚ½Ä³ëµå ´ëÀÔ
+		// ë¶€ëª¨ë…¸ë“œì— ìžì‹ë…¸ë“œ ëŒ€ìž…
 		parent = child;
-		// ÀÚ½Ä³ëµåÀÇ ÀÎµ¦½º¸¦ ºÎ¸ð³ëµå¿¡ ´ëÀÔ
+		// ìžì‹ë…¸ë“œì˜ ì¸ë±ìŠ¤ë¥¼ ë¶€ëª¨ë…¸ë“œì— ëŒ€ìž…
 		child *= 2;
-		// ÀÚ½Ä³ëµå¸¦ 2 °öÇØÁØ´Ù.
+		// ìžì‹ë…¸ë“œë¥¼ 2 ê³±í•´ì¤€ë‹¤.
 	}
 
 	h->heap[parent] = temp;
-	// ¹Ýº¹ÀÌ ³¡³­ ºÎ¸ð³ëµå¿¡ temp ´ëÀÔ
+	// ë°˜ë³µì´ ëë‚œ ë¶€ëª¨ë…¸ë“œì— temp ëŒ€ìž…
 
-	return item; // »èÁ¦µÈ µ¥ÀÌÅÍ ¹ÝÈ¯
+	return item; // ì‚­ì œëœ ë°ì´í„° ë°˜í™˜
 }
 
 void heap_sort(int arr[], int n)

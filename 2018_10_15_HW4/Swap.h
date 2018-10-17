@@ -1,10 +1,10 @@
-#ifndef __SWAP__
+О╩©#ifndef __SWAP__
 #define __SWAP__
 
 /**
-* [Swap гт╪Ж]
-* @param a [╧Х©╜юг ╣╔юлем аж╪р╟╙]
-* @param b [╧Х©╜юг ╣╔юлем аж╪р╟╙]
+* [Swap М∙╗Л┬≤]
+* @param a [К╟╟Л≈╢Л²≤ К█╟Л²╢М└╟ Лё╪Л├▄Й╟▓]
+* @param b [К╟╟Л≈╢Л²≤ К█╟Л²╢М└╟ Лё╪Л├▄Й╟▓]
 */
 void swap(int *a, int *b)
 {

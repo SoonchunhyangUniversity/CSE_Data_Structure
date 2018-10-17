@@ -1,4 +1,4 @@
-#ifndef __SORTING__FUNCTION__
+﻿#ifndef __SORTING__FUNCTION__
 #define __SORTING__FUNCTION__
 
 #include "BubbleSort.h"

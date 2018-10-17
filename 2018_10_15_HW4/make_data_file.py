@@ -1,4 +1,4 @@
-import random
+﻿import random
 
 list = [random.randint(1, 100001) for _ in range(10000)]
 
