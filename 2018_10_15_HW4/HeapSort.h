@@ -1,15 +1,14 @@
-﻿#ifndef __HEAP__SORT__
+#ifndef __HEAP__SORT__
 #define __HEAP__SORT__
 
 #include <stdio.h> // 표준입출력 라이브러리 헤더파일 선언
-#define MAX 200 // 기호상수 MAX를 200으로 정의
 
 typedef int element;
 
  /* 히프 구조체 */
 typedef struct
 {
-	element heap[MAX]; // MAX사이즈의 element 구조체 배열 필드
+	element *heap; // MAX사이즈의 element 구조체 배열 필드
 	int heap_size; // 히프의 크기를 저장하는 정수 필수
 } HeapType; // HeapType 키워드 선언 가능
 
@@ -95,6 +94,8 @@ void heap_sort(int arr[], int n)
 {
 	int i;
 	HeapType h;
+
+	h.heap = (element *)malloc(sizeof(element) * n);
 
 	init(&h);
 
