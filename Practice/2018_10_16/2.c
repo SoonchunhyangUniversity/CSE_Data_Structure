@@ -24,16 +24,16 @@ typedef struct _lQueue
 {
 	Node * front; // 맨 앞 노드를 가리키는 포인터 구조체
 	Node * rear; // 맨 끝 노드를 가리키는 포인터 구조체
-} Queue; // typedef 선언으로 QueueInit 키워드로 선언 가능
+} Queue; // typedef 선언으로 Queue 키워드로 선언 가능
 
 /* 연결 리스트 기반 큐 초기화 함수 */
-void QueueInit(Queue *pq);
+void queue_init(Queue *pq);
 /* 연결 리스트 기반 큐 삽입 함수 */
-void Enqueue(Queue *pq, Data data);
+void enqueue(Queue *pq, Data data);
 /* 연결 리스트 기반 큐 공백 확인 함수 */
-int QIsEmpty(Queue *pq);
+int is_empty(Queue *pq);
 /* 연결 리스트 기반 큐 삭제 함수 */
-Data Dequeue(Queue *pq);
+Data dequeue(Queue *pq);
 
 /* 기수 정렬 함수 */
 void radix_sort(int arr[], int count, int maxLen);
@@ -94,21 +94,21 @@ int main()
 }
 
 /**
- * [QueueInit 함수]
+ * [queue_init 함수]
  * @param pq [큐 구조체]
  */
-void QueueInit(Queue *pq)
+void queue_init(Queue *pq)
 {
 	pq->front = NULL; // 큐의 front 변수를 NULL로 초기화
 	pq->rear = NULL; // 큐의 rear 변수를 NULL로 초기화
 }
 
 /**
- * [Enqueue 함수]
+ * [enqueue 함수]
  * @param pq   [큐 구조체]
  * @param data [삽입될 데이터]
  */
-void Enqueue(Queue *pq, Data data)
+void enqueue(Queue *pq, Data data)
 {
 	Node *newNode = (Node*)malloc(sizeof(Node));
 	// 삽입될 노드 동적 할당
@@ -118,7 +118,7 @@ void Enqueue(Queue *pq, Data data)
 	// 새 노드의 데이터 필드에 data 저장
 
 	/* 큐가 비어있는지 확인 */
-	if (QIsEmpty(pq)) // 비어있는 경우
+	if (is_empty(pq)) // 비어있는 경우
 	{
 		pq->front = newNode;
 		// 큐의 front에 새 노드 연결
@@ -136,11 +136,11 @@ void Enqueue(Queue *pq, Data data)
 }
 
 /**
- * [QIsEmpty 함수]
+ * [is_empty 함수]
  * @param  pq [큐 구조체]
  * @return    [큐 공백 여부]
  */
-int QIsEmpty(Queue *pq)
+int is_empty(Queue *pq)
 {
 	return pq->front == NULL;
 	// 큐의 front가 NULL인 경우 TRUE
@@ -148,11 +148,11 @@ int QIsEmpty(Queue *pq)
 }
 
 /**
- * [Dequeue 함수]
+ * [dequeue 함수]
  * @param  pq [큐 구조체]
  * @return    [삭제된 데이터]
  */
-Data Dequeue(Queue *pq)
+Data dequeue(Queue *pq)
 {
 	Node *delNode;
 	// 삭제될 노드를 저장할 포인터 노드 구조체 선언
@@ -160,7 +160,7 @@ Data Dequeue(Queue *pq)
 	// 반환될 데이터를 저장할 변수 선언
 
 	/* 큐가 비어있는지 확인 */
-	if (QIsEmpty(pq)) // 큐가 비어있는 경우
+	if (is_empty(pq)) // 큐가 비어있는 경우
 	{
 		printf("Queue Memory Error!"); // 에러 출력
 		exit(-1); // 예외 처리 종료
@@ -197,7 +197,7 @@ void radix_sort(int arr[], int count, int maxLen)
 
 	/* 총 10개의 버킷 초기화 */
 	for (bi = 0; bi < BUCKET_NUM; bi++)
-		QueueInit(&buckets[bi]);
+		queue_init(&buckets[bi]);
 
 	/* 가장 긴 데이터의 길이반큼 반복 */
 	for (pos = 0; pos < maxLen; pos++)
@@ -212,7 +212,7 @@ void radix_sort(int arr[], int count, int maxLen)
 			radix = (arr[di] / divfac) % 10;
 
 			/* 추출한 숫자를 근거로 버킷에 데이터 저장 */
-			Enqueue(&buckets[radix], arr[di]);
+			enqueue(&buckets[radix], arr[di]);
 		}
 
 		/* 버킷 수만큼 반복 */
@@ -222,13 +222,13 @@ void radix_sort(int arr[], int count, int maxLen)
 			printf("Bucket[%d] : ", bi);
 
 			/* 큐가 비어있을 경우 */
-			if (QIsEmpty(&buckets[bi]))
+			if (is_empty(&buckets[bi]))
 				printf("Empty"); // Empty 출력
 
 			/* 버킷에 저장된 것 순서대로 다 꺼내서 다시 arr에 저장 */
-			while (!QIsEmpty(&buckets[bi]))
+			while (!is_empty(&buckets[bi]))
 			{
-				i = Dequeue(&buckets[bi]);
+				i = dequeue(&buckets[bi]);
 				// 큐의 데이터 삭제하여 서장
 				arr[di++] = i;
 				// 삭제된 데이터를 배열에 저장

@@ -105,7 +105,7 @@ void selection_sort_by_record(STD *std, int count)
 	{
 		minIdx = i; // minIdx에 i값 대입
 
-		/* 배열이 안된 부분 부터 끝까지 반복하는 반복문 */
+		/* 정렬이 안된 부분 부터 끝까지 반복하는 반복문 */
 		for (j = i + 1; j < count; j++)
 		{
 			/* 순위 값을 비교하는 조건문 */
