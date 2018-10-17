@@ -23,11 +23,11 @@ void insertion_sort_at_shell_sort(int arr[], int first, int last, int gap)
 
 		/* i - gap부터 역순으로 작아지는 반복문  j 값은 first보다
 		   크거나 같고 key 값보다 정렬된 배열에 있는 값이 작으면
-		   j번째를 j+gap번쨰로 이동 */
+		   j번째 데이터를 j+gap번째로 이동 */
 		for (j = i - gap; j >= first && key < arr[j]; j = j - gap)
 			arr[j + gap] = arr[j]; // gap만큼 오른쪽으로 이동
 
-		arr[j + gap] = key; // j + gap번째 배열에 temp 저장
+		arr[j + gap] = key; // j + gap번째 데이터에 temp 저장
 	}
 }
 
