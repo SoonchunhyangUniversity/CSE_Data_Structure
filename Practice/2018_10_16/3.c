@@ -141,12 +141,16 @@ int Partition(int arr[], int left, int right)
 	// 피봇 변수 선언
 	int low = left, high = right + 1;
 	// 부분 변수 선언 및 초기화
-	int now = 0;
-	// 현재의 피봇을 저장할 변수 선언 및 초기화
+	int low_check = 0, high_check = 0;
+	// 이전 low번째 데이터와 high번째 데이터를 저장할 변수 선언 및 초기화
 	int check = 0;
 	// low번째 인덱스의 배열의 값을 확인할 변수 선언 및 초기화
 	pivot = arr[left];
 	// 피봇에 현재 배열의 맨 왼쪽 인덱스 지정
+
+	/* right - left가 0이 아닐경우 실행 */
+	if ((right - left) != 0) // 피봇 데이터 출력
+		printf("- Pivot : %d -\n", pivot);
 
 	/* high가 low보다 작으면 종료하는 while문 */
 	do
@@ -163,23 +167,28 @@ int Partition(int arr[], int left, int right)
 			high--;
 		while (high >= left && arr[high] > pivot);
 
-		/* 피봇의 값이 배열의 맨 오른쪽 데이터가 아닐 경우 실행 */
-		if (pivot != arr[high])
+		/* 피봇의 값이 low번째 데이터가 아니고 right - left가 0이 아닐 경우 실행 */
+		if (pivot != arr[low] && (right - left) != 0)
 		{
-			/* now가 피봇값이 아닐 경우 실행 */
-			if (now != pivot)
-			{
-				printf("- Pivot : %d -\n", pivot); // 피봇 데이터 출력
-				now = pivot; // now에 피봇값 대입
-			}
-
 			/* 정렬하는 부분에 데이터를 확인 */
 			for (i = left; i <= right; i++)
 			{
 				/* low번째 데이터가 배열에 존재한다면 */
 				if (arr[low] == arr[i])
+				{
 					check = 1; // check에 1 대입
+					break; // 값을 찾았으니 반복문 탈출
+				}
 			}
+
+			/* 이전 low 인덱스값과 high인덱스 값이 같은 경우 */
+			if (low_check == arr[low] && high_check == arr[high])
+				continue; // 다음 반복문으로 이동
+
+			low_check = arr[low];
+			// low_check에 low 인덱스 데이터 저장
+			high_check = arr[high];
+			// high_check에 high_check 인덱스 데이터 저장
 
 			printf("low : ");
 			check ? printf("%d ", arr[low]) : printf("over ");
