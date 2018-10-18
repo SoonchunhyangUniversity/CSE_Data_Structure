@@ -1,8 +1,8 @@
 ﻿#ifndef __SELECTION__SORT__
 #define __SELECTION__SORT__
 
-#include <stdio.h>
-#include "Swap.h"
+#include <stdio.h> // 표준 입출력 헤더파일 선언
+#include "Swap.h" // 사용자 정의 Swap헤더파일 선언
 
 /**
  * [selection_sort 함수]

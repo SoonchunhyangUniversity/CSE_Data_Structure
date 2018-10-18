@@ -1,7 +1,7 @@
 ﻿#ifndef __SHELL__SORT__
 #define __SHELL__SORT__
 
-#include <stdio.h>
+#include <stdio.h> // 표준 입출력 헤더파일 선언
 
 /**
  * [insertion_sort_at_shell_sort 함수]
