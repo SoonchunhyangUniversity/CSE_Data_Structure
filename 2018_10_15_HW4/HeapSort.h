@@ -6,7 +6,7 @@
 typedef int element;
 // typedef선언으로 int형 데이터를 element타입으로 선언 가능
 
- /* 히프 구조체 */
+/* 히프 구조체 */
 typedef struct
 {
 	element *heap; // MAX사이즈의 element 구조체 배열 필드
