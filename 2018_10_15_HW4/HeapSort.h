@@ -116,7 +116,7 @@ void heap_sort(int arr[], int n)
 	/* 데이터의 개수만큼 반복 */
 	for (i = (n - 1); i >= 0; i--)
 		arr[i] = delete_max_heap(&h);
-
+		// 히프에서 데이터를 삭제하면서 배열에 저장
 }
 
 #endif
