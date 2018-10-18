@@ -4,6 +4,7 @@
 #include <stdio.h> // 표준입출력 라이브러리 헤더파일 선언
 
 typedef int element;
+// typedef선언으로 int형 데이터를 element타입으로 선언 가능
 
  /* 히프 구조체 */
 typedef struct
@@ -90,18 +91,29 @@ element delete_max_heap(HeapType *h)
 	return item; // 삭제된 데이터 반환
 }
 
+/**
+ * [heap_sort 함수]
+ * @param arr [정렬할 배열]
+ * @param n   [데이터의 개수]
+ */
 void heap_sort(int arr[], int n)
 {
 	int i;
+	// 반복문에서 사용할 변수 선언
 	HeapType h;
+	// 히프 정렬에 사용할 히프 구조체 선언
 
+	/* 히프의 배열을 데이터의 개수만큼 동적 할당 */
 	h.heap = (element *)malloc(sizeof(element) * n);
 
-	init(&h);
+	init(&h); // 히프 초기화
 
+	/* 데이터의 개수만큼 반복 */
 	for (i = 0; i < n; i++)
 		insert_max_heap(&h, arr[i]);
+		// 히프에 데이터 삽입
 
+	/* 데이터의 개수만큼 반복 */
 	for (i = (n - 1); i >= 0; i--)
 		arr[i] = delete_max_heap(&h);
 
