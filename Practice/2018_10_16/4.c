@@ -101,9 +101,9 @@ void InsertionSort(STD *std, int first, int last, int gap)
 		temp = std[i]; // temp에 구조체의 i번째 데이터 대입
 		key = temp.std_num; // key에 temp의 학번 대입
 
-		/* i - gap부터 역순으로 작아지는 반복문  j 값은 first보다
-		   크거나 같고 key 값보다 정렬된 배열에 있는 값이 크면
-		   j번째를 j+gap번쨰로 이동*/
+		/* i - gap부터 역순으로 작아지는 반복문 j 값은 first보다
+		   크거나 같고 key 값보다 배열에 있는 값이 크면
+		   j번째를 j + gap번쨰로 이동*/
 		for (j = i - gap; j >= first&& key > std[j].std_num; j = j - gap)
 			std[j + gap] = std[j]; // gap만큼 오른쪽으로 이동
 
