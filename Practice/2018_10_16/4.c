@@ -29,7 +29,7 @@ int main()
 {
 	STD *std = NULL;
 	// 학생 구조체 배열을 동적 할당할 포인터 구조체 선언
-	STD temp
+	STD temp;
 	// 데이터를 임시로 저장할 구조체 선언
 	int count = 0;
 	// 학생의 수를 저장할 변수 선언 및 초기화

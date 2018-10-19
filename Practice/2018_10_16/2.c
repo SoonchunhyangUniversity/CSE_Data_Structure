@@ -216,7 +216,7 @@ void radix_sort(int arr[], int count, int maxLen)
 		}
 
 		/* 버킷 수만큼 반복 */
-		for (bi = 0, di = 0; bi < count; bi++)
+		for (bi = 0, di = 0; bi < BUCKET_NUM; bi++)
 		{
 			/* 자릿수의 데이터 출력 */
 			printf("Bucket[%d] : ", bi);

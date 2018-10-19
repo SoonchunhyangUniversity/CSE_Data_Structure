@@ -137,6 +137,8 @@ void Display(int arr[], int start, int count)
  */
 int Partition(int arr[], int left, int right)
 {
+	int i;
+	// 반복문에서 사용핣 변수 선언
 	int pivot;
 	// 피봇 변수 선언
 	int low = left, high = right + 1;
