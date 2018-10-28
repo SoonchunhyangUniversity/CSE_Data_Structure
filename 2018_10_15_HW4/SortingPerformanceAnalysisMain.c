@@ -82,7 +82,7 @@ int main()
 	printf(" ------------------------------------- \n");
 	printf("|              Radix Sort             |\n");
 	printf("|    FINISHED SORTING %8d DATA   |\n", count);
-	printf("|         TIME TAKEN : %6.2f s       |\n", time);
+	printf("|        TIME TAKEN : %-8.2f s      |\n", time);
 	printf(" ------------------------------------- \n\n\n");
 
 	rewind(fp);
@@ -101,7 +101,7 @@ int main()
 	printf(" ------------------------------------- \n");
 	printf("|              Merge Sort             |\n");
 	printf("|    FINISHED SORTING %8d DATA   |\n", count);
-	printf("|         TIME TAKEN : %6.2f s       |\n", time);
+	printf("|        TIME TAKEN : %-8.2f s      |\n", time);
 	printf(" ------------------------------------- \n\n\n");
 
 	rewind(fp);
@@ -120,7 +120,7 @@ int main()
 	printf(" ------------------------------------- \n");
 	printf("|              Heap  Sort             |\n");
 	printf("|    FINISHED SORTING %8d DATA   |\n", count);
-	printf("|         TIME TAKEN : %6.2f s       |\n", time);
+	printf("|        TIME TAKEN : %-8.2f s      |\n", time);
 	printf(" ------------------------------------- \n\n\n");
 
 	rewind(fp);
@@ -139,7 +139,7 @@ int main()
 	printf(" ------------------------------------- \n");
 	printf("|              Quick  Sort            |\n");
 	printf("|    FINISHED SORTING %8d DATA   |\n", count);
-	printf("|         TIME TAKEN : %6.2f s       |\n", time);
+	printf("|        TIME TAKEN : %-8.2f s      |\n", time);
 	printf(" ------------------------------------- \n\n\n");
 
 	rewind(fp);
@@ -158,7 +158,7 @@ int main()
 	printf(" ------------------------------------- \n");
 	printf("|              Bubble  Sort           |\n");
 	printf("|    FINISHED SORTING %8d DATA   |\n", count);
-	printf("|         TIME TAKEN : %6.2f s       |\n", time);
+	printf("|        TIME TAKEN : %-8.2f s      |\n", time);
 	printf(" ------------------------------------- \n\n\n");
 
 	rewind(fp);
@@ -177,7 +177,7 @@ int main()
 	printf(" ------------------------------------- \n");
 	printf("|            Insertion  Sort          |\n");
 	printf("|    FINISHED SORTING %8d DATA   |\n", count);
-	printf("|         TIME TAKEN : %6.2f s       |\n", time);
+	printf("|        TIME TAKEN : %-8.2f s      |\n", time);
 	printf(" ------------------------------------- \n\n\n");
 
 	rewind(fp);
@@ -196,7 +196,7 @@ int main()
 	printf(" ------------------------------------- \n");
 	printf("|            Selction  Sort           |\n");
 	printf("|    FINISHED SORTING %8d DATA   |\n", count);
-	printf("|         TIME TAKEN : %6.2f s       |\n", time);
+	printf("|        TIME TAKEN : %-8.2f s      |\n", time);
 	printf(" ------------------------------------- \n\n\n");
 
 	rewind(fp);
@@ -215,7 +215,7 @@ int main()
 	printf(" ------------------------------------- \n");
 	printf("|              Shell  Sort            |\n");
 	printf("|    FINISHED SORTING %8d DATA   |\n", count);
-	printf("|         TIME TAKEN : %6.2f s       |\n", time);
+	printf("|        TIME TAKEN : %-8.2f s      |\n", time);
 	printf(" ------------------------------------- \n\n\n");
 
 	free(a); // 동적 할당한 배열 메모리 할당 해제
