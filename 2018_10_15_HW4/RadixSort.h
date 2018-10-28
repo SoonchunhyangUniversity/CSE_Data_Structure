@@ -1,4 +1,4 @@
-﻿#ifndef __RADIX__SORT__
+#ifndef __RADIX__SORT__
 #define __RADIX__SORT__
 
 #include <stdio.h> // 표준 입출력 헤더파일 선언
@@ -32,6 +32,18 @@ void queue_init(Queue *pq)
 }
 
 /**
+ * [is_empty 함수]
+ * @param  pq [큐 구조체]
+ * @return    [큐 공백 여부]
+ */
+int is_empty(Queue *pq)
+{
+	return pq->front == NULL;
+	// 큐의 front가 NULL인 경우 TRUE
+	// NULL이 아닌 경우 FALSE
+}
+
+/**
  * [enqueue 함수]
  * @param pq   [큐 구조체]
  * @param data [삽입될 데이터]
@@ -61,18 +73,6 @@ void enqueue(Queue *pq, Data data)
 		pq->rear = newNode;
 		// rear을 newNode로 저장
 	}
-}
-
-/**
- * [is_empty 함수]
- * @param  pq [큐 구조체]
- * @return    [큐 공백 여부]
- */
-int is_empty(Queue *pq)
-{
-	return pq->front == NULL;
-	// 큐의 front가 NULL인 경우 TRUE
-	// NULL이 아닌 경우 FALSE
 }
 
 /**
@@ -141,7 +141,7 @@ void radix_sort(int arr[], int count, int maxLen)
 		}
 
 		/* 버킷 수만큼 반복 */
-		for (bi = 0, di = 0; bi < count; bi++)
+		for (bi = 0, di = 0; bi < BUCKET_NUM; bi++)
 		{
 
 			/* 버킷에 저장된 것 순서대로 다 꺼내서 다시 arr에 저장 */
@@ -149,7 +149,6 @@ void radix_sort(int arr[], int count, int maxLen)
 				arr[di++] = dequeue(&buckets[bi]);
 				// 큐의 데이터 삭제하여 서장
 		}
-		printf("\n");
 		/* N번째 자리의 숫자 추출을 위한 피제수의 증가 */
 		divfac *= 10;
 	}
