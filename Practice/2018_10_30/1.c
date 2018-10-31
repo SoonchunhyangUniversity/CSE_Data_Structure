@@ -54,7 +54,7 @@ int main()
 	/* 파일을 여는데에 실패했을 경우 예외처리 */
 	if (fp == NULL)
 	{
-		printf("FILE OPEN ERROR!\n"); // 에러 메세지 출력
+		puts("FILE OPEN ERROR!"); // 에러 메세지 출력
 		return 0; // 메인 함수 종료
 	}
 
