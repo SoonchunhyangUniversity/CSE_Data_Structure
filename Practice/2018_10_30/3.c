@@ -208,7 +208,7 @@ void insert_edge(Graph *g, int u, int v)
 			// 삽입 위치를 찾지 못했으니 다음 노드로 이동
 		}
 
-		node->link = p; // 삽입 할 노드의 링크에 p 연결
+		node->link = p->link; // 새 노드의 링크에 현재 노드의 링크 연결
 		p->link = node; // 현재 노드의 링크에 새 노드 연결
 	}
 }
