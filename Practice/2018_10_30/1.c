@@ -33,7 +33,7 @@ Node *create_node(Student data, Node *link);
 void insert_node(Node **phead, Node *new_node);
 /* 연결리스트의 데이터를 출력하는 함수 */
 void display(Node *head);
-/* 삽입 정렬에 사용할 삽입 함수 */
+/* 삽입 정렬에 사용 할 삽입 함수 */
 void sorted_insert(Node **phead, Node *new_node);
 /* 삽입 정렬 함수 */
 void insertion_sort(Node **phead);
@@ -46,7 +46,7 @@ int main()
 	// 파일에서 받아온 데이터를 저장할 Student 구조체 선언
 
 	int count = 0;
-	// 데이터의 개수를 저장할 변수 선언 및 초기화
+	// 데이터의 개수를 저장 할 변수 선언 및 초기화
 
 	/* 파일 fp 선언 및 data1.txt를 읽기모드로 연다. */
 	FILE *fp = fopen("data1.txt", "r");
