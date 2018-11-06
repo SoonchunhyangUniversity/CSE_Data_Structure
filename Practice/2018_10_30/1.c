@@ -210,7 +210,7 @@ void sorted_insert(Node **phead, Node *new_node)
 			// 다음 노드로 이동
 		}
 
-		new_node->link = current->link
+		new_node->link = current->link;
 		// 삽입될 노드의 링크에 현재 노드의 링크 연결
 		current->link = new_node;
 		// 현재 노드의 링크에 삽입될 노드 연결
