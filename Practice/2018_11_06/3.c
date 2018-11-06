@@ -25,7 +25,7 @@ int main()
 	int u, v, weight;
 	int max = INT_MIN;
 
-	/* 파일 fp 선언 및 data3.txt를 읽기모드로 연다. */
+	/* 파일 fp 선언 및 data1.txt를 읽기모드로 연다. */
 	FILE *fp = fopen("data3.txt", "r");
 
 	/* 파일을 여는데에 실패했을 경우 예외처리 */
@@ -39,11 +39,8 @@ int main()
 	{
 		fscanf(fp, " %d %d %d", &u, &v, &weight);
 
-		if (max < u)
-			max = u;
-
-		if (max < v)
-			max = v;
+		if (max < u || max < v)
+			(u > v) ? (max = u) : (max = v);
 	}
 
 	selected = (int *)malloc(sizeof(int) * (max + 1));
