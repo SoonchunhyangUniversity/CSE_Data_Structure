@@ -100,6 +100,7 @@ int main()
 		{
 			fscanf(fp, " %d %d", &u, &v);
 			// 파일에서 정수형 데이터를 두개 읽어와 u, v에 저장
+
 			insert_edge(&g, u, v);
 			insert_edge(&g, v, u);
 			// insert_edge 함수로 두 정점 u, v를 연결
@@ -138,7 +139,7 @@ void queue_init(QueueType *q)
 /* 큐의 삽입 함수 */
 void enqueue(QueueType *q, int vertex)
 {
-	/* 큐가 가득 차 있을 경우 */
+	/* 큐가 가득 차 있을 경우 예외처리 */
 	if (is_full(q))
 	{
 		printf("QUEUE FULL ERROR!\n");
@@ -172,7 +173,7 @@ int is_full(QueueType *q)
 /* 큐의 삭제 함수 */
 int dequeue(QueueType *q)
 {
-	/* 큐가 비어있을 경우 */
+	/* 큐가 비어있을 경우 예외처리 */
 	if (is_empty(q))
 	{
 		printf("QUEUE EMPTY ERROR!\n");
@@ -200,7 +201,7 @@ void graph_init(Graph *g)
 	/* 최대 정점의 개수 만큼 반복하는 반복문 */
 	for (v = 0; v < MAX_VERTICES; v++)
 		g->adj_list[v] = NULL;
-	// 인접 리스트를 NULL로 초기화
+		// 인접 리스트를 NULL로 초기화
 }
 
 /**
@@ -277,7 +278,7 @@ void insert_edge(Graph *g, int u, int v)
 			if (p->link != NULL)
 			{
 				/* 다음 노드의 정점의 값보다 삽입 될 노드의
-				정점의 크기가 작을 경우 노드의 삽입 위치 */
+				   정점의 크기가 작을 경우 노드의 삽입 위치 */
 				if (p->link->vertex > node->vertex)
 					break; // 반복문 탈출
 			}
@@ -299,30 +300,39 @@ void insert_edge(Graph *g, int u, int v)
 void bfs_list(Graph *g, int v)
 {
 	GraphNode *w;
+	// 원본 리스트를 복사하여 사용할 구조체 포인터 선언
 	QueueType q;
+	// 큐 구조체 선언
 
 	static int visited[MAX_VERTICES];
 	// 그래프 방문 확인 배열, static 키워드로 내부 정적 변수 사용
 
-	queue_init(&q);
+	queue_init(&q); // queue_init 함수 호출로 큐 초기화
 
-	visited[v] = TRUE;
+	visited[v] = TRUE; // 현재 방문 중인 정점의 상태 변경
 
-	printf("%d ", v);
+	printf("%d ", v); // 정점의 데이터 출력
 
-	enqueue(&q, v);
+	enqueue(&q, v); // enqueue 함수 호출로 정점을 큐에 삽입
 
+	/* 큐가 비어있을 때까지 반복하는 반복문 */
 	while (!is_empty(&q))
 	{
 		v = dequeue(&q);
+		// dequeue 함수 호출로 큐의 데이터 삭제
 
+		/* 인접리스트의 끝까지 탐색하는 반복문 */
 		for (w = g->adj_list[v]; w; w = w->link)
 		{
+			/* 방문하지 않은 정점 일 경우 */
 			if (!visited[w->vertex])
 			{
 				visited[w->vertex] = TRUE;
+				// 정점 방문 확인
 				printf("%d ", w->vertex);
+				// 정점의 데이터 출력
 				enqueue(&q, w->vertex);
+				// enqueue 함수 호출로 방문한 정점을 큐에 삽입
 			}
 		}
 	}
