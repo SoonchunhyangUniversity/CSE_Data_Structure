@@ -129,14 +129,21 @@ int main()
 	return 0; // 메인 함수 종료
 }
 
-/* 큐의 초기화 함수 */
+/**
+ * [queue_init 함수]
+ * @param q [큐 구조체]
+ */
 void queue_init(QueueType *q)
 {
 	q->front = q->rear = 0;
 	// 큐의 front와 rear 맴버를 0으로 초기화
 }
 
-/* 큐의 삽입 함수 */
+/**
+ * [enqueue 함수]
+ * @param q      [큐 구조체]
+ * @param vertex [정점 번호]
+ */
 void enqueue(QueueType *q, int vertex)
 {
 	/* 큐가 가득 차 있을 경우 예외처리 */
@@ -152,7 +159,11 @@ void enqueue(QueueType *q, int vertex)
 	// 큐의 rear번 째 배열의 데이터 저장
 }
 
-/* 큐가 비어있는지 확인하는 함수 */
+/**
+ * [is_empty 함수]
+ * @param  q [큐 구조체]
+ * @return   [큐 공백 상태]
+ */
 int is_empty(QueueType *q)
 {
 	return (q->front == q->rear);
@@ -161,7 +172,11 @@ int is_empty(QueueType *q)
 	// 그렇지 않으면 FALSE 반환
 }
 
-/* 큐가 가득 차있는지 확인하는 함수 */
+/**
+ * [is_full 함수]
+ * @param  q [큐 구조체]
+ * @return   [큐 포화 상태]
+ */
 int is_full(QueueType *q)
 {
 	return ((q->rear + 1) % MAX_QUEUE_SIZE == q->front);
@@ -170,7 +185,11 @@ int is_full(QueueType *q)
 	// 그렇지 않으면 FALSE 반환
 }
 
-/* 큐의 삭제 함수 */
+/**
+ * [dequeue 함수]
+ * @param  q [큐 구조체]
+ * @return   [삭제된 데이터]
+ */
 int dequeue(QueueType *q)
 {
 	/* 큐가 비어있을 경우 예외처리 */
