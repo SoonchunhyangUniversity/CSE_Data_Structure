@@ -8,14 +8,16 @@
 
 #include <stdio.h> // 표준 입출력 라이브러리 헤더파일 선언
 #include <stdlib.h> // 동적 할당 함수를 사용하기 위한 헤더파일 선언
-#define TRUE 1
-#define FALSE 0
-#define INF 1000L
+#define TRUE 1 // 기호 상수 TRUE를 1로 정의
+#define FALSE 0 // 기호 상수 FALSE를 0으로 정의
+#define INF 1000L // 기호 상수 INF를 1000L로 정의
 
 int *selected;
 int *dist;
 
+/* 최소 비용의 정점을 반환하는 함수 */
 int get_min_vertex(int n);
+/* Prim의 최소 비용 신장 트리 알고리즘 함수 */
 void prim(int **adj_mat, int s, int n);
 
 int main()
