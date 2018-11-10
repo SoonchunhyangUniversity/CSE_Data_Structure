@@ -23,9 +23,13 @@ void prim(int **adj_mat, int s, int n);
 int main()
 {
 	int **adj_mat;
+	// 인접 행렬 배열을 동적 할당할 배열 선
 	int i, j;
+	// 반복문에서 사용 할 변수 선언
 	int u, v, weight;
+	// 정점의 정보와 가중치를 저장할 변수 선언
 	int max = INT_MIN;
+	// 정점의 숫자의 최댓값을 저장 할 변수 선언 및 초기화
 
 	/* 파일 fp 선언 및 data1.txt를 읽기모드로 연다. */
 	FILE *fp = fopen("data3.txt", "r");
@@ -37,36 +41,53 @@ int main()
 		return 0; // 메인 함수 종료
 	}
 
+	/* 파일의 끝까지 반복하는 반복문 */
 	while (!feof(fp))
 	{
 		fscanf(fp, " %d %d %d", &u, &v, &weight);
+		// 파일에서 정수형 데이터 3개를 읽어와 변수에 저장
 
+		/* 정점의 최댓값을 찾는 조건문 */
 		if (max < u || max < v)
 			(u > v) ? (max = u) : (max = v);
+			// u, v중 큰 값을 max변수에 대입
 	}
 
 	selected = (int *)malloc(sizeof(int) * (max + 1));
+	// 전역 변수 selected 배열 동적 할당
 	dist = (int *)malloc(sizeof(int) * (max + 1));
+	// 전역 변수 dist 배열 동적 할당
 
+	/* 인접 행렬 배열 동적 할당 행 우선 동적 할당 진행 */
 	adj_mat = (int **)malloc(sizeof(int *) * (max + 1));
 
+	/* 행의 개수 만큼 반복하는 반복문 */
 	for (i = 0; i <= max; i++)
 		adj_mat[i] = (int *)malloc(sizeof(int) * (max + 1));
+		// 각 행의 열을 동적 할당 진행
 
+	/* 인접 행렬과 전역 배열 초기화 */
 	for (i = 0; i <= max; i++)
 	{
 		for (j = 0; j <= max; j++)
 			adj_mat[i][j] = INF;
+			// 모든 인접 행렬의 값을 INF로 초기화
 
 		selected[i] = 0;
+		// selected의 max번 째 인덱스 까지 0으로 초기화
 		dist[i] = 0;
+		// dist의 max번 째 인덱스 까지 0으로 초기화
 	}
 
-	rewind(fp);
+	rewind(fp); // 파일 포인터의 위치를 처음으로 돌린다.
 
+	/* 파일의 끝까지 반복하는 반복문 */
 	while(!feof(fp))
 	{
 		fscanf(fp, " %d %d %d", &u, &v, &weight);
+		// 파일에서 간선의 정보를 읽어 각 변수에 저장
+
+		/* 인접 행렬에 가중치 삽입 */
 		adj_mat[u][v] = weight;
 		adj_mat[v][u] = weight;
 	}
@@ -75,18 +96,26 @@ int main()
 
 	puts(">> 과정");
 	prim(adj_mat, 0, max);
+	// prim 함수 호출로 Prim의 최소 비용 신장 트리 알고리즘 수행
 
 	fclose(fp); // 열어준 파일 포인터 fp를 닫는다.
 
+	/* 인접 행렬의 행만큼 반복하는 반복문 */
 	for (i = 0; i <= max; i++)
 		free(adj_mat[i]);
+		// 각 행의 열의 메모리 할당 해제
 
-	free(adj_mat);
-	free(selected), free(dist);
+	free(adj_mat); // 인접 행렬 행의 메모리 할당 해제
+	free(selected), free(dist); // 전역 배열 변수 메모리 할당 해제
 
 	return 0; // 메인 함수 종료
 }
 
+/**
+ * [get_min_vertex description]
+ * @param  n [description]
+ * @return   [description]
+ */
 int get_min_vertex(int n)
 {
 	int v, i;
@@ -109,6 +138,12 @@ int get_min_vertex(int n)
 	return v;
 }
 
+/**
+ * [prim description]
+ * @param adj_mat [description]
+ * @param s       [description]
+ * @param n       [description]
+ */
 void prim(int **adj_mat, int s, int n)
 {
 	int i, u, v;
