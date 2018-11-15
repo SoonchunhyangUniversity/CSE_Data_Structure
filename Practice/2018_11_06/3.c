@@ -12,8 +12,8 @@
 #define FALSE 0 // 기호 상수 FALSE를 0으로 정의
 #define INF 1000L // 기호 상수 INF를 1000L로 정의
 
-int *selected;
-int *dist;
+int *selected; // 선택된 정점인지 확인할 배열을 동적 할당할 전역 변수
+int *dist; // 간선의 최솟값을 저장 할 배열을 동적 할당할 전역 변수
 
 /* 최소 비용의 정점을 반환하는 함수 */
 int get_min_vertex(int n);
@@ -112,83 +112,102 @@ int main()
 }
 
 /**
- * [get_min_vertex description]
- * @param  n [description]
- * @return   [description]
+ * [get_min_vertex 함수]
+ * @param  n [최대 정점 번호]
+ * @return   [최소값을 갖는 정점]
  */
 int get_min_vertex(int n)
 {
 	int v, i;
+	// 정점의 정보를 저장 할 변수 v, 반복문에서 사용 할 변수 i 선언
 
 	for (i = 0; i <= n; i++)
 	{
+		/* 아직 선택되지 않은 정점일 경우 */
 		if (!selected[i])
 		{
-			v = i;
+			v = i; // v에 정점 번호 저장
 			break;
 		}
 	}
 
+	/* 최대 정점의 번호만큼 반복하는 반복문 */
 	for (i = 0; i <= n; i++)
 	{
+		/* 선택되지 않은 정점이면서 최소 거리 탐색 */
 		if (!selected[i] && (dist[i] < dist[v]))
-			v = i;
+			v = i; // 정점 번호 저장
 	}
 
-	return v;
+	return v; // 정점 번호 반환
 }
 
 /**
- * [prim description]
- * @param adj_mat [description]
- * @param s       [description]
- * @param n       [description]
+ * [prim 함수]
+ * @param adj_mat [인접 행렬 그래프]
+ * @param s       [시작 정점 번호]
+ * @param n       [최대 정점 번호]
  */
 void prim(int **adj_mat, int s, int n)
 {
 	int i, u, v;
+	// 정점의 번호를 저장 할 변수와 반복문에서 사용 할 변수 선언
 	int cost = 0;
+	// 비용을 저장할 변수 선언 및 초기화
 
 	int *visited = (int *)malloc(sizeof(int) * n);
+	// 방문한 순서를 저장 할 포인터 변수 선언 및 동적 할당
 
+	/* 전역 배열을 초기화 하는 반복문 */
 	for (u = 0; u <= n; u++)
 	{
 		dist[u] = INF;
 		selected[u] = FALSE;
 	}
 
-	dist[s] = 0;
+	dist[s] = 0; // 시작 정점의 거리 초기화
 
 	for (i = 0; i <= n; i++)
 	{
 		u = get_min_vertex(n);
+		// get_min_vertex 함수 호출로 반환된 정점 번호 u에 저장
 
 		selected[u] = TRUE;
+		// 정점 u 방문 표시
 
+		/* 경로가 없을 경우 */
 		if (dist[u] == INF)
-			return;
+			return; // 함수 종료
 
-		printf("%d >> ", i + 1);
+		printf("%d >> ", i + 1); // 방문한 정점 표시
 
 		for (v = 0; v <= n; v++)
 		{
+			/* 선택된 정점을 기준으로 연결되어 있는 모든 정점 거리 비교 */
 			if (adj_mat[u][v] != INF)
 			{
+				/* 아직 선택되지 않았으며 거리가 작을 경우 */
 				if (!selected[v] && adj_mat[u][v] < dist[v])
 				{
 					dist[v] = adj_mat[u][v];
+					// dist[v]값 갱신
 				}
 			}
 		}
 
 		visited[i] = u;
+		// 방문한 순서를 저장
 
+		/* 지금까지 방문한 순서를 출력하는 반복문 */
 		for (v = 0; v <= i; v++)
 			printf("%d ", visited[v]);
 
 		cost += dist[u];
+		// 현재까지의 최소비용 증가
 		printf(": %d\n", cost);
+		// 현재 최소 비용 출력
 	}
 
 	printf("\n< 필요한 최소 비용 %d >\n", cost);
+	// 모든 정점을 탐색했을 때 최소 비용 출력
 }
