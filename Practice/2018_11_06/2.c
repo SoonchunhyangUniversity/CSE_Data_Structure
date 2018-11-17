@@ -66,7 +66,7 @@ int main()
 
 	heap_init(&h); // heap_init 함수 호출로 히프 초기화
 
-	/* 파일 fp 선언 및 data2.txt를 읽기모드로 연다. */
+	/* 파일 포인터 fp 선언 및 data2.txt를 읽기모드로 연다. */
 	FILE *fp = fopen("data2.txt", "r");
 
 	/* 파일을 여는데에 실패했을 경우 예외처리 */
