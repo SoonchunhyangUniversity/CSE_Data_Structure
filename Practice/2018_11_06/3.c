@@ -23,7 +23,7 @@ void prim(int **adj_mat, int s, int n);
 int main()
 {
 	int **adj_mat;
-	// 인접 행렬 배열을 동적 할당할 배열 선
+	// 인접 행렬 그래프 배열을 동적 할당 할 이중 포인터 변수 선언
 	int i, j;
 	// 반복문에서 사용 할 변수 선언
 	int u, v, weight;
@@ -31,7 +31,7 @@ int main()
 	int max = INT_MIN;
 	// 정점의 숫자의 최댓값을 저장 할 변수 선언 및 초기화
 
-	/* 파일 fp 선언 및 data1.txt를 읽기모드로 연다. */
+	/* 파일 포인터 fp 선언 및 data3.txt를 읽기모드로 연다. */
 	FILE *fp = fopen("data3.txt", "r");
 
 	/* 파일을 여는데에 실패했을 경우 예외처리 */
