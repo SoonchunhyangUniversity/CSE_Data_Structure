@@ -14,7 +14,7 @@
 #define MAX 200 // 기호 상수 MAX를 200으로 정의
 
 int parent[MAX_VERTICES]; // 부모 노드를 저장 할 전역 배열 선언
-int num[MAX_VERTICES]; // 각 집학의 크기를 저장 할 전역 배열 선언
+int num[MAX_VERTICES]; // 각 집합의 크기를 저장 할 전역 배열 선언
 
 /* 간선의 정보를 저장 할 히프의 요소 구조체 정의 */
 typedef struct

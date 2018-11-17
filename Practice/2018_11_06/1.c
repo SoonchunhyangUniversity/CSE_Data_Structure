@@ -68,7 +68,7 @@ int main()
 	Graph g;
 	// 그래프 구조체 선언
 
-	/* 파일 포인터 fp 선언 및 data3.txt를 읽기 모드로 연다. */
+	/* 파일 포인터 fp 선언 및 data1.txt를 읽기 모드로 연다. */
 	FILE *fp = fopen("data1.txt", "r");
 
 	/* 파일을 여는데에 실패했을 경우 예외처리 */
