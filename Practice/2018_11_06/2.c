@@ -317,7 +317,7 @@ element delete_min_heap(HeapType *h)
 	item = h->heap[1];
 	// 삭제될 데이터에 히프의 최댓값 item에 저장
 	temp = h->heap[(h->heap_size)--];
-	// 히프의 가장 작은 데이터 temp에 저장
+	// 히프의 마지막 인덱스 데이터 temp에 저장
 	parent = 1, child = 2;
 	// 부모, 자식노드 인덱스값 초기화
 
