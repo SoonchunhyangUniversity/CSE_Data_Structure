@@ -85,28 +85,35 @@ int main()
     /* 파일의 끝까지 반복하는 반복문 */
 	while (!feof(fp))
 	{
-		fscanf(fp, " %c", &c);
+		fscanf(fp, " %c %d", &c, &u);
         // 파일 fp에서 문자 하나를 읽어와 c에 저장
 
         /* c가 'v'일 경우 */
 		if (c == 'v')
 		{
-			fscanf(fp, " %d", &u);
-            // 파일에서 정수형 데이터를 하나 읽어와 u에 저장
 			continue;
             // 다음 반복문으로 이동
 		}
 
         /* c가 'v'가 아닐 경우 -> 'e'일 경우 */
-		else
+		else if (c == 'e')
 		{
-			fscanf(fp, " %d %d %d", &u, &v, &weight);
+			fscanf(fp, "  %d %d", &v, &weight);
             // 파일에서 정수형 데이터 세개를 읽어와 저장
 
 			adj_mat[u][v] = weight;
 			adj_mat[v][u] = weight;
             // 인접 행렬에 가중치 삽입
 		}
+
+        /* 잘못된 연산자일 경우 */
+        else
+        {
+            printf("> %c < OPERATION ERROR!", c);
+            // 에러 메세지 출력
+            return 0;
+            // 메인 함수 종료
+        }
 	}
 
 	floyd(adj_mat, max);
