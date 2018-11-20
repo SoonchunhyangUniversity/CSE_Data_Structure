@@ -9,7 +9,6 @@
 #include <stdio.h> // 표준 입출력 라이브러리 헤더파일 선언
 #include <stdlib.h> // 동적 할당 함수를 사용하기 위한 헤더파일 선언
 #include <string.h> // strcpy 함수를 사용하기 위한 헤더파일 선언
-
 #define TRUE 1 // 기호 상수 TRUE를 1로 정의
 #define FALSE 0 // 기호 상수 FALSE를 0으로 정의
 #define SUBJECT_LEN 20 // 기호 상수 SUBJECT_LEN를 20으로 정의
@@ -39,9 +38,9 @@ typedef struct Graph
 /* 배열 기반 스택의 스택 구조체 */
 typedef struct _arrayStack
 {
-	int stackArr[STACK_LEN];
+	int stack[STACK_LEN];
 	// 정수형 데이터를 저장하는 STACK_LEN길이의 배열
-	int topIndex;
+	int top;
 	// 스택의 최상위 인덱스의 값
 } Stack; // typedef로 Stack 키워드로 선언 가능
 
@@ -115,7 +114,7 @@ int main()
 		else if (c == 'e')
 		{
 			fscanf(fp, " %d %d", &u, &v);
-			// 파일에서 정수형 데이터 두개르 ㄹ읽어와 저장
+			// 파일에서 정수형 데이터 두개를 읽어와 저장
 
 			insert_edge(&g, u, v);
 			// insert_edge 함수 호출로 간선 정보 삽입
@@ -141,8 +140,10 @@ int main()
 	puts("----------------");
 
 	fclose(fp);
+	// 열어준 파일 포인터 fp를 닫아준다.
 
 	return 0;
+	// 메인 함수 종료
 }
 
 /**
@@ -274,7 +275,7 @@ void topo_sort(Graph *g)
 				// 반복문 탈출
 
 			in_degree[node->vertex]++;
-			// 정점의 진입 간선 갯수 증가
+			// 정점의 진입 간선 개수 증가
 			node = node->link;
 			// 다음 노드로 이동
 		}
@@ -286,7 +287,7 @@ void topo_sort(Graph *g)
 	/* 최대 정점 번호만큼 반복 */
 	for (i = 0; i <= g->n; i++)
 	{
-		/* 진입 간선 갯수가 9이면서 인접 리스트가 NULL이 아닌 경우 */
+		/* 진입 간선 개수가 9이면서 인접 리스트가 NULL이 아닌 경우 */
 		if (in_degree[i] == 0 && g->adj_list[i] != NULL)
 			push(&s, i);
 			// push 함수 호출로 스택에 정점 번호 삽입
@@ -337,7 +338,7 @@ void topo_sort(Graph *g)
  */
 void stack_init(Stack *s)
 {
-	s->topIndex = -1;
+	s->top = -1;
 	// 스택의 최상위 인덱스 값을 -1로 저장
 }
 
@@ -357,8 +358,8 @@ void push(Stack *s, int data)
 		// 프로그램 종료
 	}
 
-	s->stackArr[++(s->topIndex)] = data;
-	// 스택에 배열의 topIndex 다음 인덱스에 값을 삽입한다.
+	s->stack[++(s->top)] = data;
+	// 스택에 배열의 top 다음 인덱스에 값을 삽입한다.
 }
 
 /**
@@ -368,7 +369,7 @@ void push(Stack *s, int data)
  */
 int pop(Stack *s)
 {
-	int rIdx; // 사라질 인덱스를 임시로 저장할 변수
+	int remove_idx; // 사라질 인덱스를 임시로 저장할 변수
 
 	/* 스택이 비어있을 경우 */
 	if (is_empty(s))
@@ -379,11 +380,11 @@ int pop(Stack *s)
 		// 프로그램 종료
 	}
 
-	rIdx = (s->topIndex)--;
-	// rIdx에 스택의 topIndex저장 후 1을 뺸다.
+	remove_idx = (s->top)--;
+	// remove_idx에 스택의 top저장 후 1을 뺸다.
 
-	return s->stackArr[rIdx];
-	// 스택의  rIdx번째 데이터 반환
+	return s->stack[remove_idx];
+	// 스택의  remove_idx번째 데이터 반환
 }
 
 /**
@@ -393,8 +394,8 @@ int pop(Stack *s)
  */
 int is_empty(Stack *s)
 {
-	return (s->topIndex == -1)
-	// topIndex가 -1일 경우 비어있으므로 TRUE반한
+	return (s->top == -1)
+	// top가 -1일 경우 비어있으므로 TRUE반한
 	// 그렇지 않을 경우 FALSE 반환
 }
 
@@ -405,7 +406,7 @@ int is_empty(Stack *s)
  */
 int is_full(StackType *s)
 {
-	return (s->top == (MAX - 1));
-	// 스택의 최상위 인덱스가 MAX - 1이면 True
+	return (s->top == (STACK_LEN - 1));
+	// 스택의 최상위 인덱스가 STACK_LEN - 1이면 True
 	// 그렇지 않으면 False 반환
 }
