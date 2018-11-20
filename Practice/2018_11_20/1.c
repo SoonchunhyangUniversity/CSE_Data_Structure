@@ -33,10 +33,10 @@ int main()
 	char c;
     // 연산자를 저장 할 변수 선언
 
-	/* 파일 fp 선언 및 data1.txt를 읽기모드로 연다. */
+	/* 파일 포인터 fp 선언 및 data1.txt를 읽기모드로 연다. */
 	FILE *fp = fopen("data1.txt", "r");
 
-	/* 파일을 여는데에 실패했을 경우 예외처리 */
+	/* 파일을 여는데 실패했을 경우 예외처리 */
 	if (fp == NULL)
 	{
 		puts("FILE OPEN ERROR!");
@@ -86,7 +86,7 @@ int main()
 	while (!feof(fp))
 	{
 		fscanf(fp, " %c %d", &c, &u);
-        // 파일 fp에서 문자 하나를 읽어와 c에 저장
+        // 파일 fp에서 문자 하나와 정수 데이터를 읽어와 c에 저장
 
         /* c가 'v'일 경우 */
 		if (c == 'v')
@@ -99,7 +99,7 @@ int main()
 		else if (c == 'e')
 		{
 			fscanf(fp, "  %d %d", &v, &weight);
-            // 파일에서 정수형 데이터 세개를 읽어와 저장
+            // 파일에서 정수형 데이터 두 개를 읽어와 저장
 
 			adj_mat[u][v] = weight;
 			adj_mat[v][u] = weight;
