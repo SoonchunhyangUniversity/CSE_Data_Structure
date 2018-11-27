@@ -88,8 +88,7 @@ void hash_lp_add(element item, element ht[])
 
 	while (ht[i].key != INT_MIN)
 	{
-		printf("data = %3d 저장 도중 Hashtable : %d 에서 충돌 감지 - index = %d로 증가하였습니다.\n",
-					item.key, i, (i + 1) % MOD);
+		printf("data = %3d 저장 도중 Hashtable : %d 에서", item.key, i);
 
 		if (ht[i].key == item.key)
 		{
@@ -97,7 +96,9 @@ void hash_lp_add(element item, element ht[])
 			return;
 		}
 
-		i = (i + 1) % MOD;
+		i = (i + 1) % TABLESIZE;
+
+		printf(" 충돌 감지 - index = %d로 증가하였습니다.\n", i);
 
 		if (i == hash_value)
 		{
@@ -119,11 +120,11 @@ void hash_lp_search(element item, element ht[])
 	{
 		if (ht[i].key == item.key)
 		{
-			printf("%3d 는 HashTable : %d에서 검색되었습니다.\n", ht[i].key, i);
+			printf("%3d 는 HashTable : %d 에서 검색되었습니다.\n", ht[i].key, i);
 			return;
 		}
 
-		i = (i + 1) % MOD;
+		i = (i + 1) % TABLESIZE;
 
 		if (i == hash_value)
 		{
