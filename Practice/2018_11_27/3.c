@@ -168,6 +168,7 @@ void hash_chain_find(element item, ListNode *ht[])
 	int check = FALSE;
     // 테이블에 데이터 존재 확인, 테이블 정보 중복 출력 방지에 사용할 변수 선언 및 초기화
 	int hash_value = hash_function(item.key);
+    // 해시 값을 저장할 변수 선언 및 hash_function 함수 호출로 해시 값 계산 후 대입
 
     /* 노드의 끝까지 반복하는 반복문 */
 	for (node = ht[hash_value]; node; node = node->link)
