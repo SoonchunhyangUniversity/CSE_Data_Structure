@@ -27,7 +27,7 @@ element hash_table[TABLE_SIZE];
 void init_table(element ht[]);
 /* 해시 테이블에 데이터를 삽입하는 함수 */
 void hash_lp_add(element item, element ht[]);
-/* 해시 테이블에 데이터를 삭제하는 함수 */
+/* 해시 테이블에서 데이터를 탐색하는 함수 */
 void hash_lp_search(element item, element ht[]);
 /* 해시 값을 계산하는 함수 */
 int hash_function(int key);
@@ -37,7 +37,7 @@ int main()
 	char oper;
 	// 연산자를 저장할 변수 선언
 	int check = FALSE;
-	// 처음 탐색을 시작하는지 확인할 변수 선언
+	// 처음 탐색을 시작하는지 확인할 변수 선언 및 초기화
 	element tmp;
 	// 파일에서 가져온 해시 데이터를 저장할 변수 선언
 
@@ -88,11 +88,11 @@ int main()
 			// hash_lp_search 함수 호출로 해시 테이블 데이터 탐색
 		}
 
-		/* 잘못된 연산자가 들어왔을 경우 예외처리 */
+		/* 잘못된 연산자가 들어왔을 경우 예외 처리 */
 		else
 		{
 			puts("OPERATION ERROR!");
-			return 0;
+			return 0; // 예외 출력 후 메인 함수 종료
 		}
 	}
 
