@@ -1,3 +1,11 @@
+/**
+ * 작성자 : 김민수
+ * 학번 : 20174444
+ * 학과 : 컴퓨터소프트웨어공학과
+ * 프로그램명 : 이차조사법을 이용한 HashTable 사전
+ * 작성일 : 2018-11-27
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,22 +13,22 @@
 #define TRUE 1
 #define FALSE 0
 #define MOD 7
-#define TABLESIZE 7
-#define KEYSIZE 20
-#define VALSIZE 20
+#define TABLE_SIZE 7
+#define KEY_SIZE 20
+#define VAL_SIZE 20
 
 #define empty(e) (strlen(e.key) == 0)
 #define equal(e1, e2) (!strcmp(e1.key, e2.key))
 
 typedef struct
 {
-	char key[KEYSIZE];
-	char val[VALSIZE];
+	char key[KEY_SIZE];
+	char val[VAL_SIZE];
 } element;
 
 typedef struct
 {
-	element hash_table[TABLESIZE];
+	element hash_table[TABLE_SIZE];
 	int size;
 } Hash;
 
@@ -38,9 +46,8 @@ int main()
 	element tmp;
 	Hash hash;
 
-	FILE *fp;
-
-	fp = fopen("data2.txt", "r");
+	/* 파일 포인터 fp 선언 및 data2.txt를 읽기 모드로 오픈 */
+	FILE *fp = fopen("data2.txt", "r");
 
 	if (fp == NULL)
 	{
@@ -50,7 +57,7 @@ int main()
 
 	init_table(&hash);
 
-	printf("< HashTable Size = [%d] >\n\n", TABLESIZE);
+	printf("< HashTable Size = [%d] >\n\n", TABLE_SIZE);
 
 	puts("< Data Insert Finish >");
 
@@ -75,7 +82,7 @@ void init_table(Hash *hash)
 {
 	int i;
 
-	for (i = 0; i < TABLESIZE; i++)
+	for (i = 0; i < TABLE_SIZE; i++)
 		hash->hash_table[i].key[0] = NULL;
 
 	hash->size = 0;
@@ -95,7 +102,7 @@ void hash_qp_add(element item, Hash *hash)
 			return;
 		}
 
-		if (hash->size == TABLESIZE)
+		if (hash->size == TABLE_SIZE)
 		{
 			printf("테이블이 포화상태 입니다.\n");
 			return;
@@ -104,7 +111,7 @@ void hash_qp_add(element item, Hash *hash)
 		printf("Data = %s 저장 도중 HashTable : %d 에서 ", item.key, i);
 
 		inc = inc + 1;
-		i = (i + inc * inc) % TABLESIZE;
+		i = (i + inc * inc) % TABLE_SIZE;
 
 		printf("충돌 감지 - index = %d로 증가하였습니다.\n", i);
 	}
@@ -117,7 +124,7 @@ void print_table(Hash *hash)
 {
 	int i;
 
-	for (i = 0; i < TABLESIZE; i++)
+	for (i = 0; i < TABLE_SIZE; i++)
 	{
 		printf("HashTable[%d] -", i);
 

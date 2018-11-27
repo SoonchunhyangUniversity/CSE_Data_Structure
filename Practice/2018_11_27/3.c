@@ -1,10 +1,18 @@
+/**
+ * 작성자 : 김민수
+ * 학번 : 20174444
+ * 학과 : 컴퓨터소프트웨어공학과
+ * 프로그램명 : 체이닝을 이용한 HashTable
+ * 작성일 : 2018-11-27
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
 #define TRUE 1
 #define FALSE 0
 #define MOD 7
-#define TABLESIZE 10
+#define TABLE_SIZE 10
 
 typedef struct
 {
@@ -17,7 +25,7 @@ typedef struct _node
 	struct _node *link;
 } ListNode;
 
-ListNode *hash_table[TABLESIZE];
+ListNode *hash_table[TABLE_SIZE];
 
 void hash_chain_add(element item, ListNode *ht[]);
 void hash_chain_find(element item, ListNode *ht[]);
@@ -28,9 +36,9 @@ int main()
 	char oper;
 	int check = FALSE;
 	element tmp;
-	FILE *fp;
 
-	fp = fopen("data3.txt", "r");
+    /* 파일 포인터 fp 선언 및 data3.txt를 읽기 모드로 오픈 */
+	FILE *fp = fopen("data3.txt", "r");
 
 	if (fp == NULL)
 	{
@@ -38,7 +46,7 @@ int main()
 		return 0;
 	}
 
-	printf("< HashTable Size = [%d] >\n\n", TABLESIZE);
+	printf("< HashTable Size = [%d] >\n\n", TABLE_SIZE);
 
 	puts("< Data Insert Finish >");
 	while (!feof(fp))
