@@ -18,12 +18,15 @@ typedef struct
 	char val[VALSIZE];
 } element;
 
-element hash_table[TABLESIZE];
-int size;
+typedef struct
+{
+	element hash_table[TABLESIZE];
+	int size;
+} Hash;
 
-void init_table(element ht[]);
-void hash_qp_add(element item, element ht[]);
-void print_table(element ht[]);
+void init_table(Hash *hash);
+void hash_qp_add(element item, Hash *hash);
+void print_table(Hash *hash);
 int transform(char *key);
 int hash_function(char *key);
 
@@ -31,7 +34,10 @@ int main()
 {
 	char oper;
 	int check = FALSE;
+
 	element tmp;
+	Hash hash;
+
 	FILE *fp;
 
 	fp = fopen("data2.txt", "r");
@@ -42,7 +48,7 @@ int main()
 		return 0;
 	}
 
-	init_table(hash_table);
+	init_table(&hash);
 
 	printf("< HashTable Size = [%d] >\n\n", TABLESIZE);
 
@@ -52,11 +58,11 @@ int main()
 	{
 		fscanf(fp, " %s %s", tmp.key, tmp.val);
 
-		hash_qp_add(tmp, hash_table);
+		hash_qp_add(tmp, &hash);
 	}
 
 	printf("\n< Table >\n");
-	print_table(hash_table);
+	print_table(&hash);
 
 	puts("< Finish >\n");
 
@@ -65,31 +71,31 @@ int main()
 	return 0;
 }
 
-void init_table(element ht[])
+void init_table(Hash *hash)
 {
 	int i;
 
 	for (i = 0; i < TABLESIZE; i++)
-		ht[i].key[0] = NULL;
+		hash->hash_table[i].key[0] = NULL;
+
+	hash->size = 0;
 }
 
-void hash_qp_add(element item, element ht[])
+void hash_qp_add(element item, Hash *hash)
 {
 	int i, hash_value, inc = 0;
-	int size = sizeof(ht) / sizeof(element);
-	int *check = (int *)malloc(sizeof(int) * size);
 
 	hash_value = i = hash_function(item.key);
 
-	while (!empty(ht[i]))
+	while (!empty(hash->hash_table[i]))
 	{
-		if (equal(item, ht[i]))
+		if (equal(item, hash->hash_table[i]))
 		{
 			printf("탐색 키가 중복되었습니다.\n");
 			return;
 		}
 
-		if (size == TABLESIZE)
+		if (hash->size == TABLESIZE)
 		{
 			printf("테이블이 포화상태 입니다.\n");
 			return;
@@ -103,11 +109,11 @@ void hash_qp_add(element item, element ht[])
 		printf("충돌 감지 - index = %d로 증가하였습니다.\n", i);
 	}
 
-	ht[i] = item;
-	size++;
+	hash->hash_table[i] = item;
+	hash->size++;
 }
 
-void print_table(element ht[])
+void print_table(Hash *hash)
 {
 	int i;
 
@@ -115,11 +121,11 @@ void print_table(element ht[])
 	{
 		printf("HashTable[%d] -", i);
 
-		if (empty(ht[i]))
+		if (empty(hash->hash_table[i]))
 			puts("");
 
 		else
-			printf(" %s > %s\n", ht[i].key, ht[i].val);
+			printf(" %s > %s\n", hash->hash_table[i].key, hash->hash_table[i].val);
 	}
 }
 
