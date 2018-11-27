@@ -13,7 +13,7 @@
 #define TRUE 1 // 기호 상수 TRUE를 1로 정의
 #define FALSE 0 // 기호 상수 FALSE를 0으로 정의
 #define MOD 7 // 기호 상수 MOD를 7로 정의
-#define TABLE_SIZE 10 // 기호 상수 TABLE_SIZE를 10으로 정의
+#define TABLE_SIZE 7 // 기호 상수 TABLE_SIZE를 7으로 정의
 #define KEY_SIZE 20 // 기호 상수 KEY_SIZE를 20으로 정의
 #define VAL_SIZE 20 // 기호 상수 VAL_SIZE를 20으로 정의
 
