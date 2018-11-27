@@ -48,7 +48,7 @@ int main()
 	if (fp == NULL)
 	{
 		puts("FILE OPEN ERROR!");
-		return 0;
+		return 0; // 예외 출력 후 메인 함수 종료
 	}
 
 	init_table(hash_table);
@@ -118,7 +118,7 @@ void init_table(element ht[])
 	/* 테이블 크기만큼 반복하는 반복문 */
 	for (i = 0; i < TABLE_SIZE; i++)
 		ht[i].key = INT_MIN;
-		// 각 테이블의 키값을 INT_MIN으로 초기화
+		// 각 테이블의 키 값을 INT_MIN으로 초기화
 }
 
 /**
@@ -205,11 +205,11 @@ void hash_lp_search(element item, element ht[])
 
 /**
  * [hash_function 함수]
- * @param  key [키값]
+ * @param  key [키 값]
  * @return     [해시 값]
  */
 int hash_function(int key)
 {
 	return key % MOD;
-	// 제산 함수를 사용 하여 해시 값 계산
+	// 제산 함수를 사용 하여 해시 값 계산 후 반환
 }
