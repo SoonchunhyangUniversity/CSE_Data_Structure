@@ -234,5 +234,5 @@ void hash_chain_find(element item, ListNode *ht[])
 int hash_function(int key)
 {
 	return key % MOD;
-	// 제산 함수를 사용 하여 해시 값 계산 후 반환
+	// 제산 함수를 사용하여 해시 값 계산 후 반환
 }
