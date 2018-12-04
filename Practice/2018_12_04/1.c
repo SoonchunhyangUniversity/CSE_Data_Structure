@@ -58,6 +58,7 @@ int main()
 
 	arr = (int *)malloc(sizeof(int) * (count + 1));
 	// 데이터의 개수 + 1개의 배열 동적 할당 진행
+	// 개선된 순차 탐색의 추가 공간 요구에 따라 + 1 더 할당
 
 	/* 데이터의 개수만큼 반복 */
 	for (i = 0; i < count; i++)
