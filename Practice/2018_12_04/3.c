@@ -337,7 +337,7 @@ int get_height(AvlNode *node)
 	int height = 0;
 	// 트리의 높이를 저장할 변수 선언 및 초기화
 
-	/* 비어있는 노드일 경우 */
+	/* 비어있는 노드가 아닐 경우 */
 	if (node != NULL)
 	{
 		height = 1 + max(get_height(node->left_child),
