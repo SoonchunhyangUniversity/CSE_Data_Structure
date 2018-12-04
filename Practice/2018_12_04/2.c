@@ -28,7 +28,7 @@ int main()
     // 이진 탐색 시간 결과를 저장할 변수 선언 및 초기화
 
 	clock_t start, end;
-    // 시작 시간과 종료 시간을 저장할 clock_t 구조체 선언
+    // 시작 시간과 종료 시간을 저장할 clock_t 구조체 변수 선언
 
     /* 파일포인터 fp선언 및 data1.txt를 읽기모드로 연다 */
 	FILE *fp = fopen("data1.txt", "r");
@@ -74,7 +74,7 @@ int main()
 	end = clock();
     // 종료 시간 저장
 
-	bs_result = (end - start) / CLOCKS_PER_SEC;
+	bs_result = (double)(end - start) / CLOCKS_PER_SEC;
     // (종료 시간 - 시작 시간) / CLOCKS_PER_SEC 실행 시간 계산 후 저장
 
     /* 탐색에 실패했을 경우 */
